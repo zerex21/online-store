@@ -1,0 +1,677 @@
+.Header {
+  background-color: rgb(101,101,101);
+  border-bottom: 2px solid #fff;
+  height: 50px;
+  padding:10px 0
+}
+
+.Header > .container {
+  align-items: center;
+  display: flex;
+  padding-left: 3%;
+  padding-right:3%
+}
+
+.Header > .container .logo {
+  background-image: url("https://www.svgrepo.com/show/274764/electric-car.svg");
+  background-size: 48px 60px;
+  display: block;
+  font-size: 0;
+  height: 60px;
+  margin-right: 50px;
+  width:48px
+}
+
+@media screen and (max-width: 560px) {
+  .Header > .container .logo {
+      margin-right:15px
+  }
+}
+
+.Header > .container .nav {
+  display: flex;
+  flex-grow: 1;
+  gap:50px
+}
+
+@media screen and (max-width: 560px) {
+  .Header > .container .nav {
+      gap:20px
+  }
+}
+
+.Header > .container .nav a {
+  color: #fff;
+  font-size: 24px;
+  text-decoration:none
+}
+
+@media screen and (max-width: 560px) {
+  .Header > .container .nav a {
+      font-size:18px
+  }
+}
+
+.Header > .container .nav a:hover {
+  text-decoration:underline
+}
+
+.Header > .container .favorite {
+  background-position: left -8px;
+  background-repeat: no-repeat;
+  background-size: 48px 60px;
+  height: 60px;
+  width:48px
+}
+
+.Header > .container .favorite span {
+  background-color: #278d9f;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 4px;
+  margin-top: 10px;
+  min-width: 20px;
+  text-align:center
+}
+
+.Footer {
+  background-color: rgb(101,101,101);
+  margin-top: 100px;
+  padding:10px 20px
+}
+
+.Footer > .container {
+  display: flex;
+  justify-content: space-between;
+  width:95%
+}
+
+.Footer > .container .rs-link {
+  background-image: url(https://rs.school/images/rs_school_js.svg);
+  background-size: 61px 23px;
+  display: block;
+  font-size: 0;
+  height: 23px;
+  width:61px
+}
+
+.Footer > .container .rs-link:hover {
+  background-color: aliceblue;
+}
+
+.Footer > .container .copy-link {
+  color: black;
+  text-decoration:none
+}
+
+.Footer > .container .copy-link:hover {
+  background-color: aliceblue;
+}
+
+#root, body, html {
+  height:100%
+}
+
+header, main {
+  width:100%
+}
+
+body {
+  background-attachment: fixed;
+  background-size: cover;
+  flex-grow: 1;
+  padding-bottom:50px
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  height:100%
+}
+
+.container {
+  height: 100%;
+  margin: 0 auto;
+  max-width:1600px
+}
+
+.GoodsFilterGroup {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background-color: rgba(19, 20, 21, .3);
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  z-index:1
+}
+
+.GoodsFilterGroup .title {
+  font-size: 18px;
+  margin:10px 0
+}
+
+.FilterByColor {
+  align-items: center;
+  display:flex
+}
+
+.FilterByColor__button, .favorite-input {
+  border: 0;
+  cursor: pointer;
+  font-size: 0;
+  height: 30px;
+  margin: 15px 10px;
+  outline: 0;
+  position: relative;
+  width:30px
+}
+
+.FilterByColor__list {
+  list-style: none;
+  margin: 0;
+  padding:0
+}
+
+.FilterByColor__button_type-white {
+  background-color:#fff
+}
+
+.FilterByColor__button_type-gray {
+  background-color:gray
+}
+
+.FilterByColor__button_type-red {
+  background-color:#fd0000
+}
+
+.FilterByColor_active:after {
+  border: solid #000;
+  border-width: 0 4px 4px 0;
+  content: "";
+  display: block;
+  height: 10px;
+  left: 9px;
+  position: absolute;
+  top: 5px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 6px;
+}
+
+.FilterWhoMade {
+  align-items: center;
+  display:flex
+}
+
+.FilterWhoMade .list {
+  list-style: none;
+  margin: 0;
+  padding:0
+}
+
+.FilterWhoMade .button {
+  background-color: transparent;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  cursor: pointer;
+  font-size: 0;
+  height: 40px;
+  margin: 10px 7px;
+  outline: 0;
+  position: relative;
+  width:40px
+}
+
+.FilterWhoMade .button.type-mersedes {
+  background-image:url("https://upload.wikimedia.org/wikipedia/commons/2/2c/Mercedes-Benz_free_logo.svg")
+}
+
+.FilterWhoMade .button.type-tesla {
+  background-image:url("https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg")
+}
+
+.FilterWhoMade .button.type-volkswagen {
+  background-image:url("https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg")
+}
+
+.FilterWhoMade .button.active {
+  background-color:rgb(255, 255, 255);
+}
+
+.FilterByPower {
+  align-items: center;
+  display:flex
+}
+
+.FilterByPower .list {
+  list-style: none;
+  margin: 0;
+  padding:0
+}
+
+.FilterByPower .button {
+  background-color: transparent;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid black;
+  color: black;
+  cursor: pointer;
+  height: 40px;
+  margin: 10px 7px;
+  outline: 0;
+  position: relative;
+  width:40px
+}
+
+.FilterByPower .button.type-large {
+  background-size:40px 40px
+}
+
+.FilterByPower .button.type-medium {
+  background-size:32px 32px
+}
+
+.FilterByPower .button.type-small {
+  background-size:24px 24px
+}
+
+.FilterByPower .button.active {
+  background-color: rgb(255, 255, 255);
+}
+
+.FilterByPopular {
+  align-items: center;
+  display: flex;
+  margin:10px 0
+}
+
+.FilterByPopular .favorite-input {
+  display: none;
+  height: auto;
+  width:auto
+}
+
+.FilterByPopular_active::after {
+  border: solid #000;
+  border-width: 0 4px 4px 0;
+  content: "";
+  display: block;
+  height: 10px;
+  left: 9px;
+  position: absolute;
+  top: 5px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 6px;
+}
+
+.FilterByPopular .favorite-input:checked + .favorite-input-label {
+  background-color: #278d9f;
+  border-color:#278d9f
+}
+
+.FilterByPopular .favorite-input:checked + .favorite-input-label:after {
+  border: solid #fff;
+  border-width: 0 4px 4px 0;
+  content: "";
+  display: block;
+  height: 10px;
+  left: 9px;
+  position: absolute;
+  top: 5px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width:6px
+}
+
+.FilterByPopular .favorite-input, .FilterByColor .color-input-label{
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  margin: 0 0 0 20px;
+  padding: 0;
+  position: relative;
+  width:30px
+}
+
+.FilterByPopular .favorite-input-label:hover {
+  background-color:#278d9f
+}*
+
+.GoodsFiltersContainer {
+  grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 20px 0 30px;
+  width:100%
+}
+
+@media screen and (max-width: 1024px) {
+  .GoodsFiltersContainer {
+      grid-template-columns:repeat(1, 1fr)
+  }
+}
+
+.selectContainer {
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-top-color: rgb(204, 204, 204);
+  border-top-style: solid;
+  border-top-width: 1px;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  transition-duration: 100ms;
+  transition-timing-function: initial;
+  transition-delay: initial;
+  transition-property: all;
+  box-sizing: border-box;
+  outline-color: initial;
+  outline-style: initial;
+  outline-width: 0px;
+}
+
+.select {
+  width: 100%;
+  align-items: center;
+  display: grid;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  flex-wrap: wrap;
+  padding-top: 2px;
+  padding-right: 8px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+
+.Reset {
+  -webkit-column-gap: 20px;
+  column-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin:30px 0 10px
+}
+
+.Reset button {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background-color: rgba(19, 20, 21, .3);
+  border: 1px solid #278d9f;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  margin: 10px 0;
+  padding:0 25px
+}
+
+.Reset button:hover {
+  opacity:.8
+}
+
+.Range h5 {
+  font-size: 16px;
+  margin:15px 0 5px
+}
+
+.Range .range-slider {
+  align-items: center;
+  display: flex;
+  gap:20px
+}
+
+.Range .range-slider > div:first-child, .Range .range-slider > div:last-child {
+  align-items: center;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid #278d9f;
+  border-radius: 20px;
+  display: inline-flex;
+  height: 40px;
+  justify-content: center;
+  margin: 10px 0;
+  min-width:80px
+}
+
+.FilterByName {
+  margin-bottom:20px
+}
+
+.FilterByName .searchWrapper {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background-color: rgba(19, 20, 21, .3);
+  border: 1px solid #278d9f;
+  padding-left: 20px;
+  position:relative
+}
+
+.FilterByName .searchWrapper .search {
+  background-color: transparent;
+  /* background-image: url("https://cdn-icons-png.flaticon.com/512/149/149852.png"); */
+  background-position: calc(100% - 20px);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  height: 40px;
+  margin-right: 0;
+  width:100%
+}
+
+.FilterByName .searchWrapper .search.not-empty {
+  background-image:none
+}
+
+.FilterByName .searchWrapper .search:focus-visible {
+  outline:none
+}
+
+.FilterByName .searchWrapper .search::-webkit-input-placeholder {
+  color:#fff
+}
+
+.FilterByName .searchWrapper .search:-ms-input-placeholder {
+  color:#fff
+}
+
+.FilterByName .searchWrapper .search::placeholder {
+  color:#fff
+}
+
+
+.FilterByName .searchWrapper .clear {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/6/69/Иконка_закрытия_в_круге_%28ei%29.svg");
+  background-repeat: no-repeat;
+  background-size: 20px;
+  cursor: pointer;
+  font-size: 0;
+  height: 20px;
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  width:20px
+}
+
+.GoodsItem {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background-color: rgba(19, 20, 21, .3);
+  border: 2px solid #626f71;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex-wrap: wrap;
+  padding:0
+}
+
+@media screen and (max-width: 560px) {
+  .GoodsItem {
+      justify-content:center
+  }
+}
+
+.GoodsItem h4 {
+  text-align:center
+}
+
+.GoodsItemTitle {
+  font-size: 20px;
+  font-stretch: condensed;
+  margin: 15px 0;
+  min-height: 20px;
+  padding-left: 10px;
+  width:100%
+}
+
+.GoodsItemInBasket {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 560px) {
+  .GoodsItemTitle {
+      text-align:center
+  }
+}
+
+.GoodsItemImg {
+  height: 100px;
+  object-fit: contain;
+  pointer-events: none;
+  width:auto
+}
+
+.GoodsItemProps {
+  flex-grow: 1;
+  line-height: 1;
+  line-height: 24px;
+  list-style: none;
+  padding-left: 10px;
+  pointer-events: none;
+  text-align: center;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select:none
+}
+
+@media screen and (max-width: 560px) {
+  .GoodsItemProps {
+      flex-grow:0
+  }
+}
+
+.ribbon {
+  background: #cbb77a;
+  bottom: 15px;
+  height: 30px;
+  left: -8px;
+  position: absolute;
+  width:80px
+}
+
+.ribbon:after, .ribbon:before {
+  content: "";
+  height: 0;
+  position: absolute;
+  width:0
+}
+.ribbon:before {
+  border-bottom: 8px solid #14455b;
+  border-left: 8px solid transparent;
+  top:-8px
+}
+
+.ribbon:after {
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid #cbb77a;
+  border-top: 15px solid transparent;
+  right:-15px
+}
+
+.card.active .ribbon {
+  background:#cbb77a
+}
+
+.card.active .ribbon:after {
+  border-left:15px solid #cbb77a
+}
+
+.GoodsListing {
+  grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: auto;
+  width: 100%;
+  width:96%
+}
+
+@media screen and (max-width: 1422px) {
+  .GoodsListing {
+      grid-template-columns:repeat(4, 1fr)
+  }
+}
+
+@media screen and (max-width: 1133px) {
+  .GoodsListing {
+      grid-template-columns:repeat(3, 1fr)
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .GoodsListing {
+      grid-template-columns:repeat(2, 1fr)
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .GoodsListing {
+      grid-template-columns:repeat(1, 1fr)
+  }
+}
+
+.GoodsItemImgContainer {
+  background: #fff;
+  display: flex;
+  justify-content:center
+}
+
+.no-results {
+  text-align:center
+}
+
+.no-results h1 {
+  margin:50px auto
+}
+
+.Goods {
+  display: flex;
+  flex-direction:column
+}
+
+.Goods .items {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between
+}
+
+.invisible {
+  display: none;
+}
