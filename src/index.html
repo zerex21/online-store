@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Online-store</title>
+        <!-- <link href="./nouislider.css" rel="stylesheet">
+        <script src="nouislider.js"></script> -->
+    </head>
+    <body>
+        <div id="root">
+            <div class="App">
+                <header class="Header">
+                    <div class="container">
+                        <a class="logo" href="#/">Home</a>
+                        <nav class="nav">
+                            <h1>Electric Car Store</h1>
+                        </nav>
+                        <div class="favourite">
+                            Всего товаров в корзине:
+                            <span class="basket">0</span>
+                        </div>
+                    </div>
+                </header>
+                <main>
+                    <div class="container">
+                        <div class="Goods">
+                            <div class="GoodsFiltersContainer">
+                                <div class="GoodsFilterGroup">
+                                    <h4 class="title">Фильтры по значению</h4>
+                                    <div>
+                                        <div class="FilterWhoMade">
+                                            Производитель:
+                                            <ul class="list">
+                                                <button class=" button type-mersedes ">Mercedes</button>
+                                                <button class=" button type-tesla ">Tesla</button>
+                                                <button class=" button type-volkswagen ">Volkswagen</button>
+                                            </ul>
+                                        </div>
+                                        <div class="FilterByPower">
+                                            Запас хода (км):
+                                            <ul class="list">
+                                                <button class=" button type-large ">500</button>
+                                                <button class=" button type-medium ">400</button>
+                                                <button class=" button type-small ">300</button>
+                                            </ul>
+                                        </div>
+                                        <div class="FilterByColor">
+                                            Цвет:
+                                            <ul class="FilterByColor__list">
+                                                <button class=" FilterByColor__button FilterByColor__button_type-white">белый</button>
+                                                <button class=" FilterByColor__button FilterByColor__button_type-gray">серый</button>
+                                                <button class=" FilterByColor__button FilterByColor__button_type-red">красный</button>
+                                            </ul>
+                                        </div>
+                                        <div class="FilterByPopular">
+                                            Только популярные:
+                                            <div>
+                                                <button class="favorite-input">popular</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="GoodsFilterGroup">
+                                    <h4 class="title">Фильтры по диапазону</h4>
+                                    <div>
+                                        <div class="Range">
+                                            <div>
+                                                <h5>Количество на складе: </h5>
+                                                <div class="range-slider">
+                                                    <div id="slider"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Range">
+                                            <div>
+                                                <h5>Год выхода на рынок: </h5>
+                                                <div class="range-slider">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="GoodsFilterGroup">
+                                    <h4 class="title"></h4>
+                                    <div>
+                                        <div class="FilterByName">
+                                            <h5 class="title">Поиск</h5>
+                                            <div class="searchWrapper">
+                                                <input id="search" placeholder="Введите текст" class="search falce" value autofocus autocomplete="off">
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h5 class="title">Сортировка</h5>
+                                            <div class="selectContainer">
+                                                <select id="select" class="select"> 
+                                                    <option value="value1"selected>По названию, от А до Я</option>
+                                                    <option value="value2" >По названию, от Я до А</option>
+                                                    <option value="value3">По году, по возрастанию</option>
+                                                    <option value="value4">По году, по убыванию</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                        <div class="Reset">
+                                            <button id="filtersReset" >Сброс фильтров</button>
+                                            <button >Сброс настроек</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="GoodsListing"></div>
+                            <!-- <div class="message invisible">Извините, совпадений не обнаружено</div> -->
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="Footer">
+                    <div class="container">
+                        <div>
+                            <a href="https://github.com/pashkovichma" target="_blank" rel="noreferrer" class="copy-link">© GitHub, 2022</a>
+                        </div>
+                        <div>
+                            <a href="https://rs.school/" target="_blank" rel="noreferrer" class="rs-link">RS School</a>
+                        </div>
+                    </div>
+                </footer>
+                <template id="sourceItemTemp">
+                    <div class="GoodsItem">
+                        <h4 class="GoodsItemTitle"></h4>
+                        <div class="GoodsItemImgContainer">
+                            <img src="" alt="car" class="GoodsItemImg">
+                        </div>
+                        <ul class="GoodsItemProps">
+                            <li>Количество: <span class="Quantity"></span></li>
+                            <li>Год выхода: <span class="Year"></span></li>
+                            <li>Производитель: <span class="WhoMade"></li>
+                            <li>Цвет: <span class="Color"></li>
+                            <li>Запас хода (км): <span class="Km"></li>
+                            <li>Популярный: <span class="Popular"></li>
+                            <li>Товар вкорзине: <span class="InBasket"></li>
+                        </ul>
+                    </div>
+                </template>
+                <script src="./index.ts"></script>
+            </div>
+        </div>
+    </body>
+</html>
