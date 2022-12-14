@@ -1,7 +1,16 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+/* .main{
+  height: 88vh;
+} */
+
 .Header {
   background-color: rgb(101,101,101);
   border-bottom: 2px solid #fff;
-  height: 50px;
+  height: 7vh;
   padding:10px 0
 }
 
@@ -79,13 +88,16 @@
 .Footer {
   background-color: rgb(101,101,101);
   margin-top: 100px;
-  padding:10px 20px
+  padding:10px 20px;
+  height: 5vh;
+
 }
 
 .Footer > .container {
   display: flex;
   justify-content: space-between;
-  width:95%
+  width:95%;
+  align-items: center;
 }
 
 .Footer > .container .rs-link {
@@ -94,7 +106,8 @@
   display: block;
   font-size: 0;
   height: 23px;
-  width:61px
+  width:61px;
+  align-items: baseline;
 }
 
 .Footer > .container .rs-link:hover {
@@ -122,7 +135,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   flex-grow: 1;
-  padding-bottom:50px
+/*   padding-bottom:50px */
 }
 
 .App {
@@ -618,7 +631,8 @@ body {
   grid-template-columns: repeat(5, 1fr);
   margin: auto;
   width: 100%;
-  width:96%
+  width:96%;
+  /* display: none; */
 }
 
 @media screen and (max-width: 1422px) {
@@ -675,3 +689,4 @@ body {
 .invisible {
   display: none;
 }
+

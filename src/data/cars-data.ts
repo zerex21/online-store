@@ -5,7 +5,7 @@ export let carData: ICarData[] = [
     {
         name: "Mercedes EQA",
         modelName: "EQA",
-        availableQuantity: 10,
+        availableQuantity: 3,
         year: 2021,
         whoMade: "Mercedes",
         color: "белый",
@@ -41,7 +41,7 @@ export let carData: ICarData[] = [
     {
         name: "Mercedes EQB",
         modelName: "EQB",
-        availableQuantity: 10,
+        availableQuantity: 4,
         year: 2022,
         whoMade: "Mercedes",
         color: "белый",
@@ -53,7 +53,7 @@ export let carData: ICarData[] = [
     {
         name: "Mercedes EQB",
         modelName: "EQB",
-        availableQuantity: 10,
+        availableQuantity: 1,
         year: 2022,
         whoMade: "Mercedes",
         color: "серый",
@@ -77,7 +77,7 @@ export let carData: ICarData[] = [
     {
         name: "Mercedes EQS",
         modelName: "EQS",
-        availableQuantity: 10,
+        availableQuantity: 5,
         year: 2022,
         whoMade: "Mercedes",
         color: "белый",
@@ -89,7 +89,7 @@ export let carData: ICarData[] = [
     {
         name: "Mercedes EQS",
         modelName: "EQS",
-        availableQuantity: 10,
+        availableQuantity: 6,
         year: 2022,
         whoMade: "Mercedes",
         color: "серый",
@@ -101,7 +101,7 @@ export let carData: ICarData[] = [
     {
         name: "Mercedes EQS",
         modelName: "EQS",
-        availableQuantity: 10,
+        availableQuantity: 2,
         year: 2022,
         whoMade: "Mercedes",
         color: "красный",
@@ -113,7 +113,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model 3",
         modelName: "model 3",
-        availableQuantity: 10,
+        availableQuantity: 7,
         year: 2017,
         whoMade: "Tesla",
         color: "белый",
@@ -125,7 +125,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model 3",
         modelName: "model 3",
-        availableQuantity: 10,
+        availableQuantity: 7,
         year: 2017,
         whoMade: "Tesla",
         color: "серый",
@@ -137,7 +137,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model 3",
         modelName: "model 3",
-        availableQuantity: 10,
+        availableQuantity: 1,
         year: 2017,
         whoMade: "Tesla",
         color: "красный",
@@ -149,7 +149,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model Y",
         modelName: "model Y",
-        availableQuantity: 10,
+        availableQuantity: 8,
         year: 2019,
         whoMade: "Tesla",
         color: "белый",
@@ -161,7 +161,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model Y",
         modelName: "model Y",
-        availableQuantity: 10,
+        availableQuantity: 2,
         year: 2019,
         whoMade: "Tesla",
         color: "серый",
@@ -173,7 +173,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model Y",
         modelName: "model Y",
-        availableQuantity: 10,
+        availableQuantity: 9,
         year: 2019,
         whoMade: "Tesla",
         color: "красный",
@@ -185,7 +185,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model S",
         modelName: "model S",
-        availableQuantity: 10,
+        availableQuantity: 9,
         year: 2022,
         whoMade: "Tesla",
         color: "белый",
@@ -197,7 +197,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model S",
         modelName: "model S",
-        availableQuantity: 10,
+        availableQuantity: 6,
         year: 2022,
         whoMade: "Tesla",
         color: "серый",
@@ -209,7 +209,7 @@ export let carData: ICarData[] = [
     {
         name: "Tesla model S",
         modelName: "model S",
-        availableQuantity: 10,
+        availableQuantity: 6,
         year: 2022,
         whoMade: "Tesla",
         color: "красный",
@@ -221,7 +221,7 @@ export let carData: ICarData[] = [
     {
         name: "Volkswagen ID3",
         modelName: "ID3",
-        availableQuantity: 10,
+        availableQuantity: 4,
         year: 2021,
         whoMade: "Volkswagen",
         color: "белый",
@@ -233,7 +233,7 @@ export let carData: ICarData[] = [
     {
         name: "Volkswagen ID3",
         modelName: "ID3",
-        availableQuantity: 10,
+        availableQuantity: 5,
         year: 2021,
         whoMade: "Volkswagen",
         color: "серый",
@@ -245,7 +245,7 @@ export let carData: ICarData[] = [
     {
         name: "Volkswagen ID3",
         modelName: "ID3",
-        availableQuantity: 10,
+        availableQuantity: 5,
         year: 2021,
         whoMade: "Volkswagen",
         color: "красный",
@@ -257,7 +257,7 @@ export let carData: ICarData[] = [
     {
         name: "Volkswagen ID4",
         modelName: "ID4",
-        availableQuantity: 10,
+        availableQuantity: 8,
         year: 2021,
         whoMade: "Volkswagen",
         color: "белый",
@@ -269,7 +269,7 @@ export let carData: ICarData[] = [
     {
         name: "Volkswagen ID4",
         modelName: "ID4",
-        availableQuantity: 10,
+        availableQuantity: 3,
         year: 2021,
         whoMade: "Volkswagen",
         color: "серый",
@@ -281,7 +281,7 @@ export let carData: ICarData[] = [
     {
         name: "Volkswagen ID4",
         modelName: "ID4",
-        availableQuantity: 10,
+        availableQuantity: 7,
         year: 2021,
         whoMade: "Volkswagen",
         color: "красный",
@@ -317,7 +317,7 @@ export let carData: ICarData[] = [
     {
         name: "Volkswagen ID6",
         modelName: "ID6",
-        availableQuantity: 10,
+        availableQuantity: 9,
         year: 2022,
         whoMade: "Volkswagen",
         color: "красный",
