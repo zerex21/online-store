@@ -13,6 +13,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.mbeqclub.com/attachments/polar-white-mercedes-eqa-png.813/",
         inBasket: false,
+        price: 59022,
     },
     {
         name: "Mercedes EQA",
@@ -25,6 +26,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://listers.co.uk/img/cap/v/c/new/largest/22716/3/new-mercedes-benz-eqa-hatchback-eqa-66.5kwh-5dr-auto-front-three-quarter.jpg",
         inBasket: false,
+        price: 39022,
     },
     {
         name: "Mercedes EQA",
@@ -37,6 +39,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.mbeqclub.com/attachments/manufaktur-patagonia-red-metallic-mercedes-eqa-png.805/",
         inBasket: false,
+        price: 69022,
     },
     {
         name: "Mercedes EQB",
@@ -49,6 +52,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://www.evspecifications.com/images/model/2953164/640/main.jpg",
         inBasket: false,
+        price: 50022,
     },
     {
         name: "Mercedes EQB",
@@ -61,6 +65,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.mercedes-benz.co.uk/passengercars/mercedes-benz-cars/models/eqb/suv-x243/explore/specifications/_jcr_content/par/imagenumbercombinati/media/videoimageslide/image.MQ6.8.20211110082149.jpeg",
         inBasket: false,
+        price: 37022,
     },
     {
         name: "Mercedes EQB",
@@ -73,6 +78,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://www.evspecifications.com/images/model/54a3167/640/main.jpg",
         inBasket: false,
+        price: 63022,
     },
     {
         name: "Mercedes EQS",
@@ -85,6 +91,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.evspecifications.com/images/model/84bd152/640/main.jpg",
         inBasket: false,
+        price: 55022,
     },
     {
         name: "Mercedes EQS",
@@ -97,6 +104,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://www.evspecifications.com/images/model/35af153/640/main.jpg",
         inBasket: false,
+        price: 79022,
     },
     {
         name: "Mercedes EQS",
@@ -109,6 +117,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.evspecifications.com/images/model/8991151/640/main.jpg",
         inBasket: false,
+        price: 99002,
     },
     {
         name: "Tesla model 3",
@@ -121,6 +130,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://media-server2.modenamotorsgmbh.com/24777/tesla-model-3-standard-range.jpg",
         inBasket: false,
+        price: 49009,
     },
     {
         name: "Tesla model 3",
@@ -133,6 +143,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.avtodar.ru/upload/iblock/027/02792f0258515e9461e4f7b3929e6219.jpg",
         inBasket: false,
+        price: 45092,
     },
     {
         name: "Tesla model 3",
@@ -145,6 +156,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://imgcdn.oto.com/large/gallery/color/133/2219/tesla-model-3-color-183277.jpg",
         inBasket: false,
+        price: 98022,
     },
     {
         name: "Tesla model Y",
@@ -157,6 +169,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://evbikeandcar.com/wp-content/uploads/2022/02/Tesla-model-Y-.png",
         inBasket: false,
+        price: 59055,
     },
     {
         name: "Tesla model Y",
@@ -169,6 +182,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://cdn.shopify.com/s/files/1/0058/0252/4785/products/tesla_model_y_black_grey_front_300x300.jpg?v=1625598947",
         inBasket: false,
+        price: 71022,
     },
     {
         name: "Tesla model Y",
@@ -181,6 +195,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.ccarprice.com/products/Tesla_Model_Y_Long_Range_2022_1.jpg",
         inBasket: false,
+        price: 65098,
     },
     {
         name: "Tesla model S",
@@ -193,6 +208,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://media.evo.co.uk/image/private/s--vp0QGPIB--/f_auto,t_content-image-full-mobile@1/v1611850044/evo/2021/01/2021%20Tesla%20Model%20S%20facelift-17.jpg",
         inBasket: false,
+        price: 45012,
     },
     {
         name: "Tesla model S",
@@ -205,6 +221,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://cdn.motor1.com/images/mgl/YMopW/s1/2021-tesla-model-s.jpg",
         inBasket: false,
+        price: 98222,
     },
     {
         name: "Tesla model S",
@@ -217,6 +234,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://cdn.motor1.com/images/mgl/RvWpK/s3/2021-tesla-model-s.jpg",
         inBasket: false,
+        price: 56019,
     },
     {
         name: "Volkswagen ID3",
@@ -229,6 +247,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://www.ccarprice.com/products/Volkswagen_ID_3_2022.jpg",
         inBasket: false,
+        price: 67012,
     },
     {
         name: "Volkswagen ID3",
@@ -241,6 +260,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://cdn.leasing.com/cms/moonstone-grey--flat-black---no-cost.jpg",
         inBasket: false,
+        price: 59032,
     },
     {
         name: "Volkswagen ID3",
@@ -253,6 +273,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://s.alicdn.com/@sc04/kf/H2992186a23d9443382293ab29c0873edw.jpg_720x720q50.jpg",
         inBasket: false,
+        price: 75022,
     },
     {
         name: "Volkswagen ID4",
@@ -265,6 +286,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://www.vwidtalk.com/attachments/glacier-white-metallic-volkswagen-id-4-jpeg.1524/",
         inBasket: false,
+        price: 78212,
     },
     {
         name: "Volkswagen ID4",
@@ -277,6 +299,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://m.atcdn.co.uk/a/media/w356/2e4374a2749b4851ada565003a8bddef.jpg",
         inBasket: false,
+        price: 55555,
     },
     {
         name: "Volkswagen ID4",
@@ -289,6 +312,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://cdn-ds.com/media/sz_58014/2757/w_480/MY21-ID4-1st-EditionPro-KingsRedMetallic_o.jpg",
         inBasket: false,
+        price: 67422,
     },
     {
         name: "Volkswagen ID6",
@@ -301,6 +325,7 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://image.made-in-china.com/202f0j00iSwWvjUlrPub/High-Speed-Fast-Charger-5-Door-7-Seats-SUV-Electric-Cars-Volkswagen-VW-ID-6-Crozz.jpg",
         inBasket: false,
+        price: 70812,
     },
     {
         name: "Volkswagen ID6",
@@ -313,6 +338,7 @@ export let carData: ICarData[] = [
         popular: false,
         img: "https://netrinoimages.s3.eu-west-2.amazonaws.com/2019/05/11/608680/392604/volkswagen_id6_x_2022_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_4062777_o.jpg",
         inBasket: false,
+        price: 78013,
     },
     {
         name: "Volkswagen ID6",
@@ -325,5 +351,6 @@ export let carData: ICarData[] = [
         popular: true,
         img: "https://thedriven.io/wp-content/uploads/2021/02/roommzz_DB2019AU00535_medium.jpg",
         inBasket: false,
+        price: 50000,
     },
 ];

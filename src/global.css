@@ -700,9 +700,33 @@ text-align: center;
 /********************************************************************************/
 
 
+/***************** IMG Basket *****************************/
+.favourite{
+  position: relative;
+}
 
+.imgBasket{
+  background-image: url("./assets/png/pngwing.com.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 65px;
+  height: 65px;
+  background-position: center;
+}
 
-
+.basket{
+  display: flex;
+  justify-content: center;
+  top: 25%;
+  right: 25%;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+}
+/******************************************************/
 
 @media screen and (max-width: 560px) {
   .GoodsItem {
