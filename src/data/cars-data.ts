@@ -3,6 +3,7 @@ import {ICarData} from "../types/car-data.interface";
 
 export let carData: ICarData[] = [
     {
+        id: 1,
         name: "Mercedes EQA",
         modelName: "EQA",
         availableQuantity: 3,
@@ -16,6 +17,7 @@ export let carData: ICarData[] = [
         price: 59022,
     },
     {
+        id: 2,
         name: "Mercedes EQA",
         modelName: "EQA",
         availableQuantity: 10,
@@ -29,6 +31,7 @@ export let carData: ICarData[] = [
         price: 39022,
     },
     {
+        id: 3,
         name: "Mercedes EQA",
         modelName: "EQA",
         availableQuantity: 10,
@@ -42,6 +45,7 @@ export let carData: ICarData[] = [
         price: 69022,
     },
     {
+        id: 4,
         name: "Mercedes EQB",
         modelName: "EQB",
         availableQuantity: 4,
@@ -55,6 +59,7 @@ export let carData: ICarData[] = [
         price: 50022,
     },
     {
+        id: 5,
         name: "Mercedes EQB",
         modelName: "EQB",
         availableQuantity: 1,
@@ -68,6 +73,7 @@ export let carData: ICarData[] = [
         price: 37022,
     },
     {
+        id: 6,
         name: "Mercedes EQB",
         modelName: "EQB",
         availableQuantity: 10,
@@ -81,6 +87,7 @@ export let carData: ICarData[] = [
         price: 63022,
     },
     {
+        id: 7,
         name: "Mercedes EQS",
         modelName: "EQS",
         availableQuantity: 5,
@@ -94,6 +101,7 @@ export let carData: ICarData[] = [
         price: 55022,
     },
     {
+        id: 8,
         name: "Mercedes EQS",
         modelName: "EQS",
         availableQuantity: 6,
@@ -107,6 +115,7 @@ export let carData: ICarData[] = [
         price: 79022,
     },
     {
+        id: 9,
         name: "Mercedes EQS",
         modelName: "EQS",
         availableQuantity: 2,
@@ -120,6 +129,7 @@ export let carData: ICarData[] = [
         price: 99002,
     },
     {
+        id: 10,
         name: "Tesla model 3",
         modelName: "model 3",
         availableQuantity: 7,
@@ -133,6 +143,7 @@ export let carData: ICarData[] = [
         price: 49009,
     },
     {
+        id: 11,
         name: "Tesla model 3",
         modelName: "model 3",
         availableQuantity: 7,
@@ -146,6 +157,7 @@ export let carData: ICarData[] = [
         price: 45092,
     },
     {
+        id: 12,
         name: "Tesla model 3",
         modelName: "model 3",
         availableQuantity: 1,
@@ -159,6 +171,7 @@ export let carData: ICarData[] = [
         price: 98022,
     },
     {
+        id: 13,
         name: "Tesla model Y",
         modelName: "model Y",
         availableQuantity: 8,
@@ -172,6 +185,7 @@ export let carData: ICarData[] = [
         price: 59055,
     },
     {
+        id: 14,
         name: "Tesla model Y",
         modelName: "model Y",
         availableQuantity: 2,
@@ -185,6 +199,7 @@ export let carData: ICarData[] = [
         price: 71022,
     },
     {
+        id: 15,
         name: "Tesla model Y",
         modelName: "model Y",
         availableQuantity: 9,
@@ -198,6 +213,7 @@ export let carData: ICarData[] = [
         price: 65098,
     },
     {
+        id: 16,
         name: "Tesla model S",
         modelName: "model S",
         availableQuantity: 9,
@@ -211,6 +227,7 @@ export let carData: ICarData[] = [
         price: 45012,
     },
     {
+        id: 17,
         name: "Tesla model S",
         modelName: "model S",
         availableQuantity: 6,
@@ -224,6 +241,7 @@ export let carData: ICarData[] = [
         price: 98222,
     },
     {
+        id: 18,
         name: "Tesla model S",
         modelName: "model S",
         availableQuantity: 6,
@@ -237,6 +255,7 @@ export let carData: ICarData[] = [
         price: 56019,
     },
     {
+        id: 19,
         name: "Volkswagen ID3",
         modelName: "ID3",
         availableQuantity: 4,
@@ -250,6 +269,7 @@ export let carData: ICarData[] = [
         price: 67012,
     },
     {
+        id: 20,
         name: "Volkswagen ID3",
         modelName: "ID3",
         availableQuantity: 5,
@@ -263,6 +283,7 @@ export let carData: ICarData[] = [
         price: 59032,
     },
     {
+        id: 21,
         name: "Volkswagen ID3",
         modelName: "ID3",
         availableQuantity: 5,
@@ -276,6 +297,7 @@ export let carData: ICarData[] = [
         price: 75022,
     },
     {
+        id: 22,
         name: "Volkswagen ID4",
         modelName: "ID4",
         availableQuantity: 8,
@@ -289,6 +311,7 @@ export let carData: ICarData[] = [
         price: 78212,
     },
     {
+        id: 23,
         name: "Volkswagen ID4",
         modelName: "ID4",
         availableQuantity: 3,
@@ -302,6 +325,7 @@ export let carData: ICarData[] = [
         price: 55555,
     },
     {
+        id: 24,
         name: "Volkswagen ID4",
         modelName: "ID4",
         availableQuantity: 7,
@@ -315,6 +339,7 @@ export let carData: ICarData[] = [
         price: 67422,
     },
     {
+        id: 25,
         name: "Volkswagen ID6",
         modelName: "ID6",
         availableQuantity: 10,
@@ -328,6 +353,7 @@ export let carData: ICarData[] = [
         price: 70812,
     },
     {
+        id: 26,
         name: "Volkswagen ID6",
         modelName: "ID6",
         availableQuantity: 10,
@@ -341,6 +367,7 @@ export let carData: ICarData[] = [
         price: 78013,
     },
     {
+        id: 27,
         name: "Volkswagen ID6",
         modelName: "ID6",
         availableQuantity: 9,

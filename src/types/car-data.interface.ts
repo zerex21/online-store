@@ -1,4 +1,5 @@
 export interface ICarData {
+    id: number,
     name: string,
     modelName: string,
     availableQuantity: number,
