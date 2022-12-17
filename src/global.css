@@ -956,6 +956,15 @@ text-align: center;
   border: 2px solid #626f71;
 }
 
+.cartType{
+  background-image: url('./assets/png/pngegg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 60px;
+  height: 60px;
+}
+
 /********    Add to personalDetails when was clicked in buy *******************************/
 .activeBuy{
   position: fixed;
@@ -998,6 +1007,7 @@ text-align: center;
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: end;
 }
 
 .cardDate input,
