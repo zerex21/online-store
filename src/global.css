@@ -949,8 +949,80 @@ text-align: center;
 .personalDetails{
   display: flex;
   justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgb(101,101,101);
+  border: 2px solid #626f71;
 }
 
+/********    Add to personalDetails when was clicked in buy *******************************/
+.activeBuy{
+  position: fixed;
+  padding: 0 40px;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  z-index: 99;
+}
+/*****************************************************************************************/
+.wrapperCard{
+  border: 1px solid #278d9f;
+   /*  margin: 0 auto; */
+    border-radius: 0.5rem;
+    background: rgb(0,9,36);
+    background: linear-gradient(90deg,rgb(0,9,36) 6%,rgb(9,9,121) 34%,rgb(0,212,255) 100%);
+    color: #fff;
+    padding: 20px 20px;
+  }
+
+.personalDetails h5{
+  font-size: 24px;
+}
+
+.purchaseDetails{
+  font-size: 18px;
+}
+
+.personalDetails input{
+  width: 300px;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px 0;
+  margin-bottom:10px ;
+  border: none;
+  border: 1px solid #278d9f;
+}
+
+.additionalCardInfo{
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardDate input,
+.cardSecretCode input{
+  width: 80px;
+}
+
+.confirmButton button{
+  backdrop-filter: blur(3px);
+  background-color: rgb(19 20 21 / 50%);
+  border: 1px solid #278d9f;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  margin: 35px 0;
+  padding: 0 25px;
+}
+
+.confirmButton button:hover{
+  background-color: rgb(19 20 21 / 74%);
+}
 /*************************************************************/
 
 @media screen and (max-width: 560px) {
