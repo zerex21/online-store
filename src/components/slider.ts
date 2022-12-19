@@ -1,8 +1,3 @@
-/* window.onload = function(){
-    slideOne();
-    slideTwo();
-}
- */
 let sliderOne = document.getElementById("slider-1") as HTMLInputElement;
 let sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
 let sliderTree = document.getElementById("slider-3") as HTMLInputElement;
