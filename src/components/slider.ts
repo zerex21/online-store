@@ -1,7 +1,7 @@
-let sliderOne = document.getElementById("slider-1") as HTMLInputElement;
-let sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
-let sliderTree = document.getElementById("slider-3") as HTMLInputElement;
-let sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
 const displayValOne = document.getElementById("range1") as HTMLElement;
 const displayValTwo = document.getElementById("range2") as HTMLElement;
 const displayValTree = document.getElementById("range3") as HTMLElement;
@@ -23,7 +23,7 @@ export function slideOne():void{
 export function slideTwo():void{
 
     if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
-        let currValueSliderTwo =  parseInt(sliderTwo.value);
+        let currValueSliderTwo = parseInt(sliderTwo.value);
         currValueSliderTwo = parseInt(sliderOne.value) + minGap;
     }
     displayValTwo.textContent = sliderTwo.value;
@@ -32,7 +32,7 @@ export function slideTwo():void{
 
 export function slideTree():void{
     if(parseInt(sliderFour.value) - parseInt(sliderTree.value) <= minGap){
-        let currValueSliderTree =  parseInt(sliderTree.value);
+        let currValueSliderTree = parseInt(sliderTree.value);
         currValueSliderTree = parseInt(sliderFour.value) - minGap;
     }
     displayValTree.textContent = sliderTree.value;
@@ -42,7 +42,7 @@ export function slideTree():void{
 export function slideFour():void{
 
     if(parseInt(sliderFour.value) - parseInt(sliderTree.value) <= minGap){
-        let currValueSliderTwo =  parseInt(sliderFour.value);
+        let currValueSliderTwo = parseInt(sliderFour.value);
         currValueSliderTwo = parseInt(sliderTree.value) + minGap;
     }
     displayValFour.textContent = sliderFour.value;
