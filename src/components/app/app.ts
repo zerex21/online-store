@@ -53,7 +53,7 @@ class App {
             sourceClone.querySelector('.Km').textContent = item.km;
             sourceClone.querySelector('.Popular').textContent = isPopular;
             sourceClone.querySelector('.InBasket').textContent = inBasket;
-            sourceClone.querySelector('.Price').textContent = "€" + item.price  ;
+            sourceClone.querySelector('.Price').textContent = `€ ${item.price}`;
 
 
 
