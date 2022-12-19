@@ -5,7 +5,7 @@ import {Filter} from "../filter";
 class App {
     private slider: HTMLElement;
 
-    public start(): void { 
+    public start(): void {
 
         //localStorage.setItem("masha", "123");
         // let a = localStorage.getItem("Masha");
@@ -16,7 +16,7 @@ class App {
         //localStorage.removeItem("masha");
         // console.log(a);
         this.draw(carData);
-        
+
         const filter = new Filter();
         //filter.filterData = b;
         filter.init(this.draw);
@@ -42,7 +42,8 @@ class App {
             let isPopular = item.popular?"да":"нет";
             let color = item.color;
             let inBasket = item.inBasket?"да":"нет";
-            
+
+
             sourceClone.querySelector('.GoodsItemImg').setAttribute("src", item.img);
             sourceClone.querySelector('.GoodsItemTitle').textContent = item.whoMade + " " + item.modelName;
             sourceClone.querySelector('.Quantity').textContent = item.availableQuantity;
@@ -52,12 +53,18 @@ class App {
             sourceClone.querySelector('.Km').textContent = item.km;
             sourceClone.querySelector('.Popular').textContent = isPopular;
             sourceClone.querySelector('.InBasket').textContent = inBasket;
-            
+            sourceClone.querySelector('.Price').textContent = `€ ${item.price}`;
+
+
+
             fragment.append(sourceClone);
+
         });
 
         const goodsContainer = document.querySelector('.GoodsListing');
         goodsContainer.innerHTML = "";
+
+
         goodsContainer.append(fragment);
     }
 }

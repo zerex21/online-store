@@ -1,4 +1,5 @@
 export interface ICarData {
+    id: number,
     name: string,
     modelName: string,
     availableQuantity: number,
@@ -9,4 +10,5 @@ export interface ICarData {
     popular: boolean,
     img: string,
     inBasket: boolean,
+    price: number
 }
