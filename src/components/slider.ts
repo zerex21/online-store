@@ -11,59 +11,70 @@ let sliderTrack = document.querySelector(".slider-track") as HTMLElement;
 let sliderTrackTwo = document.querySelector(".slider-track-Two") as HTMLElement;
 let sliderMaxValue : number = parseInt((<HTMLInputElement>document.getElementById("slider-1")).max);
 
-export function slideOne():void{
+export function slideOne():number[]{
     if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
         let currValueSliderOne =  parseInt(sliderOne.value);
         currValueSliderOne = parseInt(sliderTwo.value) - minGap;
     }
     displayValOne.textContent = sliderOne.value;
-    fillColor();
+    let currNumbers = fillColor();
+
+    return (currNumbers)
 }
 
-export function slideTwo():void{
+export function slideTwo():number[]{
 
     if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
         let currValueSliderTwo = parseInt(sliderTwo.value);
         currValueSliderTwo = parseInt(sliderOne.value) + minGap;
     }
     displayValTwo.textContent = sliderTwo.value;
-    fillColor();
+    let currNumbers = fillColor();
+
+    return (currNumbers)
 }
 
-export function slideTree():void{
+export function slideTree():number[]{
     if(parseInt(sliderFour.value) - parseInt(sliderTree.value) <= minGap){
         let currValueSliderTree = parseInt(sliderTree.value);
         currValueSliderTree = parseInt(sliderFour.value) - minGap;
     }
     displayValTree.textContent = sliderTree.value;
-    fillColor2();
+
+    let currNumbers = fillColor2();
+
+    return (currNumbers)
+
 }
 
-export function slideFour():void{
+export function slideFour():number[]{
 
     if(parseInt(sliderFour.value) - parseInt(sliderTree.value) <= minGap){
         let currValueSliderTwo = parseInt(sliderFour.value);
         currValueSliderTwo = parseInt(sliderTree.value) + minGap;
     }
     displayValFour.textContent = sliderFour.value;
-    fillColor2();
+    let currNumbers = fillColor2();
+
+   return (currNumbers)
+
 }
 
-function fillColor():void{
+function fillColor():number[]{
   let currValueSliderTwo =  parseInt(sliderTwo.value);
   let currValueSliderOne =  parseInt(sliderOne.value);
   let percent1 = (currValueSliderTwo / sliderMaxValue) * 100;
   let percent2 = (currValueSliderOne / sliderMaxValue) * 100;
   /* sliderTrack.style.background = `linear-gradient(to right,  #6a6ad9 ${percent1}% , #6a6ad9 ${percent1}% ,  #6a6ad9 ${percent2}%,  #6a6ad9 ${percent2}%)`; */
-  console.log(Math.round(percent1 * 1000), Math.round(percent2 * 1000))
+  return ([Math.round(percent1 * 1000), Math.round(percent2 * 1000)])
 }
 
-function fillColor2():void{
+function fillColor2():number[]{
     let currValueSliderTree =  parseInt(sliderFour.value);
     let currValueSliderFour =  parseInt(sliderTree.value);
     let percent1 = (currValueSliderFour / sliderMaxValue) * 100;
     let percent2 = (currValueSliderTree / sliderMaxValue) * 100;
     /* sliderTrackTwo.style.background = `linear-gradient(to right, #6a6ad9 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #6a6ad9 ${percent2}%)`; */
-    console.log(Math.round(percent1* 1000),Math.round(percent2*1000))
+    return ([Math.round(percent1* 1000),Math.round(percent2*1000)])
   }
 

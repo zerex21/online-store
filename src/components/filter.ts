@@ -8,6 +8,8 @@ interface IFilterData {
     km: number[];
     color: string[],
     popular: boolean,
+    price: number,
+    availableQuantity: number
 }
 
 export class Filter {
@@ -19,6 +21,8 @@ export class Filter {
         km: [],
         color: [],
         popular: false,
+        price: 0,
+        availableQuantity: 0,
     }
 
     init (drawFunction) {
@@ -44,6 +48,8 @@ export class Filter {
         goodsItemCard.addEventListener("click", this.addOrRemoveBasket.bind(this));
 
 
+
+
         const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
         const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
         const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
@@ -51,19 +57,26 @@ export class Filter {
 
 
         sliderOne.addEventListener('input',()=>{
-            slideOne()
+            let tmp = slideOne()
+            console.log(tmp)
         });
 
         sliderTwo.addEventListener('input',()=>{
-           slideTwo()
+           let tmp = slideTwo()
+            console.log(tmp)
         });
 
         sliderTree.addEventListener('input',()=>{
-           slideTree()
+
+           let tmp = slideTree()
+           console.log(tmp)
+
        });
 
        sliderFour.addEventListener('input',()=>{
-           slideFour()
+
+           let tmp = slideFour()
+           console.log(tmp)
        });
 
     }
@@ -74,7 +87,9 @@ export class Filter {
             km: [],
             color: [],
             whoMade: [],
-            popular: false
+            popular: false,
+            price: 0,
+            availableQuantity: 0,
         }
 
         this.drawData(carData);
@@ -98,7 +113,7 @@ export class Filter {
 
     applyFilter () {
         console.log("applyFilter");
-        console.log(this.filterData);
+        console.log('can',this.filterData);
         let filteredData = carData;
 
         if (this.filterData.whoMade.length) {
@@ -116,6 +131,7 @@ export class Filter {
             })
         }
         if (this.filterData.color.length) {
+            console.log('filterColorSearch', filteredData)
             filteredData = filteredData.filter(item => {
                 if (this.filterData.color.includes(item.color.toLowerCase())) {
                     return true;
@@ -194,7 +210,7 @@ export class Filter {
             } else {
                 this.filterData.color.push(buttonText);
             }
-            console.log(this.filterData);
+            console.log('filtercolor',this.filterData);
             element.classList.toggle("FilterByColor_active");
             if (this.filterData.color.length === 0){
                 return this.resetFilter();
