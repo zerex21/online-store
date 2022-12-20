@@ -1,5 +1,7 @@
 import { carData } from "../data/cars-data";
 import { ICarData } from "../types/car-data.interface";
+import {  slideOne, slideTwo, slideTree, slideFour } from "./slider";
+
 interface IFilterData {
     search: string;
     whoMade: string[];
@@ -40,6 +42,30 @@ export class Filter {
         resetFilterButton.addEventListener("click", this.resetFilter.bind(this));
         const goodsItemCard = document.querySelector(".GoodsListing");
         goodsItemCard.addEventListener("click", this.addOrRemoveBasket.bind(this));
+
+
+        const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+        const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+        const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+
+
+        sliderOne.addEventListener('input',()=>{
+            slideOne()
+        });
+
+        sliderTwo.addEventListener('input',()=>{
+           slideTwo()
+        });
+
+        sliderTree.addEventListener('input',()=>{
+           slideTree()
+       });
+
+       sliderFour.addEventListener('input',()=>{
+           slideFour()
+       });
+
     }
 
     resetFilter () {
@@ -50,7 +76,7 @@ export class Filter {
             whoMade: [],
             popular: false
         }
-        
+
         this.drawData(carData);
 
         const filterButtonsActive = document.querySelectorAll(".active");
@@ -63,8 +89,8 @@ export class Filter {
         });
         const filterByPopularButtonsActive = document.querySelector(".FilterByPopular_active");
         filterByPopularButtonsActive.classList.remove("FilterByPopular_active");
-        
-        
+
+
 
         //const searchInput = document.getElementById("search") as HTMLInputElement;
         //searchInput.value = '';
@@ -113,7 +139,7 @@ export class Filter {
         console.log(this);
         this.drawData(filteredData);
         //localStorage.setItem("Masha", JSON.stringify(this.filterData));
-        
+
       }
 
     handleFilterWhoMadeClick (event) {
@@ -292,8 +318,8 @@ export class Filter {
             if (quantityInBasket < 2 || (quantityInBasket === 2 && element.classList.contains("GoodsItemInBasket"))) {
                 element.classList.toggle("GoodsItemInBasket");
                 let isInBasket = element.querySelector(".InBasket");
-                isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да"; 
-                const itemFields = element.querySelector(".GoodsItemTitle").innerText + 
+                isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да";
+                const itemFields = element.querySelector(".GoodsItemTitle").innerText +
                 " " + element.querySelector(".Color").innerText;
                 carData.forEach(element => {
                     if (element.whoMade + " " + element.modelName + " " + element.color === itemFields) {
@@ -308,7 +334,7 @@ export class Filter {
                 console.log(basket);
                     let res = 0;
                     carData.forEach(element => {
-                    if (element.inBasket) res++ 
+                    if (element.inBasket) res++
                 });
                 basket.innerHTML = "" + res;
             }   else alert("Извините, все слоты заполнены");
