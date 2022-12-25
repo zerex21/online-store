@@ -59,8 +59,7 @@ export class Filter {
         const displayValTree = document.getElementById("range3") as HTMLElement;
         const displayValFour = document.getElementById("range4") as HTMLElement;
 
-        sliderOne.addEventListener('input',()=>{
-            let [minNum, maxNum] = slideOne()
+        let showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
             if(minNum > maxNum){
                 let tmp = maxNum;
                 maxNum = minNum;
@@ -70,49 +69,32 @@ export class Filter {
             }
             displayValOne.innerHTML = String(minNum)
             displayValTwo.innerHTML = String(maxNum)
+        }
+
+
+
+        sliderOne.addEventListener('input',()=>{
+            let [minNum, maxNum] = slideOne()
+            showRange(minNum, maxNum, displayValOne ,displayValTwo)
             console.log(minNum,maxNum)
         });
 
         sliderTwo.addEventListener('input',()=>{
             let [minNum, maxNum] = slideTwo()
-            if(minNum > maxNum){
-                let tmp = maxNum;
-                maxNum = minNum;
-                minNum = tmp;
-                displayValOne.innerHTML = String(minNum)
-                displayValTwo.innerHTML = String(maxNum)
-            }
-            displayValOne.innerHTML = String(minNum)
-            displayValTwo.innerHTML = String(maxNum)
+            showRange(minNum, maxNum, displayValOne ,displayValTwo)
             console.log(minNum,maxNum)
         });
 
         sliderTree.addEventListener('input',()=>{
            let [minNum, maxNum] = slideTree()
-           if(minNum > maxNum){
-            let tmp = maxNum;
-            maxNum = minNum;
-            minNum = tmp;
-            displayValTree.innerHTML = String(minNum)
-            displayValFour.innerHTML = String(maxNum)
-        }
-        displayValTree.innerHTML = String(minNum)
-        displayValFour.innerHTML = String(maxNum)
-        console.log(minNum,maxNum)
+           showRange(minNum, maxNum, displayValTree ,displayValFour)
+           console.log(minNum,maxNum)
 
        });
 
        sliderFour.addEventListener('input',()=>{
            let [minNum, maxNum] = slideFour()
-           if(minNum > maxNum){
-            let tmp = maxNum;
-            maxNum = minNum;
-            minNum = tmp;
-            displayValTree.innerHTML = String(minNum)
-            displayValFour.innerHTML = String(maxNum)
-        }
-        displayValTree.innerHTML = String(minNum)
-        displayValFour.innerHTML = String(maxNum)
+           showRange(minNum, maxNum, displayValTree ,displayValFour)
            console.log(minNum, maxNum)
        });
 
