@@ -14,12 +14,14 @@ let sliderMaxValue : number = parseInt((<HTMLInputElement>document.getElementByI
 export function slideOne():number[]{
     if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
         let currValueSliderOne =  parseInt(sliderOne.value);
-        currValueSliderOne = parseInt(sliderTwo.value) - minGap;
+        currValueSliderOne = parseInt(sliderTwo.value) - minGap;////// -
     }
     displayValOne.textContent = sliderOne.value;
     let currNumbers = fillColor();
 
-    return (currNumbers)
+    return (currNumbers.sort(function(a, b) {
+        return b - a;
+      }))
 }
 
 export function slideTwo():number[]{
@@ -31,7 +33,9 @@ export function slideTwo():number[]{
     displayValTwo.textContent = sliderTwo.value;
     let currNumbers = fillColor();
 
-    return (currNumbers)
+    return (currNumbers.sort(function(a, b) {
+        return a - b;
+      }))
 }
 
 export function slideTree():number[]{
@@ -43,7 +47,9 @@ export function slideTree():number[]{
 
     let currNumbers = fillColor2();
 
-    return (currNumbers)
+    return (currNumbers.sort(function(a, b) {
+        return a - b;
+      }))
 
 }
 
@@ -56,7 +62,9 @@ export function slideFour():number[]{
     displayValFour.textContent = sliderFour.value;
     let currNumbers = fillColor2();
 
-   return (currNumbers)
+   return (currNumbers.sort(function(a, b) {
+    return a - b;
+  }))
 
 }
 
@@ -78,3 +86,6 @@ function fillColor2():number[]{
     return ([Math.round(percent1* 1000),Math.round(percent2*1000)])
   }
 
+  function compareNumbers(a, b) {
+    return a - b;
+  }

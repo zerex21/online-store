@@ -8,8 +8,8 @@ interface IFilterData {
     km: number[];
     color: string[],
     popular: boolean,
-    price: number,
-    availableQuantity: number
+    price: number[],
+    availableQuantity: number[]
 }
 
 export class Filter {
@@ -21,8 +21,8 @@ export class Filter {
         km: [],
         color: [],
         popular: false,
-        price: 0,
-        availableQuantity: 0,
+        price: [],
+        availableQuantity: [],
     }
 
     init (drawFunction) {
@@ -59,6 +59,7 @@ export class Filter {
         const displayValTree = document.getElementById("range3") as HTMLElement;
         const displayValFour = document.getElementById("range4") as HTMLElement;
 
+
         let showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
             if(minNum > maxNum){
                 let tmp = maxNum;
@@ -71,24 +72,23 @@ export class Filter {
             displayValTwo.innerHTML = String(maxNum)
         }
 
-
-
         sliderOne.addEventListener('input',()=>{
             let [minNum, maxNum] = slideOne()
             showRange(minNum, maxNum, displayValOne ,displayValTwo)
-            console.log(minNum,maxNum)
+            this.getNumbersCostBetween( maxNum, minNum)
         });
 
         sliderTwo.addEventListener('input',()=>{
             let [minNum, maxNum] = slideTwo()
             showRange(minNum, maxNum, displayValOne ,displayValTwo)
-            console.log(minNum,maxNum)
+            this.getNumbersCostBetween(minNum, maxNum)
         });
 
         sliderTree.addEventListener('input',()=>{
            let [minNum, maxNum] = slideTree()
            showRange(minNum, maxNum, displayValTree ,displayValFour)
            console.log(minNum,maxNum)
+           this.getNumbersQuantityBetween(minNum,maxNum)
 
        });
 
@@ -96,8 +96,8 @@ export class Filter {
            let [minNum, maxNum] = slideFour()
            showRange(minNum, maxNum, displayValTree ,displayValFour)
            console.log(minNum, maxNum)
+           this.getNumbersQuantityBetween(minNum,maxNum)
        });
-
     }
 
     resetFilter () {
@@ -107,8 +107,8 @@ export class Filter {
             color: [],
             whoMade: [],
             popular: false,
-            price: 0,
-            availableQuantity: 0,
+            price:[],
+            availableQuantity: [],
         }
 
         this.drawData(carData);
@@ -135,6 +135,20 @@ export class Filter {
         console.log('can',this.filterData);
         let filteredData = carData;
 
+        if (this.filterData.price.length) {
+            filteredData = filteredData.filter(item => {
+                if (this.filterData.price[0]<= item.price && this.filterData.price[1]>= item.price) {
+                    return true;
+                } else {return false}
+            })
+        }
+        if (this.filterData.availableQuantity.length) {
+            filteredData = filteredData.filter(item => {
+                if (this.filterData.availableQuantity[0]<= item.availableQuantity && this.filterData.availableQuantity[1]>= item.availableQuantity) {
+                    return true;
+                } else {return false}
+            })
+        }
         if (this.filterData.whoMade.length) {
             filteredData = filteredData.filter(item => {
                 if (this.filterData.whoMade.includes(item.whoMade.toLowerCase())) {
@@ -177,7 +191,17 @@ export class Filter {
 
       }
 
+      getNumbersCostBetween(minNum, maxNum){
+           this.filterData.price = [minNum, maxNum];
+           this.applyFilter();
+      }
+      getNumbersQuantityBetween(minNum, maxNum){
+        this.filterData.availableQuantity = [minNum, maxNum];
+        this.applyFilter();
+   }
+
     handleFilterWhoMadeClick (event) {
+        console.log('whoMadeFilterData!',this.filterData);
         const element = event.target;
         if (element.tagName === "BUTTON") {
             console.log(element.innerText);
@@ -188,7 +212,7 @@ export class Filter {
             } else {
                 this.filterData.whoMade.push(buttonText);
             }
-            console.log(this.filterData);
+            console.log('whoMadeFilterData',this.filterData);
             element.classList.toggle("active");
             if (this.filterData.whoMade.length === 0){
                 return this.resetFilter();
