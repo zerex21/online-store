@@ -107,8 +107,8 @@ export class Filter {
             color: [],
             whoMade: [],
             popular: false,
-            price:[],
-            availableQuantity: [],
+            price:[37000, 100000],
+            availableQuantity: [1, 10],
         }
 
         this.drawData(carData);
@@ -122,7 +122,40 @@ export class Filter {
             element.classList.remove("FilterByColor_active");
         });
         const filterByPopularButtonsActive = document.querySelector(".FilterByPopular_active");
-        filterByPopularButtonsActive.classList.remove("FilterByPopular_active");
+        const buttonsActive = document.querySelector('.favorite-input')
+        if(buttonsActive.classList.contains("FilterByPopular_active")){
+            filterByPopularButtonsActive.classList.remove("FilterByPopular_active");
+        }
+
+
+        const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        sliderOne.value = '37000';
+        const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+        sliderTwo.value = '100000';
+        const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+        sliderTree.value = '1';
+        const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+        sliderFour.value = '10';
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        displayValOne.innerHTML = '37000';
+        const displayValTwo = document.getElementById("range2") as HTMLElement;
+        displayValTwo.innerHTML = '100000';
+        const displayValTree = document.getElementById("range3") as HTMLElement;
+        displayValTree.innerHTML = '1';
+        const displayValFour = document.getElementById("range4") as HTMLElement;
+        displayValFour.innerHTML = '10';
+
+        /* filterByPopularButtonsActive.forEach(element => {
+            element.classList.remove("active");
+        }); */
+
+        /* if(filterByPopularButtonsActive.classList.contains("FilterByPopular_active")){
+            filterByPopularButtonsActive.classList.remove("FilterByPopular_active");
+        } */
+      /*   const filterByPopularButtonsActive = document.querySelector("favorite-input"){
+
+        } */
+
 
 
 
@@ -194,10 +227,17 @@ export class Filter {
       getNumbersCostBetween(minNum, maxNum){
            this.filterData.price = [minNum, maxNum];
            this.applyFilter();
+           if (this.filterData.price.length === 0){
+
+            return this.resetFilter();
+        }
       }
       getNumbersQuantityBetween(minNum, maxNum){
         this.filterData.availableQuantity = [minNum, maxNum];
         this.applyFilter();
+        if (this.filterData.availableQuantity.length === 0){
+            return this.resetFilter();
+        }
    }
 
     handleFilterWhoMadeClick (event) {
