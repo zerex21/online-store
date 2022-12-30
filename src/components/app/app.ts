@@ -21,6 +21,15 @@ class App {
         //filter.filterData = b;
         filter.init(this.draw);
         //filter.applyFilter();
+       filter.getChangeSliderOne()
+       filter.getChangeSliderTwo()
+       filter.getChangeSliderTree()
+       filter.getChangeSliderFour()
+
+
+      /* filter.getChangeSliderTree()
+      filter.getChangeSliderFour() */
+
 
         this.slider = document.getElementById('slider');
 

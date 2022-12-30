@@ -60,7 +60,7 @@ export class Filter {
         const displayValFour = document.getElementById("range4") as HTMLElement;
 
 
-        let showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
+      /*   let showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
             if(minNum > maxNum){
                 let tmp = maxNum;
                 maxNum = minNum;
@@ -70,33 +70,45 @@ export class Filter {
             }
             displayValOne.innerHTML = String(minNum)
             displayValTwo.innerHTML = String(maxNum)
-        }
+        } */
 
         sliderOne.addEventListener('input',()=>{
-            let [minNum, maxNum] = slideOne()
+            localStorage.setItem("sliderNumber1", sliderOne.value)
+            this.getChangeSliderOne()
+
+
+
+
+          /*   let [minNum, maxNum] = slideOne()
             showRange(minNum, maxNum, displayValOne ,displayValTwo)
-            this.getNumbersCostBetween( maxNum, minNum)
+            this.getNumbersCostBetween( maxNum, minNum) */
         });
 
         sliderTwo.addEventListener('input',()=>{
-            let [minNum, maxNum] = slideTwo()
+            localStorage.setItem("sliderNumber2", sliderTwo.value)
+            this.getChangeSliderTwo()
+            /* let [minNum, maxNum] = slideTwo()
             showRange(minNum, maxNum, displayValOne ,displayValTwo)
-            this.getNumbersCostBetween(minNum, maxNum)
+            this.getNumbersCostBetween(minNum, maxNum) */
         });
 
         sliderTree.addEventListener('input',()=>{
-           let [minNum, maxNum] = slideTree()
+            localStorage.setItem("sliderNumber3", sliderTree.value)
+            this.getChangeSliderTree()
+          /*  let [minNum, maxNum] = slideTree()
            showRange(minNum, maxNum, displayValTree ,displayValFour)
            console.log(minNum,maxNum)
-           this.getNumbersQuantityBetween(minNum,maxNum)
+           this.getNumbersQuantityBetween(minNum,maxNum) */
 
        });
 
        sliderFour.addEventListener('input',()=>{
-           let [minNum, maxNum] = slideFour()
+        localStorage.setItem("sliderNumber4", sliderFour.value)
+        this.getChangeSliderFour()
+         /*   let [minNum, maxNum] = slideFour()
            showRange(minNum, maxNum, displayValTree ,displayValFour)
            console.log(minNum, maxNum)
-           this.getNumbersQuantityBetween(minNum,maxNum)
+           this.getNumbersQuantityBetween(minNum,maxNum) */
        });
     }
 
@@ -144,6 +156,10 @@ export class Filter {
         displayValTree.innerHTML = '1';
         const displayValFour = document.getElementById("range4") as HTMLElement;
         displayValFour.innerHTML = '10';
+           localStorage.setItem('sliderNumber1','37000')
+           localStorage.setItem('sliderNumber2','100000')
+           localStorage.setItem('sliderNumber3','1')
+           localStorage.setItem('sliderNumber4','10')
 
         /* filterByPopularButtonsActive.forEach(element => {
             element.classList.remove("active");
@@ -161,6 +177,114 @@ export class Filter {
 
         //const searchInput = document.getElementById("search") as HTMLInputElement;
         //searchInput.value = '';
+    }
+
+    showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
+        if(minNum > maxNum){
+            let tmp = maxNum;
+            maxNum = minNum;
+            minNum = tmp;
+            displayValOne.innerHTML = String(minNum)
+            displayValTwo.innerHTML = String(maxNum)
+        }
+        displayValOne.innerHTML = String(minNum)
+        displayValTwo.innerHTML = String(maxNum)
+    }
+
+
+    getChangeSliderOne(){
+        /* this.showRange() */
+        const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        const displayValTwo = document.getElementById("range2") as HTMLElement;
+
+            let [minNum, maxNum] = slideOne()
+           /*  localStorage.setItem("sliderNumber1", String(sliderOne.value)) */
+            if (localStorage.getItem("sliderNumber1")) {
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
+                this.getNumbersCostBetween( maxNum, minNum)
+                sliderOne.value = localStorage.getItem("sliderNumber1");
+                displayValOne.innerHTML = localStorage.getItem("sliderNumber1");
+            }else{
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
+                this.getNumbersCostBetween( maxNum, minNum)
+              }
+
+/* console.log('getChangeNumber1',minNum, maxNum) */
+      /*   const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        */
+
+    }
+
+    getChangeSliderTwo(){
+        const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        const displayValTwo = document.getElementById("range2") as HTMLElement;
+        let [minNum, maxNum] = slideTwo()
+        /* localStorage.setItem("sliderNumber2", String(maxNum)) */
+            /* this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
+            this.getNumbersCostBetween(minNum, maxNum) */
+            if (localStorage.getItem("sliderNumber2")) {
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
+                this.getNumbersCostBetween(minNum, maxNum)
+                displayValTwo.innerHTML = localStorage.getItem("sliderNumber2");
+                sliderTwo.value = localStorage.getItem("sliderNumber2");
+            }else{
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
+                this.getNumbersCostBetween(minNum, maxNum)
+            }
+
+            /* console.log('getChangeNumber2',minNum, maxNum) */
+            /*  const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        if (localStorage.getItem("volume")) {
+            sliderOne.value = localStorage.getItem("volume");
+            displayValOne.innerHTML = localStorage.getItem("volume");
+          } */
+    }
+    getChangeSliderTree(){
+        const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+        const displayValTree = document.getElementById("range3") as HTMLElement;
+        const displayValFour = document.getElementById("range4") as HTMLElement;
+        let [minNum, maxNum] = slideTree()
+        /* localStorage.setItem("sliderNumber3", String(sliderTree.value)) */
+       /*  this.showRange(minNum, maxNum, displayValTree ,displayValFour)
+        this.getNumbersQuantityBetween(minNum,maxNum) */
+
+        if (localStorage.getItem("sliderNumber3")) {
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour)
+            this.getNumbersQuantityBetween(minNum,maxNum)
+            displayValTree.innerHTML = localStorage.getItem("sliderNumber3");
+            sliderTree.value = localStorage.getItem("sliderNumber3");
+        }else{
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour)
+            this.getNumbersQuantityBetween(minNum,maxNum)
+        }
+      /*   const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        if (localStorage.getItem("volume")) {
+            sliderOne.value = localStorage.getItem("volume");
+            displayValOne.innerHTML = localStorage.getItem("volume");
+          } */
+    }
+    getChangeSliderFour(){
+        const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+        const displayValTree = document.getElementById("range3") as HTMLElement;
+        const displayValFour = document.getElementById("range4") as HTMLElement;
+        let [minNum, maxNum] = slideFour()
+        /* localStorage.setItem("sliderNumber4", String(maxNum)) */
+        /* this.showRange(minNum, maxNum, displayValTree ,displayValFour)
+        this.getNumbersQuantityBetween(minNum,maxNum) */
+        if (localStorage.getItem("sliderNumber4")) {
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour)
+            this.getNumbersQuantityBetween(minNum,maxNum)
+            displayValFour.innerHTML = localStorage.getItem("sliderNumber4");
+            sliderFour.value = localStorage.getItem("sliderNumber4");
+        }else{
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour)
+            this.getNumbersQuantityBetween(minNum,maxNum)
+        }
     }
 
     applyFilter () {

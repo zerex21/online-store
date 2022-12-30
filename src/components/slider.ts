@@ -19,9 +19,9 @@ export function slideOne():number[]{
     displayValOne.textContent = sliderOne.value;
     let currNumbers = fillColor();
 
-    return (currNumbers.sort(function(a, b) {
+    return (currNumbers/* .sort(function(a, b) {
         return b - a;
-      }))
+      }) */)
 }
 
 export function slideTwo():number[]{
