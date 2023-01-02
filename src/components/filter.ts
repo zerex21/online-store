@@ -34,7 +34,8 @@ export class Filter {
         const filterByColorButtonsContainer = document.querySelector(".FilterByColor");
         filterByColorButtonsContainer.addEventListener("click", this.handleFilterByColorClick.bind(this));
         const filterByPopularButtonsContainer = document.querySelector(".FilterByPopular");
-        filterByPopularButtonsContainer.addEventListener("click", this.handleFilterByPopularClick.bind(this));
+        filterByPopularButtonsContainer.addEventListener("click",this.handleFilterByPopularClick.bind(this));
+        filterByPopularButtonsContainer.addEventListener("click",()=>{localStorage.getItem("popular")? localStorage.setItem('popular','1'):localStorage.removeItem('popular')})
         const searchInput = document.querySelector(".search");
         searchInput.addEventListener("keyup", this.handleSearch.bind(this));
         const clearSearchButton = document.querySelector(".clear");
@@ -75,12 +76,8 @@ export class Filter {
         sliderOne.addEventListener('input',()=>{
             localStorage.setItem("sliderNumber1", sliderOne.value)
             this.getChangeSliderOne()
-
-
-
-
-          /*   let [minNum, maxNum] = slideOne()
-            showRange(minNum, maxNum, displayValOne ,displayValTwo)
+           /*  let [minNum, maxNum] = slideOne()
+            this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
             this.getNumbersCostBetween( maxNum, minNum) */
         });
 
@@ -156,10 +153,13 @@ export class Filter {
         displayValTree.innerHTML = '1';
         const displayValFour = document.getElementById("range4") as HTMLElement;
         displayValFour.innerHTML = '10';
-           localStorage.setItem('sliderNumber1','37000')
-           localStorage.setItem('sliderNumber2','100000')
-           localStorage.setItem('sliderNumber3','1')
-           localStorage.setItem('sliderNumber4','10')
+        localStorage.setItem('sliderNumber1','37000')
+        localStorage.setItem('sliderNumber2','100000')
+        localStorage.setItem('sliderNumber3','1')
+        localStorage.setItem('sliderNumber4','10')
+        localStorage.setItem('currentNumber','0')
+
+
 
         /* filterByPopularButtonsActive.forEach(element => {
             element.classList.remove("active");
@@ -197,12 +197,11 @@ export class Filter {
         const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
         const displayValOne = document.getElementById("range1") as HTMLElement;
         const displayValTwo = document.getElementById("range2") as HTMLElement;
-
-            let [minNum, maxNum] = slideOne()
+        let [minNum, maxNum] = slideOne()
            /*  localStorage.setItem("sliderNumber1", String(sliderOne.value)) */
             if (localStorage.getItem("sliderNumber1")) {
                 this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
-                this.getNumbersCostBetween( maxNum, minNum)
+                this.getNumbersCostBetween( minNum, maxNum )
                 sliderOne.value = localStorage.getItem("sliderNumber1");
                 displayValOne.innerHTML = localStorage.getItem("sliderNumber1");
             }else{
@@ -210,7 +209,7 @@ export class Filter {
                 this.getNumbersCostBetween( maxNum, minNum)
               }
 
-/* console.log('getChangeNumber1',minNum, maxNum) */
+console.log('getChangeNumber1',minNum, maxNum)
       /*   const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
         const displayValOne = document.getElementById("range1") as HTMLElement;
         */
@@ -228,15 +227,15 @@ export class Filter {
             if (localStorage.getItem("sliderNumber2")) {
                 this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
                 this.getNumbersCostBetween(minNum, maxNum)
-                displayValTwo.innerHTML = localStorage.getItem("sliderNumber2");
                 sliderTwo.value = localStorage.getItem("sliderNumber2");
+                displayValTwo.innerHTML = localStorage.getItem("sliderNumber2");
             }else{
                 this.showRange(minNum, maxNum, displayValOne ,displayValTwo)
                 this.getNumbersCostBetween(minNum, maxNum)
             }
 
-            /* console.log('getChangeNumber2',minNum, maxNum) */
-            /*  const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+            console.log('getChangeNumber2',minNum, maxNum)
+           /*   const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
         const displayValOne = document.getElementById("range1") as HTMLElement;
         if (localStorage.getItem("volume")) {
             sliderOne.value = localStorage.getItem("volume");
@@ -340,6 +339,13 @@ export class Filter {
             filteredData = filteredData.filter(item => item.whoMade.toLowerCase().includes(this.filterData.search) || item.modelName.toLowerCase().includes(this.filterData.search))
         }
 
+        const filterByPopularButtonsActive = document.querySelector(".favorite-input")
+        if(localStorage.getItem("popular")){
+         filterByPopularButtonsActive.classList.add("FilterByPopular_active")
+         this.filterData.popular = true;
+         /* console.log('asdasdasdasdasdasdasdas') */
+
+        }
         console.log("filteredData");
         console.log(filteredData);
         console.log(this);
@@ -349,12 +355,14 @@ export class Filter {
       }
 
       getNumbersCostBetween(minNum, maxNum){
+        this.applyFilter();
            this.filterData.price = [minNum, maxNum];
-           this.applyFilter();
-           if (this.filterData.price.length === 0){
 
+           /* console.log('SortPrice', [minNum, maxNum]) */
+           if (this.filterData.price.length === 0){
             return this.resetFilter();
         }
+
       }
       getNumbersQuantityBetween(minNum, maxNum){
         this.filterData.availableQuantity = [minNum, maxNum];
@@ -416,6 +424,7 @@ export class Filter {
                 this.filterData.color.splice(filterIndex, 1);
             } else {
                 this.filterData.color.push(buttonText);
+
             }
             console.log('filtercolor',this.filterData);
             element.classList.toggle("FilterByColor_active");
@@ -428,15 +437,23 @@ export class Filter {
 
     handleFilterByPopularClick (event) {
         const element = event.target;
+
         if (element.tagName === "BUTTON") {
             console.log(element.innerText);
-            if (element.classList.contains("FilterByPopular_active")) {
+            if (/* !localStorage.getItem("popular") */element.classList.contains("FilterByPopular_active")) {
                 this.filterData.popular = false;
+                element.classList.remove("FilterByPopular_active");
+                localStorage.removeItem("popular")
+                console.log('popularClick1')
             } else {
                 this.filterData.popular = true;
+                element.classList.add("FilterByPopular_active")
+                localStorage.setItem("popular", '1')
+                console.log('popularClick2')
+
             }
             console.log(this.filterData);
-            element.classList.toggle("FilterByPopular_active");
+            /* element.classList.toggle("FilterByPopular_active"); */
             if (this.filterData.popular === false){
                 return this.resetFilter();
             }

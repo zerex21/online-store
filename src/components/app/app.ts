@@ -18,20 +18,29 @@ class App {
         this.draw(carData);
 
         const filter = new Filter();
-        //filter.filterData = b;
         filter.init(this.draw);
-        //filter.applyFilter();
-       filter.getChangeSliderOne()
-       filter.getChangeSliderTwo()
-       filter.getChangeSliderTree()
-       filter.getChangeSliderFour()
+        /* filter.handleFilterByPopularClick() */
+        filter.getChangeSliderOne()
+        filter.getChangeSliderTwo()
+        filter.getChangeSliderTree()
+        filter.getChangeSliderFour()
+
+        filter.applyFilter();
+        //filter.filterData = b;
+       /* filter.init(this.draw); */
+
+
+
+
+
 
 
       /* filter.getChangeSliderTree()
       filter.getChangeSliderFour() */
 
 
-        this.slider = document.getElementById('slider');
+    /*     this.slider = document.getElementById('slider'); */
+
 
         // noUiSlider.create(this.slider, {
         //     start: [20, 80],
