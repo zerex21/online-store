@@ -91,7 +91,15 @@ export class Filter {
             price:[37000, 100000],
             availableQuantity: [1, 10],
         }
-
+        for (let  i = 0; i < carData.length; i++) {
+            for (let j = i; j < carData.length; j++){
+                if(carData[i].name > carData[j].name){
+                    let temp = carData[i];
+                    carData[i] = carData[j];
+                    carData[j] = temp;
+                }
+            }
+        }
         this.drawData(carData);
 
         const filterButtonsActive = document.querySelectorAll(".active");
@@ -125,6 +133,7 @@ export class Filter {
         displayValTree.innerHTML = '1';
         const displayValFour = document.getElementById("range4") as HTMLElement;
         displayValFour.innerHTML = '10';
+        const select = document.querySelector('#select') as HTMLSelectElement;
         localStorage.setItem('sliderNumber1','37000');
         localStorage.setItem('sliderNumber2','100000');
         localStorage.setItem('sliderNumber3','1');
@@ -134,6 +143,12 @@ export class Filter {
         localStorage.removeItem('kilometers');
         localStorage.removeItem('colors');
         localStorage.removeItem('makers');
+        localStorage.setItem('sortNameUp','1')
+        localStorage.removeItem('sortNameDown')
+        localStorage.removeItem('sortYearUp')
+        localStorage.removeItem('sortYearDown')
+
+        select.value = 'value1';
 
     }
 
@@ -274,7 +289,7 @@ console.log('getChangeNumber1',minNum, maxNum)
         }
 
 
-/*********     Добавить провеки для каждых фильтров и запихнуть данные в FilterData как снизу    this.filterData.popular = true         ********************************* */
+
 
 
         const filterByPopularButtonsActive = document.querySelector(".favorite-input")
@@ -287,6 +302,10 @@ console.log('getChangeNumber1',minNum, maxNum)
         const typeMersedes = document.querySelector('.type-mersedes')
         const typeTesla = document.querySelector('.type-tesla')
         const typeVolkswagen  = document.querySelector('.type-volkswagen')
+        const select = document.querySelector('#select') as HTMLSelectElement;
+
+       /*  const sortButton = document.querySelector(".select");
+        sortButton.addEventListener("change", this.sort.bind(this)) */
 
         if(localStorage.getItem("popular")){
          filterByPopularButtonsActive.classList.add("FilterByPopular_active")
@@ -364,20 +383,89 @@ console.log('getChangeNumber1',minNum, maxNum)
 
 
 
-        /*  */
+
+         if(localStorage.getItem('sortNameUp')){
+
+            select.value = 'value1'
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].name > carData[j].name){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+
+        }
+        if(localStorage.getItem('sortNameDown')){
+            select.value = 'value2'
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].name < carData[j].name){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+        }
+
+         if(localStorage.getItem('sortYearUp')){
+            select.value = 'value3'
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].year > carData[j].year){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+        }
+
+        if(localStorage.getItem('sortYearDown')){
+            select.value = 'value4'
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].year < carData[j].year){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+        }
+
         console.log("filteredData");
         console.log(filteredData);
         console.log(this);
         this.drawData(filteredData);
-        //localStorage.setItem("Masha", JSON.stringify(this.filterData));
-
       }
+
+      sortType(value) {
+        switch (value) {
+            case "value1":
+                this.sortByNameUp();
+              break;
+            case "value2":
+                this.sortByNameDown();
+                break;
+            case "value3":
+                this.sortByYearUp();
+                break;
+            case "value4":
+                this.sortByYearDown();
+                break;
+        }
+    }
+
 
       getNumbersCostBetween(minNum, maxNum){
 
            this.filterData.price = [minNum, maxNum];
            this.applyFilter();
-           console.log('SortPrice', this.filterData.price/* [minNum, maxNum] */)
+           console.log('SortPrice', this.filterData.price)
       /*      if (this.filterData.price.length === 0){
             return this.resetFilter();
         } */
@@ -547,6 +635,10 @@ console.log('getChangeNumber1',minNum, maxNum)
                 }
             }
         }
+        localStorage.setItem('sortNameUp','1')
+        localStorage.removeItem('sortNameDown')
+        localStorage.removeItem('sortYearUp')
+        localStorage.removeItem('sortYearDown')
         console.log(carData);
         this.applyFilter();
     }
@@ -561,6 +653,10 @@ console.log('getChangeNumber1',minNum, maxNum)
                 }
             }
         }
+        localStorage.setItem('sortNameDown','1')
+        localStorage.removeItem('sortNameUp')
+        localStorage.removeItem('sortYearUp')
+        localStorage.removeItem('sortYearDown')
         this.applyFilter();
     }
 
@@ -574,6 +670,10 @@ console.log('getChangeNumber1',minNum, maxNum)
                 }
             }
         }
+        localStorage.setItem('sortYearUp','1')
+        localStorage.removeItem('sortNameUp')
+        localStorage.removeItem('sortNameDown')
+        localStorage.removeItem('sortYearDown')
         this.applyFilter();
     }
 
@@ -587,12 +687,15 @@ console.log('getChangeNumber1',minNum, maxNum)
                 }
             }
         }
+        localStorage.setItem('sortYearDown','1')
+        localStorage.removeItem('sortYearUp')
+        localStorage.removeItem('sortNameUp')
+        localStorage.removeItem('sortNameDown')
         this.applyFilter();
     }
 
     addOrRemoveBasket(event){
         const element = event.target;
-
         if (element.classList.contains("GoodsItem")) {
             const basket = document.querySelector(".basket");
             let quantityInBasket = +basket.innerHTML;
