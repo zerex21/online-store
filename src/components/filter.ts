@@ -131,7 +131,9 @@ export class Filter {
         localStorage.setItem('sliderNumber4','10');
         localStorage.setItem('currentNumber','0');
         localStorage.removeItem('popular');
-        localStorage.removeItem('kilometers')
+        localStorage.removeItem('kilometers');
+        localStorage.removeItem('colors');
+        localStorage.removeItem('makers');
 
     }
 
@@ -272,34 +274,32 @@ console.log('getChangeNumber1',minNum, maxNum)
         }
 
 
-
-
-
-
-
-
-
-
 /*********     Добавить провеки для каждых фильтров и запихнуть данные в FilterData как снизу    this.filterData.popular = true         ********************************* */
 
 
         const filterByPopularButtonsActive = document.querySelector(".favorite-input")
+        const typeLarge = document.querySelector('.type-large')
+        const typeMedium = document.querySelector('.type-medium')
+        const typeSmall  = document.querySelector('.type-small')
+        const buttonWhite = document.querySelector('.FilterByColor__button_type-white')
+        const buttonGgray = document.querySelector('.FilterByColor__button_type-gray')
+        const buttonRed  = document.querySelector('.FilterByColor__button_type-red')
+        const typeMersedes = document.querySelector('.type-mersedes')
+        const typeTesla = document.querySelector('.type-tesla')
+        const typeVolkswagen  = document.querySelector('.type-volkswagen')
+
         if(localStorage.getItem("popular")){
          filterByPopularButtonsActive.classList.add("FilterByPopular_active")
          this.filterData.popular = true;
         }
-
         if(localStorage.getItem('sliderNumber1') && localStorage.getItem('sliderNumber2')){
             this.filterData.price = [Number(localStorage.getItem('sliderNumber1')), Number(localStorage.getItem('sliderNumber2')) ]
         }
-
         if(localStorage.getItem('sliderNumber3') && localStorage.getItem('sliderNumber4')){
             this.filterData.availableQuantity = [Number(localStorage.getItem('sliderNumber3')), Number(localStorage.getItem('sliderNumber4')) ]
         }
-        const listKmButtonsActive = document.querySelector(".list")
-        const typeLarge = document.querySelector('.type-large')
-        const typeMedium = document.querySelector('.type-medium')
-        const typeSmall  = document.querySelector('.type-small')
+
+
         if(localStorage.getItem("kilometers")){
            this.filterData.km=[]
            let currArrKm:string[] = localStorage.getItem("kilometers").split(',')
@@ -319,6 +319,50 @@ console.log('getChangeNumber1',minNum, maxNum)
             }
          }
         }
+
+
+        if(localStorage.getItem("colors")){
+            this.filterData.color=[]
+            let currArrColors:string[] = localStorage.getItem("colors").split(',')
+          for(let i = 0 ; i<= currArrColors.length; i++){
+             if(currArrColors[i] == 'белый'){
+                 buttonWhite.classList.add('FilterByColor_active')
+                 this.filterData.color.push('белый')
+             }
+             if(currArrColors[i] == 'серый'){
+                 buttonGgray.classList.add('FilterByColor_active')
+                 this.filterData.color.push('серый')
+
+             }
+             if(currArrColors[i] == 'красный'){
+                 buttonRed.classList.add('FilterByColor_active')
+                 this.filterData.color.push('красный')
+             }
+          }
+         }
+
+
+         if(localStorage.getItem("makers")){
+            this.filterData.whoMade=[]
+            let currArrColors:string[] = localStorage.getItem("makers").split(',')
+          for(let i = 0 ; i<= currArrColors.length; i++){
+             if(currArrColors[i] == 'mercedes'){
+                 typeMersedes.classList.add('active')
+                 this.filterData.whoMade.push('mercedes')
+             }
+             if(currArrColors[i] == 'tesla'){
+                 typeTesla.classList.add('active')
+                 this.filterData.whoMade.push('tesla')
+
+             }
+             if(currArrColors[i] == 'volkswagen'){
+                 typeVolkswagen.classList.add('active')
+                 this.filterData.whoMade.push('volkswagen')
+             }
+          }
+         }
+
+
 
         /*  */
         console.log("filteredData");
@@ -350,6 +394,7 @@ console.log('getChangeNumber1',minNum, maxNum)
     handleFilterWhoMadeClick (event) {
         console.log('whoMadeFilterData!',this.filterData);
         const element = event.target;
+        let arrMakers : string[] = [];
         if (element.tagName === "BUTTON") {
             console.log(element.innerText);
             const buttonText = element.innerText.toLowerCase();
@@ -359,12 +404,16 @@ console.log('getChangeNumber1',minNum, maxNum)
             } else {
                 this.filterData.whoMade.push(buttonText);
             }
+            arrMakers = this.filterData.whoMade
+            localStorage.setItem('makers', String(arrMakers))
+            if(arrMakers.length === 0){
+                localStorage.removeItem('makers')
+            }
             console.log('whoMadeFilterData',this.filterData);
             element.classList.toggle("active");
             if (this.filterData.whoMade.length === 0){
                 return this.resetFilter();
             }
-
             this.applyFilter();
         }
     }
@@ -373,7 +422,6 @@ console.log('getChangeNumber1',minNum, maxNum)
         const element = event.target;
         let arrKm : number[] = [];
         if (element.tagName === "BUTTON") {
-
             console.log(element.innerText);
             const buttonText = +element.innerText;
             if (element.classList.contains("active")) {
@@ -403,6 +451,7 @@ console.log('getChangeNumber1',minNum, maxNum)
 
     handleFilterByColorClick (event) {
         const element = event.target;
+        let arrColors : string[] = [];
         if (element.tagName === "BUTTON") {
             console.log(element.innerText);
             const buttonText = element.innerText.toLowerCase();
@@ -412,6 +461,11 @@ console.log('getChangeNumber1',minNum, maxNum)
             } else {
                 this.filterData.color.push(buttonText);
 
+            }
+            arrColors = this.filterData.color
+            localStorage.setItem('colors', String(arrColors))
+            if(arrColors.length === 0){
+                localStorage.removeItem('colors')
             }
             console.log('filtercolor',this.filterData);
             element.classList.toggle("FilterByColor_active");
