@@ -10,6 +10,7 @@ interface IFilterData {
     popular: boolean,
     price: number[],
     availableQuantity: number[]
+    currentTotalCart: number ;
 }
 
 export class Filter {
@@ -23,7 +24,9 @@ export class Filter {
         popular: false,
         price: [],
         availableQuantity: [],
+        currentTotalCart: 0
     }
+    currentTotalCart: number = 0;
 
     init (drawFunction) {
         this.drawData = drawFunction;
@@ -100,6 +103,7 @@ export class Filter {
             popular: false,
             price:[37000, 100000],
             availableQuantity: [1, 10],
+            currentTotalCart: 0
         }
         for (let  i = 0; i < carData.length; i++) {
             for (let j = i; j < carData.length; j++){
@@ -144,6 +148,8 @@ export class Filter {
         const displayValFour = document.getElementById("range4") as HTMLElement;
         displayValFour.innerHTML = '10';
         const select = document.querySelector('#select') as HTMLSelectElement;
+        const currentTotalCart = document.querySelector('.currentTotalCart') as HTMLElement;
+        const basket = document.querySelector('.basket') as HTMLElement;
         localStorage.setItem('sliderNumber1','37000');
         localStorage.setItem('sliderNumber2','100000');
         localStorage.setItem('sliderNumber3','1');
@@ -157,9 +163,10 @@ export class Filter {
         localStorage.removeItem('sortNameDown')
         localStorage.removeItem('sortYearUp')
         localStorage.removeItem('sortYearDown')
-
-        select.value = 'value1';
-
+        currentTotalCart.innerHTML = `Текущая цена: € 0`
+        carData.forEach(element => element.inBasket = false );
+          basket.innerHTML = `0`
+          select.value = 'value1';
     }
 
     showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
@@ -709,9 +716,17 @@ console.log('getChangeNumber1',minNum, maxNum)
     }
 
     addOrRemoveBasket(event){
+        const currPrice = document.querySelector('.currentTotalCart')
+        /* let currentTotalCart: number = 0 */
+
         const element = event.target;
-        console.log('event',event.target.getAttribute('data-card'))
+        console.log('event', event.target.closest('.GoodsItem').getAttribute('data-card'))
+        console.log('event', event.target.closest('.GoodsItem').getAttribute('data-price'))
+
         console.log('eventqweqweqwe',event.target)
+
+        this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
+        currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`
 
        /*  if(element.classList.contains("addBasket")){
             const card = document.querySelector('.GoodsItem')
