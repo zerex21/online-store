@@ -47,6 +47,16 @@ export class Filter {
         resetFilterButton.addEventListener("click", this.resetFilter.bind(this));
         const goodsItemCard = document.querySelector(".GoodsListing");
         goodsItemCard.addEventListener("click", this.addOrRemoveBasket.bind(this));
+      /*   goodsItemCard.addEventListener("click", (event)=>{
+            if(localStorage.getItem('inBasket') === 'true'){
+                const element = event.target as HTMLElement;
+                element.classList.toggle("GoodsItemInBasket");
+
+            }
+        }); */
+
+
+
 
         const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
         const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
@@ -344,15 +354,17 @@ console.log('getChangeNumber1',minNum, maxNum)
             this.filterData.color=[]
             let currArrColors:string[] = localStorage.getItem("colors").split(',')
           for(let i = 0 ; i<= currArrColors.length; i++){
+
              if(currArrColors[i] == 'белый'){
                  buttonWhite.classList.add('FilterByColor_active')
                  this.filterData.color.push('белый')
              }
+
              if(currArrColors[i] == 'серый'){
                  buttonGgray.classList.add('FilterByColor_active')
                  this.filterData.color.push('серый')
-
              }
+
              if(currArrColors[i] == 'красный'){
                  buttonRed.classList.add('FilterByColor_active')
                  this.filterData.color.push('красный')
@@ -436,6 +448,8 @@ console.log('getChangeNumber1',minNum, maxNum)
                 }
             }
         }
+
+
 
         console.log("filteredData");
         console.log(filteredData);
@@ -696,15 +710,27 @@ console.log('getChangeNumber1',minNum, maxNum)
 
     addOrRemoveBasket(event){
         const element = event.target;
-        if (element.classList.contains("GoodsItem")) {
+        console.log('event',event.target.getAttribute('data-card'))
+        console.log('eventqweqweqwe',event.target)
+
+       /*  if(element.classList.contains("addBasket")){
+            const card = document.querySelector('.GoodsItem')
+            event.target.closest('.GoodsItem').classList.toggle("GoodsItemInBasket");
+
+
+        } */
+
+        if (element.classList.contains("addBasket")) {
+
             const basket = document.querySelector(".basket");
             let quantityInBasket = +basket.innerHTML;
-            if (quantityInBasket < 2 || (quantityInBasket === 2 && element.classList.contains("GoodsItemInBasket"))) {
-                element.classList.toggle("GoodsItemInBasket");
-                let isInBasket = element.querySelector(".InBasket");
+            if (quantityInBasket < 27 || (quantityInBasket === 27 && element.classList.contains("GoodsItemInBasket"))) {
+                event.target.closest('.GoodsItem').classList.toggle("GoodsItemInBasket");
+                localStorage.setItem('inBasket','true')
+                let isInBasket = element.closest('.GoodsItem').querySelector(".InBasket");
                 isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да";
-                const itemFields = element.querySelector(".GoodsItemTitle").innerText +
-                " " + element.querySelector(".Color").innerText;
+                const itemFields = element.closest('.GoodsItem').querySelector(".GoodsItemTitle").innerText +
+                " " + element.closest('.GoodsItem').querySelector(".Color").innerText;
                 carData.forEach(element => {
                     if (element.whoMade + " " + element.modelName + " " + element.color === itemFields) {
                         element.inBasket ? element.inBasket = false : element.inBasket = true;

@@ -54,14 +54,15 @@ class App {
     public draw(data): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
-
+        let num = 1;
         data.forEach((item) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
             let isPopular = item.popular?"да":"нет";
             let color = item.color;
             let inBasket = item.inBasket?"да":"нет";
 
-
+            sourceClone.querySelector('.GoodsItem').setAttribute('data-card', `${num++}`)
+            sourceClone.querySelector('.GoodsItem').setAttribute('data-price', `${item.price}`)
             sourceClone.querySelector('.GoodsItemImg').setAttribute("src", item.img);
             sourceClone.querySelector('.GoodsItemTitle').textContent = item.whoMade + " " + item.modelName;
             sourceClone.querySelector('.Quantity').textContent = item.availableQuantity;
