@@ -50,6 +50,7 @@ export class Filter {
         resetFilterButton.addEventListener("click", this.resetFilter.bind(this));
         const goodsItemCard = document.querySelector(".GoodsListing");
         goodsItemCard.addEventListener("click", this.addOrRemoveBasket.bind(this));
+
       /*   goodsItemCard.addEventListener("click", (event)=>{
             if(localStorage.getItem('inBasket') === 'true'){
                 const element = event.target as HTMLElement;
@@ -717,16 +718,11 @@ console.log('getChangeNumber1',minNum, maxNum)
 
     addOrRemoveBasket(event){
         const currPrice = document.querySelector('.currentTotalCart')
-        /* let currentTotalCart: number = 0 */
-
         const element = event.target;
         console.log('event', event.target.closest('.GoodsItem').getAttribute('data-card'))
         console.log('event', event.target.closest('.GoodsItem').getAttribute('data-price'))
-
         console.log('eventqweqweqwe',event.target)
 
-        this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
-        currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`
 
        /*  if(element.classList.contains("addBasket")){
             const card = document.querySelector('.GoodsItem')
@@ -735,21 +731,35 @@ console.log('getChangeNumber1',minNum, maxNum)
 
         } */
 
-        if (element.classList.contains("addBasket")) {
 
+        if (element.classList.contains("addBasket")) {
+           /*  this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
+            currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}` */
             const basket = document.querySelector(".basket");
             let quantityInBasket = +basket.innerHTML;
+
+
             if (quantityInBasket < 27 || (quantityInBasket === 27 && element.classList.contains("GoodsItemInBasket"))) {
                 event.target.closest('.GoodsItem').classList.toggle("GoodsItemInBasket");
                 localStorage.setItem('inBasket','true')
                 let isInBasket = element.closest('.GoodsItem').querySelector(".InBasket");
                 isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да";
+                if( isInBasket.innerText === "нет" ){
+                    this.currentTotalCart -= Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
+                    currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`
+                    console.log('-wqeqwe')
+                }else{
+                    this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
+                    currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`
+                }
                 const itemFields = element.closest('.GoodsItem').querySelector(".GoodsItemTitle").innerText +
                 " " + element.closest('.GoodsItem').querySelector(".Color").innerText;
                 carData.forEach(element => {
                     if (element.whoMade + " " + element.modelName + " " + element.color === itemFields) {
                         element.inBasket ? element.inBasket = false : element.inBasket = true;
+
                     }
+
                 });
                 console.log("carData");
                 console.log(carData);
