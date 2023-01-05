@@ -24,7 +24,7 @@ class App {
         filter.getChangeSliderTwo()
         filter.getChangeSliderTree()
         filter.getChangeSliderFour()
-
+/* filter.checkAddBasket() */
         filter.applyFilter();
         //filter.filterData = b;
        /* filter.init(this.draw); */

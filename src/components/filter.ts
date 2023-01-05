@@ -27,6 +27,7 @@ export class Filter {
         currentTotalCart: 0
     }
     currentTotalCart: number = 0;
+    cardsInBasket: number[] = [];
 
     init (drawFunction) {
         this.drawData = drawFunction;
@@ -164,10 +165,20 @@ export class Filter {
         localStorage.removeItem('sortNameDown')
         localStorage.removeItem('sortYearUp')
         localStorage.removeItem('sortYearDown')
+        localStorage.removeItem('idCardInBasket')
+        this.cardsInBasket = []
+        this.currentTotalCart = 0
+        localStorage.setItem('totalPrice', String(0))
         currentTotalCart.innerHTML = `Текущая цена: € 0`
         carData.forEach(element => element.inBasket = false );
+        let isInBasket = document.querySelectorAll(".InBasket") ;
+        for(let i = 0 ; i<=isInBasket.length; i++){
+            isInBasket[i].innerHTML = "нет"
+        }
+      /*   isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да"; */
           basket.innerHTML = `0`
           select.value = 'value1';
+
     }
 
     showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
@@ -310,6 +321,8 @@ console.log('getChangeNumber1',minNum, maxNum)
 
 
 
+
+
         const filterByPopularButtonsActive = document.querySelector(".favorite-input")
         const typeLarge = document.querySelector('.type-large')
         const typeMedium = document.querySelector('.type-medium')
@@ -402,6 +415,11 @@ console.log('getChangeNumber1',minNum, maxNum)
          }
 
 
+         if(localStorage.getItem('totalPrice')){
+            let currentTotalCart = document.querySelector('.currentTotalCart') as HTMLElement;
+            currentTotalCart.innerHTML = `Текущая цена: € ${localStorage.getItem('totalPrice')}`
+            /* localStorage.setItem('totalPrice', String(this.currentTotalCart)) */
+         }
 
 
          if(localStorage.getItem('sortNameUp')){
@@ -459,11 +477,35 @@ console.log('getChangeNumber1',minNum, maxNum)
 
 
 
+
+
         console.log("filteredData");
         console.log(filteredData);
         console.log(this);
         this.drawData(filteredData);
+
+        if(localStorage.getItem('idCardInBasket')){
+             let basket = document.querySelector('.basket')
+             let tmpArr:string[] = localStorage.getItem('idCardInBasket').split(',')
+             basket.innerHTML = String(tmpArr.length)
+            this.currentTotalCart = Number(localStorage.getItem('totalPrice'))
+
+            let arr:string[] = localStorage.getItem("idCardInBasket").split(',')
+            let goodsItem = document.querySelectorAll('.GoodsItem')
+                for(let y = 0 ; y < arr.length; y++){
+                    let num = Number(arr[y]) - 1
+                      goodsItem[num].classList.add('GoodsItemInBasket')
+                      goodsItem[num].closest('.GoodsItem').querySelector(".InBasket").innerHTML = "да";
+                      goodsItem[num].closest('.GoodsItem').querySelector(".addBasket").innerHTML = "В корзине";
+                      for(let i = 0 ; i<carData.length; i++){
+                        carData[num].inBasket = true
+                      }
+                      /* carData.forEach(element => element.inBasket[Number(arr[y])] = true ); */
+                }
+        }
+
       }
+
 
       sortType(value) {
         switch (value) {
@@ -719,45 +761,46 @@ console.log('getChangeNumber1',minNum, maxNum)
     addOrRemoveBasket(event){
         const currPrice = document.querySelector('.currentTotalCart')
         const element = event.target;
-        console.log('event', event.target.closest('.GoodsItem').getAttribute('data-card'))
-        console.log('event', event.target.closest('.GoodsItem').getAttribute('data-price'))
-        console.log('eventqweqweqwe',event.target)
+/*         console.log('event', event.target.closest('.GoodsItem').getAttribute('data-card')) */
+/*         console.log('event', event.target.closest('.GoodsItem').getAttribute('data-price')) */
 
-
-       /*  if(element.classList.contains("addBasket")){
-            const card = document.querySelector('.GoodsItem')
-            event.target.closest('.GoodsItem').classList.toggle("GoodsItemInBasket");
-
-
-        } */
-
+       /* this.cardsInBasket = [] */
 
         if (element.classList.contains("addBasket")) {
-           /*  this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
-            currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}` */
+
             const basket = document.querySelector(".basket");
             let quantityInBasket = +basket.innerHTML;
-
-
+          if(!(this.cardsInBasket.includes(event.target.closest('.GoodsItem').getAttribute('data-card')))){
+            this.cardsInBasket.push(event.target.closest('.GoodsItem').getAttribute('data-card'))
+        } else if((this.cardsInBasket.includes(event.target.closest('.GoodsItem').getAttribute('data-card')))){
+            this.cardsInBasket = this.cardsInBasket.filter(function(f) {return f !== event.target.closest('.GoodsItem').getAttribute('data-card') })
+            console.log('cardInbasketRemove',this.cardsInBasket)
+          }
+          localStorage.setItem('idCardInBasket',String(this.cardsInBasket))
             if (quantityInBasket < 27 || (quantityInBasket === 27 && element.classList.contains("GoodsItemInBasket"))) {
                 event.target.closest('.GoodsItem').classList.toggle("GoodsItemInBasket");
                 localStorage.setItem('inBasket','true')
                 let isInBasket = element.closest('.GoodsItem').querySelector(".InBasket");
                 isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да";
+
                 if( isInBasket.innerText === "нет" ){
                     this.currentTotalCart -= Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
                     currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`
-                    console.log('-wqeqwe')
-                }else{
+                    localStorage.setItem('totalPrice', String(this.currentTotalCart))
+                    element.closest('.GoodsItem').querySelector('.addBasket').innerHTML = `В корзину`
+                }else {
                     this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'))
                     currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`
+                    localStorage.setItem('totalPrice', String(this.currentTotalCart))
+                    element.closest('.GoodsItem').querySelector('.addBasket').innerHTML = `В корзине`
+
                 }
+
                 const itemFields = element.closest('.GoodsItem').querySelector(".GoodsItemTitle").innerText +
                 " " + element.closest('.GoodsItem').querySelector(".Color").innerText;
                 carData.forEach(element => {
                     if (element.whoMade + " " + element.modelName + " " + element.color === itemFields) {
                         element.inBasket ? element.inBasket = false : element.inBasket = true;
-
                     }
 
                 });
@@ -771,7 +814,11 @@ console.log('getChangeNumber1',minNum, maxNum)
                     carData.forEach(element => {
                     if (element.inBasket) res++
                 });
+                if(res === 0){
+                    localStorage.removeItem('idCardInBasket')
+                }
                 basket.innerHTML = "" + res;
+
             }   else alert("Извините, все слоты заполнены");
         }
     }
