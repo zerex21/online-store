@@ -148,20 +148,20 @@ export class Filter {
         localStorage.removeItem('kilometers');
         localStorage.removeItem('colors');
         localStorage.removeItem('makers');
-        localStorage.setItem('sortNameUp','1')
-        localStorage.removeItem('sortNameDown')
-        localStorage.removeItem('sortYearUp')
-        localStorage.removeItem('sortYearDown')
-        localStorage.removeItem('idCardInBasket')
-        basket.innerHTML = `0`
-        this.cardsInBasket = []
-        this.currentTotalCart = 0
+        localStorage.setItem('sortNameUp','1');
+        localStorage.removeItem('sortNameDown');
+        localStorage.removeItem('sortYearUp');
+        localStorage.removeItem('sortYearDown');
+        localStorage.removeItem('idCardInBasket');
+        basket.innerHTML = `0`;
+        this.cardsInBasket = [];
+        this.currentTotalCart = 0;
         localStorage.setItem('totalPrice', String(0))
         currentTotalCart.innerHTML = `Текущая цена: € 0`
         carData.forEach(element => element.inBasket = false );
         let isInBasket:NodeListOf<Element> = document.querySelectorAll(".InBasket") ;
         for(let i = 0 ; i<=isInBasket.length; i++){
-            isInBasket[i].innerHTML = "нет"
+            isInBasket[i].innerHTML = "нет";
         }
           select.value = 'value1';
     }
@@ -171,11 +171,11 @@ export class Filter {
             let tmp = maxNum;
             maxNum = minNum;
             minNum = tmp;
-            displayValOne.innerHTML = String(minNum)
-            displayValTwo.innerHTML = String(maxNum)
+            displayValOne.innerHTML = String(minNum);
+            displayValTwo.innerHTML = String(maxNum);
         }
-        displayValOne.innerHTML = String(minNum)
-        displayValTwo.innerHTML = String(maxNum)
+        displayValOne.innerHTML = String(minNum);
+        displayValTwo.innerHTML = String(maxNum);
     }
 
 
@@ -200,7 +200,7 @@ export class Filter {
         const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
         const displayValOne = document.getElementById("range1") as HTMLElement;
         const displayValTwo = document.getElementById("range2") as HTMLElement;
-        let [minNum, maxNum]: number[] = slideTwo()
+        let [minNum, maxNum]: number[] = slideTwo();
             if (localStorage.getItem("sliderNumber2")) {
                 this.showRange(minNum, maxNum, displayValOne ,displayValTwo);
                 this.getNumbersCostBetween(minNum, maxNum);
