@@ -163,7 +163,6 @@ export class Filter {
         for(let i = 0 ; i<=isInBasket.length; i++){
             isInBasket[i].innerHTML = "нет"
         }
-
           select.value = 'value1';
     }
 
