@@ -1,11 +1,16 @@
 import { carData } from "../data/cars-data";
 import { ICarData } from "../types/car-data.interface";
+import {  slideOne, slideTwo, slideTree, slideFour } from "./slider";
+
 interface IFilterData {
     search: string;
     whoMade: string[];
     km: number[];
     color: string[],
     popular: boolean,
+    price: number[],
+    availableQuantity: number[],
+    currentTotalCart: number ,
 }
 
 export class Filter {
@@ -17,29 +22,60 @@ export class Filter {
         km: [],
         color: [],
         popular: false,
+        price: [],
+        availableQuantity: [],
+        currentTotalCart: 0,
     }
+    currentTotalCart: number = 0;
+    cardsInBasket: string[] = [];
 
     init (drawFunction) {
         this.drawData = drawFunction;
-        const filterWhoMadeButtonsContainer = document.querySelector(".FilterWhoMade");
+        const filterWhoMadeButtonsContainer = document.querySelector(".FilterWhoMade") as HTMLElement ;
         filterWhoMadeButtonsContainer.addEventListener("click", this.handleFilterWhoMadeClick.bind(this));
-        const filterByPowerButtonsContainer = document.querySelector(".FilterByPower");
+        const filterByPowerButtonsContainer = document.querySelector(".FilterByPower") as HTMLElement ;
         filterByPowerButtonsContainer.addEventListener("click", this.handleFilterByPowerClick.bind(this));
-        const filterByColorButtonsContainer = document.querySelector(".FilterByColor");
+        const filterByColorButtonsContainer = document.querySelector(".FilterByColor") as HTMLElement;
         filterByColorButtonsContainer.addEventListener("click", this.handleFilterByColorClick.bind(this));
-        const filterByPopularButtonsContainer = document.querySelector(".FilterByPopular");
-        filterByPopularButtonsContainer.addEventListener("click", this.handleFilterByPopularClick.bind(this));
-        const searchInput = document.querySelector(".search");
+        const filterByPopularButtonsContainer = document.querySelector(".FilterByPopular") as HTMLElement;
+        filterByPopularButtonsContainer.addEventListener("click",this.handleFilterByPopularClick.bind(this));
+        filterByPopularButtonsContainer.addEventListener("click",()=>{localStorage.getItem("popular") ? localStorage.setItem('popular','1') : localStorage.removeItem('popular')});
+        const searchInput = document.querySelector(".search") as HTMLElement;
         searchInput.addEventListener("keyup", this.handleSearch.bind(this));
-        const clearSearchButton = document.querySelector(".clear");
+        const clearSearchButton = document.querySelector(".clear") as HTMLElement;
         clearSearchButton.addEventListener("click", this.clearSearc.bind(this));
-        const sortButton = document.querySelector(".select");
+        const sortButton = document.querySelector(".select") as HTMLElement;
         sortButton.addEventListener("change", this.sort.bind(this));
 
-        const resetFilterButton = document.getElementById("filtersReset");
+        const resetFilterButton = document.getElementById("filtersReset") as HTMLElement;
         resetFilterButton.addEventListener("click", this.resetFilter.bind(this));
-        const goodsItemCard = document.querySelector(".GoodsListing");
+        const goodsItemCard = document.querySelector(".GoodsListing") as HTMLElement;
         goodsItemCard.addEventListener("click", this.addOrRemoveBasket.bind(this));
+
+        const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+        const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+        const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+
+        sliderOne.addEventListener('input',()=>{
+            localStorage.setItem("sliderNumber1", sliderOne.value)
+            this.getChangeSliderOne()
+        });
+
+        sliderTwo.addEventListener('input',()=>{
+            localStorage.setItem("sliderNumber2", sliderTwo.value)
+            this.getChangeSliderTwo()
+        });
+
+        sliderTree.addEventListener('input',()=>{
+            localStorage.setItem("sliderNumber3", sliderTree.value)
+            this.getChangeSliderTree()
+       });
+
+       sliderFour.addEventListener('input',()=>{
+        localStorage.setItem("sliderNumber4", sliderFour.value)
+        this.getChangeSliderFour()
+       });
     }
 
     resetFilter () {
@@ -48,32 +84,187 @@ export class Filter {
             km: [],
             color: [],
             whoMade: [],
-            popular: false
+            popular: false,
+            price:[37000, 100000],
+            availableQuantity: [1, 10],
+            currentTotalCart: 0,
         }
-        
+        for (let  i = 0; i < carData.length; i++) {
+            for (let j = i; j < carData.length; j++){
+                if(carData[i].name > carData[j].name){
+                    let temp = carData[i];
+                    carData[i] = carData[j];
+                    carData[j] = temp;
+                }
+            }
+        }
+
         this.drawData(carData);
 
-        const filterButtonsActive = document.querySelectorAll(".active");
+        const filterButtonsActive: NodeListOf<Element> = document.querySelectorAll(".active") ;
+
         filterButtonsActive.forEach(element => {
             element.classList.remove("active");
         });
-        const filterByColorButtonsActive = document.querySelectorAll(".FilterByColor_active");
+
+        const filterByColorButtonsActive: NodeListOf<Element> = document.querySelectorAll(".FilterByColor_active");
+
         filterByColorButtonsActive.forEach(element => {
             element.classList.remove("FilterByColor_active");
         });
-        const filterByPopularButtonsActive = document.querySelector(".FilterByPopular_active");
-        filterByPopularButtonsActive.classList.remove("FilterByPopular_active");
-        
-        
 
-        //const searchInput = document.getElementById("search") as HTMLInputElement;
-        //searchInput.value = '';
+        const filterByPopularButtonsActive = document.querySelector(".FilterByPopular_active") as HTMLElement;
+        const buttonsActive = document.querySelector('.favorite-input') as HTMLElement;
+
+        if(buttonsActive.classList.contains("FilterByPopular_active")){
+            filterByPopularButtonsActive.classList.remove("FilterByPopular_active");
+        }
+
+        const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        sliderOne.value = '37000';
+        const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+        sliderTwo.value = '100000';
+        const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+        sliderTree.value = '1';
+        const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+        sliderFour.value = '10';
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        displayValOne.innerHTML = '37000';
+        const displayValTwo = document.getElementById("range2") as HTMLElement;
+        displayValTwo.innerHTML = '100000';
+        const displayValTree = document.getElementById("range3") as HTMLElement;
+        displayValTree.innerHTML = '1';
+        const displayValFour = document.getElementById("range4") as HTMLElement;
+        displayValFour.innerHTML = '10';
+        const select = document.querySelector('#select') as HTMLSelectElement;
+        const currentTotalCart = document.querySelector('.currentTotalCart') as HTMLElement;
+        const basket = document.querySelector('.basket') as HTMLElement;
+        localStorage.setItem('sliderNumber1','37000');
+        localStorage.setItem('sliderNumber2','100000');
+        localStorage.setItem('sliderNumber3','1');
+        localStorage.setItem('sliderNumber4','10');
+        localStorage.setItem('currentNumber','0');
+        localStorage.removeItem('popular');
+        localStorage.removeItem('kilometers');
+        localStorage.removeItem('colors');
+        localStorage.removeItem('makers');
+        localStorage.setItem('sortNameUp','1');
+        localStorage.removeItem('sortNameDown');
+        localStorage.removeItem('sortYearUp');
+        localStorage.removeItem('sortYearDown');
+        localStorage.removeItem('idCardInBasket');
+        basket.innerHTML = `0`;
+        this.cardsInBasket = [];
+        this.currentTotalCart = 0;
+        localStorage.setItem('totalPrice', String(0))
+        currentTotalCart.innerHTML = `Текущая цена: € 0`
+        carData.forEach(element => element.inBasket = false );
+        let isInBasket:NodeListOf<Element> = document.querySelectorAll(".InBasket") ;
+        for(let i = 0 ; i<=isInBasket.length; i++){
+            isInBasket[i].innerHTML = "нет";
+        }
+          select.value = 'value1';
     }
 
-    applyFilter () {
+    showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
+        if(minNum > maxNum){
+            let tmp = maxNum;
+            maxNum = minNum;
+            minNum = tmp;
+            displayValOne.innerHTML = String(minNum);
+            displayValTwo.innerHTML = String(maxNum);
+        }
+        displayValOne.innerHTML = String(minNum);
+        displayValTwo.innerHTML = String(maxNum);
+    }
+
+
+    getChangeSliderOne():void {
+        const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        const displayValTwo = document.getElementById("range2") as HTMLElement;
+        let [minNum, maxNum]: number[] = slideOne();
+
+            if (localStorage.getItem("sliderNumber1")) {
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo);
+                this.getNumbersCostBetween( minNum, maxNum );
+                sliderOne.value = localStorage.getItem("sliderNumber1");
+                displayValOne.innerHTML = localStorage.getItem("sliderNumber1");
+            }else{
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo);
+                this.getNumbersCostBetween( maxNum, minNum);
+              }
+    }
+
+    getChangeSliderTwo():void {
+        const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+        const displayValOne = document.getElementById("range1") as HTMLElement;
+        const displayValTwo = document.getElementById("range2") as HTMLElement;
+        let [minNum, maxNum]: number[] = slideTwo();
+            if (localStorage.getItem("sliderNumber2")) {
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo);
+                this.getNumbersCostBetween(minNum, maxNum);
+                sliderTwo.value = localStorage.getItem("sliderNumber2");
+                displayValTwo.innerHTML = localStorage.getItem("sliderNumber2");
+            }else{
+                this.showRange(minNum, maxNum, displayValOne ,displayValTwo);
+                this.getNumbersCostBetween(minNum, maxNum);
+            }
+    }
+
+    getChangeSliderTree():void{
+        const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+        const displayValTree = document.getElementById("range3") as HTMLElement;
+        const displayValFour = document.getElementById("range4") as HTMLElement;
+        let [minNum, maxNum]: number[] = slideTree();
+
+        if (localStorage.getItem("sliderNumber3")) {
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour);
+            this.getNumbersQuantityBetween(minNum,maxNum);
+            displayValTree.innerHTML = localStorage.getItem("sliderNumber3");
+            sliderTree.value = localStorage.getItem("sliderNumber3");
+        }else{
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour);
+            this.getNumbersQuantityBetween(minNum,maxNum);
+        }
+    }
+
+    getChangeSliderFour():void{
+        const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+        const displayValTree = document.getElementById("range3") as HTMLElement;
+        const displayValFour = document.getElementById("range4") as HTMLElement;
+        let [minNum, maxNum]: number[] = slideFour()
+        if (localStorage.getItem("sliderNumber4")) {
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour);
+            this.getNumbersQuantityBetween(minNum,maxNum);
+            displayValFour.innerHTML = localStorage.getItem("sliderNumber4");
+            sliderFour.value = localStorage.getItem("sliderNumber4");
+        }else{
+            this.showRange(minNum, maxNum, displayValTree ,displayValFour);
+            this.getNumbersQuantityBetween(minNum,maxNum);
+        }
+    }
+
+    applyFilter() {
         console.log("applyFilter");
-        console.log(this.filterData);
+        console.log('can',this.filterData);
         let filteredData = carData;
+
+        if (this.filterData.price.length) {
+            filteredData = filteredData.filter(item => {
+                if (this.filterData.price[0]<= item.price && this.filterData.price[1]>= item.price) {
+                    return true;
+                } else {return false}
+            })
+        }
+
+        if (this.filterData.availableQuantity.length) {
+            filteredData = filteredData.filter(item => {
+                if (this.filterData.availableQuantity[0]<= item.availableQuantity && this.filterData.availableQuantity[1]>= item.availableQuantity) {
+                    return true;
+                } else {return false}
+            })
+        }
 
         if (this.filterData.whoMade.length) {
             filteredData = filteredData.filter(item => {
@@ -82,6 +273,7 @@ export class Filter {
                 } else {return false}
             })
         }
+
         if (this.filterData.km.length) {
             filteredData = filteredData.filter(item => {
                 if (this.filterData.km.includes(item.km)) {
@@ -89,13 +281,16 @@ export class Filter {
                 } else {return false}
             })
         }
+
         if (this.filterData.color.length) {
+            console.log('filterColorSearch', filteredData)
             filteredData = filteredData.filter(item => {
                 if (this.filterData.color.includes(item.color.toLowerCase())) {
                     return true;
                 } else {return false}
             })
         }
+
         if (this.filterData.popular) {
             filteredData = filteredData.filter(item => {
                 if (this.filterData.popular === item.popular) {
@@ -108,16 +303,221 @@ export class Filter {
             filteredData = filteredData.filter(item => item.whoMade.toLowerCase().includes(this.filterData.search) || item.modelName.toLowerCase().includes(this.filterData.search))
         }
 
+        const filterByPopularButtonsActive = document.querySelector(".favorite-input") as HTMLElement;
+        const typeLarge = document.querySelector('.type-large') as HTMLElement;
+        const typeMedium = document.querySelector('.type-medium') as HTMLElement;
+        const typeSmall  = document.querySelector('.type-small') as HTMLElement;
+        const buttonWhite = document.querySelector('.FilterByColor__button_type-white') as HTMLElement;
+        const buttonGgray = document.querySelector('.FilterByColor__button_type-gray') as HTMLElement;
+        const buttonRed  = document.querySelector('.FilterByColor__button_type-red') as HTMLElement;
+        const typeMersedes = document.querySelector('.type-mersedes') as HTMLElement;
+        const typeTesla = document.querySelector('.type-tesla') as HTMLElement;
+        const typeVolkswagen  = document.querySelector('.type-volkswagen') as HTMLElement;
+        const select = document.querySelector('#select') as HTMLSelectElement;
+
+        if(localStorage.getItem("popular")){
+         filterByPopularButtonsActive.classList.add("FilterByPopular_active");
+         this.filterData.popular = true;
+        }
+
+        if(localStorage.getItem('sliderNumber1') && localStorage.getItem('sliderNumber2')){
+            this.filterData.price = [Number(localStorage.getItem('sliderNumber1')), Number(localStorage.getItem('sliderNumber2'))];
+        }
+
+        if(localStorage.getItem('sliderNumber3') && localStorage.getItem('sliderNumber4')){
+            this.filterData.availableQuantity = [Number(localStorage.getItem('sliderNumber3')), Number(localStorage.getItem('sliderNumber4'))];
+        }
+
+        if(localStorage.getItem("kilometers")){
+           this.filterData.km=[];
+           let currArrKm:string[] = localStorage.getItem("kilometers").split(',');
+         for(let i = 0 ; i<= currArrKm.length; i++){
+            if(currArrKm[i] == '500'){
+                typeLarge.classList.add('active');
+                this.filterData.km.push(500);
+            }
+            if(currArrKm[i] == '400'){
+                typeMedium.classList.add('active');
+                this.filterData.km.push(400);
+
+            }
+            if(currArrKm[i] == '300'){
+                typeSmall.classList.add('active');
+                this.filterData.km.push(300);
+            }
+         }
+        }
+
+        if(localStorage.getItem("colors")){
+            this.filterData.color = [];
+            let currArrColors:string[] = localStorage.getItem("colors").split(',');
+          for(let i = 0 ; i<= currArrColors.length; i++){
+             if(currArrColors[i] == 'белый'){
+                 buttonWhite.classList.add('FilterByColor_active');
+                 this.filterData.color.push('белый');
+             }
+
+             if(currArrColors[i] == 'серый'){
+                 buttonGgray.classList.add('FilterByColor_active');
+                 this.filterData.color.push('серый');
+             }
+
+             if(currArrColors[i] == 'красный'){
+                 buttonRed.classList.add('FilterByColor_active');
+                 this.filterData.color.push('красный');
+             }
+          }
+         }
+
+
+         if(localStorage.getItem("makers")){
+            this.filterData.whoMade=[];
+            let currArrColors:string[] = localStorage.getItem("makers").split(',');
+          for(let i = 0 ; i<= currArrColors.length; i++){
+
+             if(currArrColors[i] == 'mercedes'){
+                 typeMersedes.classList.add('active');
+                 this.filterData.whoMade.push('mercedes');
+             }
+
+             if(currArrColors[i] == 'tesla'){
+                 typeTesla.classList.add('active');
+                 this.filterData.whoMade.push('tesla');
+
+             }
+             if(currArrColors[i] == 'volkswagen'){
+                 typeVolkswagen.classList.add('active');
+                 this.filterData.whoMade.push('volkswagen');
+             }
+          }
+         }
+
+
+         if(localStorage.getItem('totalPrice')){
+            let currentTotalCart = document.querySelector('.currentTotalCart') as HTMLElement;
+            currentTotalCart.innerHTML = `Текущая цена: € ${localStorage.getItem('totalPrice')}`;
+         }
+
+         if(localStorage.getItem('sortNameUp')){
+            select.value = 'value1';
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].name > carData[j].name){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+
+        }
+        if(localStorage.getItem('sortNameDown')){
+            select.value = 'value2';
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].name < carData[j].name){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+        }
+
+         if(localStorage.getItem('sortYearUp')){
+            select.value = 'value3';
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].year > carData[j].year){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+        }
+
+        if(localStorage.getItem('sortYearDown')){
+            select.value = 'value4';
+            for (let  i = 0; i < carData.length; i++) {
+                for (let j = i; j < carData.length; j++){
+                    if(carData[i].year < carData[j].year){
+                        let temp = carData[i];
+                        carData[i] = carData[j];
+                        carData[j] = temp;
+                    }
+                }
+            }
+        }
+
         console.log("filteredData");
         console.log(filteredData);
         console.log(this);
         this.drawData(filteredData);
-        //localStorage.setItem("Masha", JSON.stringify(this.filterData));
-        
+
+        if(localStorage.getItem('idCardInBasket')){
+                let tmp: string[] = localStorage.getItem('idCardInBasket').split(',');
+                let arr2: string [] = [];
+                for(let i = 0; i<tmp.length; i++){
+                    arr2.push((tmp[i]));
+                }
+                this.cardsInBasket = arr2;
+
+             let basket = document.querySelector('.basket') as HTMLElement;
+             let tmpArr:string[] = localStorage.getItem('idCardInBasket').split(',');
+             basket.innerHTML = String(tmpArr.length);
+             this.currentTotalCart = Number(localStorage.getItem('totalPrice'));
+
+            let arr:string[] = localStorage.getItem("idCardInBasket").split(',');
+            let goodsItem = document.querySelectorAll('.GoodsItem');
+                for(let y = 0 ; y < arr.length; y++){
+                    let num = Number(arr[y]) - 1
+                      goodsItem[num].classList.add('GoodsItemInBasket');
+                      goodsItem[num].closest('.GoodsItem').querySelector(".InBasket").innerHTML = "да";
+                      goodsItem[num].closest('.GoodsItem').querySelector(".addBasket").innerHTML = "В корзине";
+                      for(let i = 0 ; i<carData.length; i++){
+                        carData[num].inBasket = true;
+                      }
+                }
+        }
+
       }
+
+
+      sortType(value) {
+        switch (value) {
+            case "value1":
+                this.sortByNameUp();
+              break;
+            case "value2":
+                this.sortByNameDown();
+                break;
+            case "value3":
+                this.sortByYearUp();
+                break;
+            case "value4":
+                this.sortByYearDown();
+                break;
+        }
+    }
+
+
+      getNumbersCostBetween(minNum, maxNum){
+           this.filterData.price = [minNum, maxNum];
+           this.applyFilter();
+      }
+
+      getNumbersQuantityBetween(minNum, maxNum){
+        this.filterData.availableQuantity = [minNum, maxNum];
+        this.applyFilter();
+        if (this.filterData.availableQuantity.length === 0){
+            return this.resetFilter();
+        }
+   }
 
     handleFilterWhoMadeClick (event) {
         const element = event.target;
+        let arrMakers : string[] = [];
         if (element.tagName === "BUTTON") {
             console.log(element.innerText);
             const buttonText = element.innerText.toLowerCase();
@@ -127,18 +527,23 @@ export class Filter {
             } else {
                 this.filterData.whoMade.push(buttonText);
             }
-            console.log(this.filterData);
+            arrMakers = this.filterData.whoMade;
+            localStorage.setItem('makers', String(arrMakers))
+            if(arrMakers.length === 0){
+                localStorage.removeItem('makers');
+            }
+            console.log('whoMadeFilterData',this.filterData);
             element.classList.toggle("active");
             if (this.filterData.whoMade.length === 0){
                 return this.resetFilter();
             }
-
             this.applyFilter();
         }
     }
 
     handleFilterByPowerClick (event) {
         const element = event.target;
+        let arrKm : number[] = [];
         if (element.tagName === "BUTTON") {
             console.log(element.innerText);
             const buttonText = +element.innerText;
@@ -148,7 +553,11 @@ export class Filter {
             } else {
                 this.filterData.km.push(buttonText);
             }
-            console.log(this.filterData);
+            arrKm = this.filterData.km;
+            localStorage.setItem('kilometers', String(arrKm))
+            if(arrKm.length === 0){
+                localStorage.removeItem('kilometers')
+            }
             element.classList.toggle("active");
             if (this.filterData.km.length === 0){
                 return this.resetFilter();
@@ -159,6 +568,7 @@ export class Filter {
 
     handleFilterByColorClick (event) {
         const element = event.target;
+        let arrColors : string[] = [];
         if (element.tagName === "BUTTON") {
             console.log(element.innerText);
             const buttonText = element.innerText.toLowerCase();
@@ -167,8 +577,14 @@ export class Filter {
                 this.filterData.color.splice(filterIndex, 1);
             } else {
                 this.filterData.color.push(buttonText);
+
             }
-            console.log(this.filterData);
+            arrColors = this.filterData.color;
+            localStorage.setItem('colors', String(arrColors))
+            if(arrColors.length === 0){
+                localStorage.removeItem('colors');
+            }
+            console.log('filtercolor',this.filterData);
             element.classList.toggle("FilterByColor_active");
             if (this.filterData.color.length === 0){
                 return this.resetFilter();
@@ -183,11 +599,13 @@ export class Filter {
             console.log(element.innerText);
             if (element.classList.contains("FilterByPopular_active")) {
                 this.filterData.popular = false;
+                element.classList.remove("FilterByPopular_active");
+                localStorage.removeItem("popular");
             } else {
                 this.filterData.popular = true;
+                element.classList.add("FilterByPopular_active");
+                localStorage.setItem("popular", '1');
             }
-            console.log(this.filterData);
-            element.classList.toggle("FilterByPopular_active");
             if (this.filterData.popular === false){
                 return this.resetFilter();
             }
@@ -198,15 +616,14 @@ export class Filter {
     handleSearch (event) {
         this.filterData.search = event.target.value;
         this.applyFilter();
-
-        const text = document.querySelector(".GoodsListing");
+        const text = document.querySelector(".GoodsListing") as HTMLElement;
         if(!text.innerHTML){
             text.innerHTML = "Извините, совпадений не обнаружено";
         }
     }
 
     clearSearc (event) {
-        const searchInput = document.querySelector(".search") as any;
+        const searchInput = document.querySelector(".search") as HTMLInputElement;
         searchInput.value = "";
         this.filterData.search = "";
         this.applyFilter();
@@ -240,7 +657,10 @@ export class Filter {
                 }
             }
         }
-        console.log(carData);
+        localStorage.setItem('sortNameUp','1');
+        localStorage.removeItem('sortNameDown');
+        localStorage.removeItem('sortYearUp');
+        localStorage.removeItem('sortYearDown');
         this.applyFilter();
     }
 
@@ -254,6 +674,10 @@ export class Filter {
                 }
             }
         }
+        localStorage.setItem('sortNameDown','1');
+        localStorage.removeItem('sortNameUp');
+        localStorage.removeItem('sortYearUp');
+        localStorage.removeItem('sortYearDown');
         this.applyFilter();
     }
 
@@ -267,6 +691,10 @@ export class Filter {
                 }
             }
         }
+        localStorage.setItem('sortYearUp','1');
+        localStorage.removeItem('sortNameUp');
+        localStorage.removeItem('sortNameDown');
+        localStorage.removeItem('sortYearDown');
         this.applyFilter();
     }
 
@@ -280,25 +708,53 @@ export class Filter {
                 }
             }
         }
+        localStorage.setItem('sortYearDown','1');
+        localStorage.removeItem('sortYearUp');
+        localStorage.removeItem('sortNameUp');
+        localStorage.removeItem('sortNameDown');
         this.applyFilter();
     }
 
     addOrRemoveBasket(event){
+        const currPrice = document.querySelector('.currentTotalCart') as HTMLElement;
         const element = event.target;
+        if (element.classList.contains("addBasket")) {
+            const basket = document.querySelector(".basket") as HTMLElement;
+            let quantityInBasket:number = +basket.innerHTML;
 
-        if (element.classList.contains("GoodsItem")) {
-            const basket = document.querySelector(".basket");
-            let quantityInBasket = +basket.innerHTML;
-            if (quantityInBasket < 2 || (quantityInBasket === 2 && element.classList.contains("GoodsItemInBasket"))) {
-                element.classList.toggle("GoodsItemInBasket");
-                let isInBasket = element.querySelector(".InBasket");
-                isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да"; 
-                const itemFields = element.querySelector(".GoodsItemTitle").innerText + 
-                " " + element.querySelector(".Color").innerText;
+          if((this.cardsInBasket.includes(event.target.closest('.GoodsItem').getAttribute('data-card')))){
+            this.cardsInBasket = this.cardsInBasket.filter(function(f) {return f !== event.target.closest('.GoodsItem').getAttribute('data-card') });
+        } else if(!(this.cardsInBasket.includes(event.target.closest('.GoodsItem').getAttribute('data-card'))) ){
+            this.cardsInBasket.push(event.target.closest('.GoodsItem').getAttribute('data-card'));
+          }
+
+          localStorage.setItem('idCardInBasket',String(this.cardsInBasket))
+
+            if (quantityInBasket < 27 || (quantityInBasket === 27 && element.classList.contains("GoodsItemInBasket"))) {
+                event.target.closest('.GoodsItem').classList.toggle("GoodsItemInBasket");
+                localStorage.setItem('inBasket','true');
+                let isInBasket = element.closest('.GoodsItem').querySelector(".InBasket") as HTMLElement;
+                isInBasket.innerText === "да" ?isInBasket.innerText = "нет" : isInBasket.innerText = "да";
+
+                if( isInBasket.innerText === "нет" ){
+                    this.currentTotalCart -= Number(event.target.closest('.GoodsItem').getAttribute('data-price'));
+                    currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`;
+                    localStorage.setItem('totalPrice', String(this.currentTotalCart));
+                    element.closest('.GoodsItem').querySelector('.addBasket').innerHTML = `В корзину`;
+                }else {
+                    this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'));
+                    currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`;
+                    localStorage.setItem('totalPrice', String(this.currentTotalCart));
+                    element.closest('.GoodsItem').querySelector('.addBasket').innerHTML = `В корзине`;
+                }
+
+                const itemFields = element.closest('.GoodsItem').querySelector(".GoodsItemTitle").innerText +
+                " " + element.closest('.GoodsItem').querySelector(".Color").innerText;
                 carData.forEach(element => {
                     if (element.whoMade + " " + element.modelName + " " + element.color === itemFields) {
                         element.inBasket ? element.inBasket = false : element.inBasket = true;
                     }
+
                 });
                 console.log("carData");
                 console.log(carData);
@@ -308,9 +764,13 @@ export class Filter {
                 console.log(basket);
                     let res = 0;
                     carData.forEach(element => {
-                    if (element.inBasket) res++ 
+                    if (element.inBasket) res++
                 });
+                if(res === 0){
+                    localStorage.removeItem('idCardInBasket')
+                }
                 basket.innerHTML = "" + res;
+
             }   else alert("Извините, все слоты заполнены");
         }
     }
