@@ -15,17 +15,20 @@ class App {
 
         //localStorage.removeItem("masha");
         // console.log(a);
-        this.draw(carData);
 
+        this.draw(carData);
         const filter = new Filter();
+
         filter.init(this.draw);
+        filter.applyFilter();
         /* filter.handleFilterByPopularClick() */
         filter.getChangeSliderOne()
         filter.getChangeSliderTwo()
         filter.getChangeSliderTree()
         filter.getChangeSliderFour()
+        filter.checkClass()
 /* filter.checkAddBasket() */
-        filter.applyFilter();
+
         //filter.filterData = b;
        /* filter.init(this.draw); */
 
@@ -61,7 +64,7 @@ class App {
             let color = item.color;
             let inBasket = item.inBasket?"да":"нет";
 
-            sourceClone.querySelector('.GoodsItem').setAttribute('data-card', `${num++}`)
+            sourceClone.querySelector('.GoodsItem').setAttribute('data-card', `${item.id}`)
             sourceClone.querySelector('.GoodsItem').setAttribute('data-price', `${item.price}`)
             sourceClone.querySelector('.GoodsItemImg').setAttribute("src", item.img);
             sourceClone.querySelector('.GoodsItemTitle').textContent = item.whoMade + " " + item.modelName;
