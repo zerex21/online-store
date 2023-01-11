@@ -60,21 +60,25 @@ export class Filter {
         sliderOne.addEventListener('input',()=>{
             localStorage.setItem("sliderNumber1", sliderOne.value)
             this.getChangeSliderOne()
+            this.checkClass()
         });
 
         sliderTwo.addEventListener('input',()=>{
             localStorage.setItem("sliderNumber2", sliderTwo.value)
             this.getChangeSliderTwo()
+            this.checkClass()
         });
 
         sliderTree.addEventListener('input',()=>{
             localStorage.setItem("sliderNumber3", sliderTree.value)
             this.getChangeSliderTree()
+            this.checkClass()
        });
 
        sliderFour.addEventListener('input',()=>{
         localStorage.setItem("sliderNumber4", sliderFour.value)
         this.getChangeSliderFour()
+        this.checkClass()
        });
     }
 
@@ -160,10 +164,50 @@ export class Filter {
         currentTotalCart.innerHTML = `Текущая цена: € 0`
         carData.forEach(element => element.inBasket = false );
         let isInBasket:NodeListOf<Element> = document.querySelectorAll(".InBasket") ;
-        for(let i = 0 ; i<=isInBasket.length; i++){
-            isInBasket[i].innerHTML = "нет";
+       /*********************** */
+            for(let i = 0 ; i<=isInBasket.length; i++){
+                if(isInBasket[i].innerHTML == 'да'){
+                    isInBasket[i].innerHTML = "нет";
+                }else false
+
         }
+/***************************** */
           select.value = 'value1';
+    }
+
+
+    checkClass(){
+        if(localStorage.getItem('idCardInBasket')){
+
+            let tmp: string[] = localStorage.getItem('idCardInBasket').split(',');
+            let arr2: string [] = [];
+            for(let i = 0; i<tmp.length; i++){
+                arr2.push((tmp[i]));
+            }
+            this.cardsInBasket = arr2;
+         let tmpArr:string[] = localStorage.getItem('idCardInBasket').split(',');
+         let basket = document.querySelector('.basket') as HTMLElement;
+         basket.innerHTML = String(tmpArr.length);
+         this.currentTotalCart = Number(localStorage.getItem('totalPrice'));
+
+        let arr:string[] = localStorage.getItem("idCardInBasket").split(',');
+
+        for(let y = 0 ; y < arr.length; y++){
+              let num = Number(arr[y]) - 1
+              let goodsItem = document.querySelectorAll('.GoodsItem');
+              for(let g = 0 ; g < goodsItem.length; g++){
+                if(goodsItem[g].closest('.GoodsItem').getAttribute('data-card') == arr[y]){
+                    console.log(goodsItem[g].closest('.GoodsItem').getAttribute('data-card'))
+                    goodsItem[g].closest('.GoodsItem').querySelector(".InBasket").innerHTML = "да";
+                    goodsItem[g].closest('.GoodsItem').querySelector(".addBasket").innerHTML = "В корзине";
+                    goodsItem[g].classList.add('GoodsItemInBasket');
+                }
+                for(let i = 0 ; i<carData.length; i++){
+                    carData[g].inBasket = true;
+                  }
+              }
+        }
+    }
     }
 
     showRange = (minNum:number , maxNum:number, displayValOne: HTMLElement, displayValTwo: HTMLElement):void =>{
@@ -246,10 +290,10 @@ export class Filter {
     }
 
     applyFilter() {
+
         console.log("applyFilter");
         console.log('can',this.filterData);
         let filteredData = carData;
-
         if (this.filterData.price.length) {
             filteredData = filteredData.filter(item => {
                 if (this.filterData.price[0]<= item.price && this.filterData.price[1]>= item.price) {
@@ -319,6 +363,8 @@ export class Filter {
          filterByPopularButtonsActive.classList.add("FilterByPopular_active");
          this.filterData.popular = true;
         }
+
+
 
         if(localStorage.getItem('sliderNumber1') && localStorage.getItem('sliderNumber2')){
             this.filterData.price = [Number(localStorage.getItem('sliderNumber1')), Number(localStorage.getItem('sliderNumber2'))];
@@ -455,31 +501,7 @@ export class Filter {
         console.log(this);
         this.drawData(filteredData);
 
-        if(localStorage.getItem('idCardInBasket')){
-                let tmp: string[] = localStorage.getItem('idCardInBasket').split(',');
-                let arr2: string [] = [];
-                for(let i = 0; i<tmp.length; i++){
-                    arr2.push((tmp[i]));
-                }
-                this.cardsInBasket = arr2;
 
-             let basket = document.querySelector('.basket') as HTMLElement;
-             let tmpArr:string[] = localStorage.getItem('idCardInBasket').split(',');
-             basket.innerHTML = String(tmpArr.length);
-             this.currentTotalCart = Number(localStorage.getItem('totalPrice'));
-
-            let arr:string[] = localStorage.getItem("idCardInBasket").split(',');
-            let goodsItem = document.querySelectorAll('.GoodsItem');
-                for(let y = 0 ; y < arr.length; y++){
-                    let num = Number(arr[y]) - 1
-                      goodsItem[num].classList.add('GoodsItemInBasket');
-                      goodsItem[num].closest('.GoodsItem').querySelector(".InBasket").innerHTML = "да";
-                      goodsItem[num].closest('.GoodsItem').querySelector(".addBasket").innerHTML = "В корзине";
-                      for(let i = 0 ; i<carData.length; i++){
-                        carData[num].inBasket = true;
-                      }
-                }
-        }
 
       }
 
@@ -538,10 +560,12 @@ export class Filter {
                 return this.resetFilter();
             }
             this.applyFilter();
+            this.checkClass()
         }
     }
 
     handleFilterByPowerClick (event) {
+
         const element = event.target;
         let arrKm : number[] = [];
         if (element.tagName === "BUTTON") {
@@ -563,6 +587,7 @@ export class Filter {
                 return this.resetFilter();
             }
             this.applyFilter();
+            this.checkClass()
         }
     }
 
@@ -590,6 +615,7 @@ export class Filter {
                 return this.resetFilter();
             }
             this.applyFilter();
+            this.checkClass()
         }
     }
 
@@ -610,6 +636,7 @@ export class Filter {
                 return this.resetFilter();
             }
             this.applyFilter();
+            this.checkClass()
         }
     }
 
@@ -620,6 +647,7 @@ export class Filter {
         if(!text.innerHTML){
             text.innerHTML = "Извините, совпадений не обнаружено";
         }
+        this.checkClass()
     }
 
     clearSearc (event) {
@@ -627,6 +655,7 @@ export class Filter {
         searchInput.value = "";
         this.filterData.search = "";
         this.applyFilter();
+        this.checkClass()
     }
 
     sort(event) {
@@ -645,6 +674,7 @@ export class Filter {
                 this.sortByYearDown();
                 break;
         }
+        this.checkClass()
     }
 
     sortByNameUp() {
@@ -769,7 +799,14 @@ export class Filter {
                 if(res === 0){
                     localStorage.removeItem('idCardInBasket')
                 }
-                basket.innerHTML = "" + res;
+
+                if (localStorage.getItem('idCardInBasket')){
+                    let tmpArr:string[] = localStorage.getItem('idCardInBasket').split(',');
+                    basket.innerHTML = String(tmpArr.length);
+                } else {
+                    basket.innerHTML = '0';
+                }
+
 
             }   else alert("Извините, все слоты заполнены");
         }

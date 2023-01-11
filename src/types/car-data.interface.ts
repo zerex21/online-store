@@ -10,5 +10,6 @@ export interface ICarData {
     popular: boolean,
     img: string,
     inBasket: boolean,
-    price: number
+    price: number,
+    description:string
 }

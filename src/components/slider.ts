@@ -1,15 +1,11 @@
-const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
-const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
-const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
-const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
-const displayValOne = document.getElementById("range1") as HTMLElement;
-const displayValTwo = document.getElementById("range2") as HTMLElement;
-const displayValTree = document.getElementById("range3") as HTMLElement;
-const displayValFour = document.getElementById("range4") as HTMLElement;
 let minGap: number = 0;
-let sliderMaxValue : number = parseInt((<HTMLInputElement>document.getElementById("slider-1")).max);
 
 export function slideOne():number[]{
+  const displayValOne = document.getElementById("range1") as HTMLElement;
+  const displayValTwo = document.getElementById("range2") as HTMLElement;
+  const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+  const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+
     if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
         let currValueSliderOne: number =  parseInt(sliderOne.value);
         currValueSliderOne = parseInt(sliderTwo.value) - minGap;
@@ -23,6 +19,11 @@ export function slideOne():number[]{
 }
 
 export function slideTwo():number[]{
+  const displayValOne = document.getElementById("range1") as HTMLElement;
+  const displayValTwo = document.getElementById("range2") as HTMLElement;
+  const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+  const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+
     if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
         let currValueSliderTwo:number = parseInt(sliderTwo.value);
         currValueSliderTwo = parseInt(sliderOne.value) + minGap;
@@ -36,6 +37,11 @@ export function slideTwo():number[]{
 }
 
 export function slideTree():number[]{
+  const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+  const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+  const displayValTree = document.getElementById("range3") as HTMLElement;
+  const displayValFour = document.getElementById("range4") as HTMLElement;
+
     if(parseInt(sliderFour.value) - parseInt(sliderTree.value) <= minGap){
         let currValueSliderTree:number = parseInt(sliderTree.value);
         currValueSliderTree = parseInt(sliderFour.value) - minGap;
@@ -51,6 +57,10 @@ export function slideTree():number[]{
 }
 
 export function slideFour():number[]{
+  const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+  const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+  const displayValTree = document.getElementById("range3") as HTMLElement;
+  const displayValFour = document.getElementById("range4") as HTMLElement;
 
     if(parseInt(sliderFour.value) - parseInt(sliderTree.value) <= minGap){
         let currValueSliderTwo:number = parseInt(sliderFour.value);
@@ -66,19 +76,27 @@ export function slideFour():number[]{
 }
 
 function fillColor():number[]{
+  const sliderOne = document.getElementById("slider-1") as HTMLInputElement;
+  const sliderTwo = document.getElementById("slider-2") as HTMLInputElement;
+  let sliderMaxValue : number = parseInt((<HTMLInputElement>document.getElementById("slider-1")).max);
   let currValueSliderTwo:number =  parseInt(sliderTwo.value);
   let currValueSliderOne:number =  parseInt(sliderOne.value);
+
   let percent1:number = (currValueSliderTwo / sliderMaxValue) * 100;
   let percent2:number = (currValueSliderOne / sliderMaxValue) * 100;
-  /* sliderTrack.style.background = `linear-gradient(to right,  #6a6ad9 ${percent1}% , #6a6ad9 ${percent1}% ,  #6a6ad9 ${percent2}%,  #6a6ad9 ${percent2}%)`; */
+
   return ([Math.round(percent1 * 1000), Math.round(percent2 * 1000)])
 }
 
 function fillColor2():number[]{
+    const sliderTree = document.getElementById("slider-3") as HTMLInputElement;
+    const sliderFour = document.getElementById("slider-4") as HTMLInputElement;
+    let sliderMaxValue : number = parseInt((<HTMLInputElement>document.getElementById("slider-1")).max);
     let currValueSliderTree:number =  parseInt(sliderFour.value);
     let currValueSliderFour:number =  parseInt(sliderTree.value);
+
     let percent1:number = (currValueSliderFour / sliderMaxValue) * 100;
     let percent2:number = (currValueSliderTree / sliderMaxValue) * 100;
-    /* sliderTrackTwo.style.background = `linear-gradient(to right, #6a6ad9 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #6a6ad9 ${percent2}%)`; */
+
     return ([Math.round(percent1* 1000),Math.round(percent2*1000)])
   }

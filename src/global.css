@@ -704,7 +704,7 @@ text-align: center;
 .favourite{
   position: relative;
   margin-left: 40px;
-
+  cursor: pointer;
 }
 
 .currentTotalCart{
@@ -763,7 +763,7 @@ text-align: center;
 }
 
 .iconGoods{
-  background-image: url('https://thedriven.io/wp-content/uploads/2021/02/roommzz_DB2019AU00535_medium.jpg');
+ /*  background-image: url('https://thedriven.io/wp-content/uploads/2021/02/roommzz_DB2019AU00535_medium.jpg'); */
   width: 400px;
   height: 200px;
   background-size: contain;
