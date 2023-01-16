@@ -1,5 +1,53 @@
 import { carData } from '../data/cars-data';
 
+const renderCard = (count: number, name: string, img: string, description: string, year: number, maker: string, color: string,
+  km: number, popular: string, quantity: number, price: number) =>{
+  return (`<div class="previewOrder">
+                  <div class="countGoods">${count}</div>
+                  <div class="iconGoodsContainer">
+                          <img class="iconGoods" src="${img}" alt="car">
+                      </div>
+                  <div class="descriptionGoods">
+                      <div class="nameGoods">Производитель: ${name}</div>
+                      <div class="goodsDescription">Описание: ${description}</div>
+                      <div class="yearGoods">Год выхода: ${year}</div>
+                      <div class="brandGoods">Производитель: ${maker}</div>
+                      <div class="colorGoods">Цвет: ${color}</div>
+                      <div class="kmGoods">Запас хода (км): ${km}</div>
+                      <div class="popularGoods">Популярный: ${popular}</div>
+                  </div>
+                  <div class="countControl">
+                      <div class="totalNumber">Всего:${quantity}</div>
+                      <div class="managementNumber">
+                          <div class="arrowPlus">-</div>
+                          <div class="currentNumber">1</div>
+                          <div class="arrowMinus">+</div>
+                      </div>
+                      <div class="currentPrice">€ ${price}</div>
+                  </div>
+              </div>
+          </div>`
+  );
+};
+
+export const cycleForCards = (allGoodsInBasket) => {
+  allGoodsInBasket = allGoodsInBasket.sort((a, b)=> a - b);
+  let div: HTMLElement = document.createElement('div');
+  div.className = 'blockCards';
+  for (let i = 0 ; i < allGoodsInBasket.length; i++) {
+    for ( let y = 0; y < carData.length; y++) {
+      if ( allGoodsInBasket[i] === carData[y].id) {
+        let num = i;
+        const render = renderCard(++num, carData[y].name, carData[y].img, carData[y].description, carData[y].year, carData[y].whoMade, carData[y].color,
+          carData[y].km, (carData[y].popular === false) ? 'нет' : 'да', carData[y].availableQuantity,
+          carData[y].price);
+        div.innerHTML += (render);
+      }
+    }
+  }
+  return (div.innerHTML);
+};
+
 export const renderContainerForCards = (goodsInBasket: string, totalPrice: string, allGoodsInBasket: string) =>{
   return (`<div class="goodsInBasket">
     <div class="listGoods">
@@ -33,56 +81,7 @@ export const renderContainerForCards = (goodsInBasket: string, totalPrice: strin
         </div>
     </div>
     `);
-}
+};
 
 
-const renderCard = (count: number, name: string, img: string, description: string, year: number, maker: string, color: string,
-  km: number, popular: string, quantity: number, price: number) =>{
-  return (`<div class="previewOrder">
-                <div class="countGoods">${count}</div>
-                <div class="iconGoodsContainer">
-                        <img class="iconGoods" src="${img}" alt="car">
-                    </div>
-                <div class="descriptionGoods">
-                    <div class="nameGoods">Производитель: ${name}</div>
-                    <div class="goodsDescription">Описание: ${description}</div>
-                    <div class="yearGoods">Год выхода: ${year}</div>
-                    <div class="brandGoods">Производитель: ${maker}</div>
-                    <div class="colorGoods">Цвет: ${color}</div>
-                    <div class="kmGoods">Запас хода (км): ${km}</div>
-                    <div class="popularGoods">Популярный: ${popular}</div>
-                </div>
-                <div class="countControl">
-                    <div class="totalNumber">Всего:${quantity}</div>
-                    <div class="managementNumber">
-                        <div class="arrowPlus">-</div>
-                        <div class="currentNumber">1</div>
-                        <div class="arrowMinus">+</div>
-                    </div>
-                    <div class="currentPrice">€ ${price}</div>
-                </div>
-            </div>
-        </div>`
-    )
-}
 
-export let cycleForCards = (allGoodsInBasket) => {
- console.log(allGoodsInBasket)
- allGoodsInBasket = allGoodsInBasket.sort((a,b)=>a-b)
- let div: HTMLElement = document.createElement('div');
- div.className = 'blockCards'
- for(let i = 0 ; i < allGoodsInBasket.length ; i++){
-      for(let y = 0; y < carData.length ; y++){
-        if(allGoodsInBasket[i] === carData[y].id){
-            let num = i
-            let render =  renderCard(++num,carData[y].name,carData[y].img,carData[y].description,carData[y].year,carData[y].whoMade, carData[y].color,
-                                     carData[y].km, (carData[y].popular === false) ? 'нет' : 'да' ,carData[y].availableQuantity,
-                                     carData[y].price )
-
-           div.innerHTML += (render)
-        }
-      }
-
- }
- return (div.innerHTML)
-}
