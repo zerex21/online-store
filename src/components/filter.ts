@@ -14,7 +14,7 @@ interface IFilterData {
 }
 
 export class Filter {
-  private drawData: ((data: ICarData[]) => void);
+  private drawData!: ((data: ICarData[]) => void);
 
   public filterData: IFilterData = {
     search: '',
@@ -31,7 +31,7 @@ export class Filter {
 
   cardsInBasket: string[] = [];
 
-  init(drawFunction) {
+  init(drawFunction: { (data: ICarData[]): void; (data: ICarData[]): void; }) {
     this.drawData = drawFunction;
     const filterWhoMadeButtonsContainer = document.querySelector('.FilterWhoMade') as HTMLElement ;
     filterWhoMadeButtonsContainer.addEventListener('click', this.handleFilterWhoMadeClick.bind(this));
@@ -192,7 +192,7 @@ export class Filter {
 
         const goodsItem = document.querySelectorAll('.GoodsItem');
         for (let g = 0 ; g < goodsItem.length; g++) {
-          if (goodsItem[g].closest('.GoodsItem').getAttribute('data-card') == arr[y]) {
+          if (goodsItem[g].closest('.GoodsItem')?.getAttribute('data-card') == arr[y]) {
             goodsItem[g].closest('.GoodsItem').querySelector('.InBasket').innerHTML = 'да';
             goodsItem[g].closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзине';
             goodsItem[g].classList.add('GoodsItemInBasket');

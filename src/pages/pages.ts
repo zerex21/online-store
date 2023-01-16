@@ -180,7 +180,7 @@ export const routes = [
   },
 ];
 
-export function router(event, container) {
+export function router(event: { preventDefault: () => void; target: { href: string | URL | null | undefined; }; }, container: { innerHTML: string; }) {
   event.preventDefault();
   history.pushState({}, 'newUrl', event.target.href);
   const route = routes.find(item => item.path == window.location.pathname);
@@ -189,14 +189,14 @@ export function router(event, container) {
   }
 }
 
-export function routerForMain(event) {
+export function routerForMain(event: PopStateEvent | MouseEvent) {
   event.preventDefault();
   history.pushState({}, 'main', '/');
   const container = document.getElementById('container') as HTMLElement;
   container.innerHTML = routes[0].data;
 }
 
-export function routerForBasket(event, container) {
+export function routerForBasket(event: MouseEvent, container: HTMLElement) {
   event.preventDefault();
   history.pushState({}, 'basket', '/basket');
   let allGoodsInBasket:number[] = [];

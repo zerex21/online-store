@@ -1,5 +1,7 @@
+import { ICarData } from './../../types/car-data.interface';
 import { carData } from '../../data/cars-data';
 import { Filter } from '../filter';
+
 class App {
 
   public start(): void {
@@ -15,18 +17,18 @@ class App {
     filter.checkClass();
   }
 
-  public draw(data): void {
+  public draw(data:ICarData[]): void {
     const fragment = document.createDocumentFragment();
     const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
     data.forEach((item) => {
       const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
       const isPopular = item.popular ? 'да' : 'нет';
-      let color = item.color;
-      let inBasket = item.inBasket ? 'да' : 'нет';
+      const color = item.color;
+      const inBasket = item.inBasket ? 'да' : 'нет';
       sourceClone.querySelector('.GoodsItem')?.setAttribute('data-card', `${item.id}`);
       sourceClone.querySelector('.GoodsItem')?.setAttribute('data-price', `${item.price}`);
-      sourceClone.querySelector('.GoodsItemImg')?.setAttribute("src", item.img);
-      sourceClone.querySelector('.GoodsItemTitle').textContent = item.whoMade + " " + item.modelName;
+      sourceClone.querySelector('.GoodsItemImg')?.setAttribute('src', item.img);
+      sourceClone.querySelector('.GoodsItemTitle').textContent = item.whoMade + ' ' + item.modelName;
       sourceClone.querySelector('.Quantity').textContent = item.availableQuantity;
       sourceClone.querySelector('.Year').textContent = item.year;
       sourceClone.querySelector('.WhoMade').textContent = item.whoMade;
@@ -41,8 +43,10 @@ class App {
     });
 
     const goodsContainer = document.querySelector('.GoodsListing');
-    goodsContainer.innerHTML = "";
-    goodsContainer.append(fragment);
+    if ( goodsContainer !== null ) {
+      goodsContainer.innerHTML = '';
+      goodsContainer.append(fragment);
+    }
   }
 }
 
