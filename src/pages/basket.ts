@@ -1,12 +1,11 @@
-import { carData } from "../data/cars-data"
+import { carData } from '../data/cars-data';
 
-export let renderContainerForCards = (goodsInBasket, totalPrice, allGoodsInBasket) =>{
-    return(`
-    <div class="goodsInBasket">
+export const renderContainerForCards = (goodsInBasket: string, totalPrice: string, allGoodsInBasket: string) =>{
+  return (`<div class="goodsInBasket">
     <div class="listGoods">
         <div class="titleGoods">
             <div class="nameTitle">Товары в корзине</div>
-            <div class="amountGoods">Количество: <div class="amountGoodsNumber">${ goodsInBasket}
+            <div class="amountGoods">Количество: <div class="amountGoodsNumber">${goodsInBasket}
             </div>
         </div>
             <div class="pagesTitle">Страница:
@@ -33,15 +32,13 @@ export let renderContainerForCards = (goodsInBasket, totalPrice, allGoodsInBaske
             </div>
         </div>
     </div>
-
-    `)
+    `);
 }
 
 
-let renderCard = (count:number,name:string,img:string,description:string,year:number,maker:string,color:string,
-                  km:number,popular:string,quantity:number,price:number) =>{
-    return (`
-    <div class="previewOrder">
+const renderCard = (count: number, name: string, img: string, description: string, year: number, maker: string, color: string,
+  km: number, popular: string, quantity: number, price: number) =>{
+  return (`<div class="previewOrder">
                 <div class="countGoods">${count}</div>
                 <div class="iconGoodsContainer">
                         <img class="iconGoods" src="${img}" alt="car">
@@ -65,8 +62,7 @@ let renderCard = (count:number,name:string,img:string,description:string,year:nu
                     <div class="currentPrice">€ ${price}</div>
                 </div>
             </div>
-        </div>
-    `
+        </div>`
     )
 }
 

@@ -1,34 +1,40 @@
-import { routes, router, routerForMain, routerForBasket, } from './pages/pages';
+import { routes, routerForMain, routerForBasket } from './pages/pages';
 import App from './components/app/app';
 import './global.css';
 
-const container = document.getElementById('container');
+const container = document.getElementById('container') as HTMLElement;
 
-window.addEventListener('popstate', function() {
-    let route = routes.find(route => route.path == window.location.pathname);
+window.addEventListener('popstate', function () {
+  let route = routes.find(item => item.path == window.location.pathname);
+  if (route !== undefined) {
     container.innerHTML = route.data;
-    console.log('b');
-})
+  }
+});
 
-window.addEventListener('DOMContentLoaded', function() {
-    let route = routes.find(route => route.path == window.location.pathname);
+window.addEventListener('DOMContentLoaded', function () {
+  let route = routes.find(item => item.path == window.location.pathname);
+  if (route !== undefined) {
     container.innerHTML = route.data;
-    // console.log(route.path);
+  }
 
-    const logo = document.getElementById("logo") as HTMLInputElement;
-    const favourite = document.getElementById("favourite") as HTMLInputElement;
-/* console.log('pathname', window.location.pathname) */
+  const logo = document.getElementById('logo') as HTMLInputElement;
+  const favourite = document.getElementById('favourite') as HTMLInputElement;
 
- /*************************************** */
-    logo.addEventListener("click" , (event) => {routerForMain(event); /********* */ const app = new App();
-        app.start();}/********** */);
+  logo.addEventListener('click', (event) => {
+    routerForMain(event); const app = new App();
+    app.start();
+  });
 
-    addEventListener("popstate", (event) => {routerForMain(event);  const app = new App();
-        app.start();},false);
-        /******************************************** */
-    favourite.addEventListener("click" , (event) => {routerForBasket(event,container)});
-
+  addEventListener('popstate', (event) => {
+    routerForMain(event);
     const app = new App();
     app.start();
+  }, false);
 
-})
+  favourite.addEventListener('click', (event) => {
+    routerForBasket(event, container);
+  });
+
+  const app = new App();
+  app.start();
+});

@@ -1,0 +1,30 @@
+{
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+        "airbnb-typescript/base",
+        "eslint:recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "project": ["./tsconfig.json"]
+    },
+    "plugins": ["prettier", "import", "@typescript-eslint"],
+    "rules": {
+        "no-debugger": "off",
+        "no-console": 0,
+        "class-methods-use-this": "off",
+        "prettier/prettier": ["error", { "endOfLine": "auto" }],
+        "@typescript-eslint/no-explicit-any": "warn"
+    },
+    "ignorePatterns": ["*config.js"]
+
+}
