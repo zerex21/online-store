@@ -48,7 +48,7 @@ export const cycleForCards = (allGoodsInBasket: number[]) => {
   return (div.innerHTML);
 };
 
-export const renderContainerForCards = (goodsInBasket: string, totalPrice: string, allGoodsInBasket: string) =>{
+export const renderContainerForCards = (goodsInBasket: number, totalPrice: number, allGoodsInBasket: number[]) =>{
   return (`<div class="goodsInBasket">
     <div class="listGoods">
         <div class="titleGoods">
@@ -82,6 +82,3 @@ export const renderContainerForCards = (goodsInBasket: string, totalPrice: strin
     </div>
     `);
 };
-
-
-

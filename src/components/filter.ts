@@ -175,26 +175,26 @@ export class Filter {
 
   checkClass() {
     if (localStorage.getItem('idCardInBasket')) {
-      const tmp: string[] = localStorage.getItem('idCardInBasket').split(',');
+      const tmp: string[] = localStorage.getItem('idCardInBasket')!.split(',');
       const arr2: string [] = [];
       for (let i = 0; i < tmp.length; i++) {
         arr2.push((tmp[i]));
       }
       this.cardsInBasket = arr2;
-      const tmpArr:string[] = localStorage.getItem('idCardInBasket').split(',');
+      const tmpArr:string[] = localStorage.getItem('idCardInBasket')!.split(',');
       const basket = document.querySelector('.basket') as HTMLElement;
       basket.innerHTML = String(tmpArr.length);
       this.currentTotalCart = Number(localStorage.getItem('totalPrice'));
 
-      const arr:string[] = localStorage.getItem('idCardInBasket').split(',');
+      const arr:string[] = localStorage.getItem('idCardInBasket')!.split(',');
 
       for (let y = 0 ; y < arr.length; y++) {
 
         const goodsItem = document.querySelectorAll('.GoodsItem');
         for (let g = 0 ; g < goodsItem.length; g++) {
           if (goodsItem[g].closest('.GoodsItem')?.getAttribute('data-card') == arr[y]) {
-            goodsItem[g].closest('.GoodsItem').querySelector('.InBasket').innerHTML = 'да';
-            goodsItem[g].closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзине';
+            goodsItem[g].closest('.GoodsItem')!.querySelector('.InBasket')!.innerHTML = 'да';
+            goodsItem[g].closest('.GoodsItem')!.querySelector('.addBasket')!.innerHTML = 'В корзине';
             goodsItem[g].classList.add('GoodsItemInBasket');
           }
           for (let i = 0 ; i < carData.length; i++) {
@@ -227,8 +227,8 @@ export class Filter {
     if (localStorage.getItem('sliderNumber1')) {
       this.showRange(minNum, maxNum, displayValOne, displayValTwo);
       this.getNumbersCostBetween( minNum, maxNum );
-      sliderOne.value = localStorage.getItem('sliderNumber1');
-      displayValOne.innerHTML = localStorage.getItem('sliderNumber1');
+      sliderOne.value = localStorage.getItem('sliderNumber1')!;
+      displayValOne.innerHTML = localStorage.getItem('sliderNumber1')!;
     } else {
       this.showRange(minNum, maxNum, displayValOne, displayValTwo);
       this.getNumbersCostBetween( maxNum, minNum);
@@ -243,8 +243,8 @@ export class Filter {
     if (localStorage.getItem('sliderNumber2')) {
       this.showRange(minNum, maxNum, displayValOne, displayValTwo);
       this.getNumbersCostBetween(minNum, maxNum);
-      sliderTwo.value = localStorage.getItem('sliderNumber2');
-      displayValTwo.innerHTML = localStorage.getItem('sliderNumber2');
+      sliderTwo.value = localStorage.getItem('sliderNumber2')!;
+      displayValTwo.innerHTML = localStorage.getItem('sliderNumber2')!;
     } else {
       this.showRange(minNum, maxNum, displayValOne, displayValTwo);
       this.getNumbersCostBetween(minNum, maxNum);
@@ -260,8 +260,8 @@ export class Filter {
     if (localStorage.getItem('sliderNumber3')) {
       this.showRange(minNum, maxNum, displayValTree, displayValFour);
       this.getNumbersQuantityBetween(minNum, maxNum);
-      displayValTree.innerHTML = localStorage.getItem('sliderNumber3');
-      sliderTree.value = localStorage.getItem('sliderNumber3');
+      displayValTree.innerHTML = localStorage.getItem('sliderNumber3')!;
+      sliderTree.value = localStorage.getItem('sliderNumber3')!;
     } else {
       this.showRange(minNum, maxNum, displayValTree, displayValFour);
       this.getNumbersQuantityBetween(minNum, maxNum);
@@ -276,8 +276,8 @@ export class Filter {
     if (localStorage.getItem('sliderNumber4')) {
       this.showRange(minNum, maxNum, displayValTree, displayValFour);
       this.getNumbersQuantityBetween(minNum, maxNum);
-      displayValFour.innerHTML = localStorage.getItem('sliderNumber4');
-      sliderFour.value = localStorage.getItem('sliderNumber4');
+      displayValFour.innerHTML = localStorage.getItem('sliderNumber4')!;
+      sliderFour.value = localStorage.getItem('sliderNumber4')!;
     } else {
       this.showRange(minNum, maxNum, displayValTree, displayValFour);
       this.getNumbersQuantityBetween(minNum, maxNum);
@@ -365,7 +365,7 @@ export class Filter {
 
     if (localStorage.getItem('kilometers')) {
       this.filterData.km = [];
-      const currArrKm:string[] = localStorage.getItem('kilometers').split(',');
+      const currArrKm:string[] = localStorage.getItem('kilometers')!.split(',');
       for (let i = 0 ; i <= currArrKm.length; i++) {
         if (currArrKm[i] == '500') {
           typeLarge.classList.add('active');
@@ -385,7 +385,7 @@ export class Filter {
 
     if (localStorage.getItem('colors')) {
       this.filterData.color = [];
-      const currArrColors:string[] = localStorage.getItem('colors').split(',');
+      const currArrColors:string[] = localStorage.getItem('colors')!.split(',');
       for (let i = 0 ; i <= currArrColors.length; i++) {
         if (currArrColors[i] == 'белый') {
           buttonWhite.classList.add('FilterByColor_active');
@@ -406,7 +406,7 @@ export class Filter {
 
     if (localStorage.getItem('makers')) {
       this.filterData.whoMade = [];
-      const currArrColors:string[] = localStorage.getItem('makers').split(',');
+      const currArrColors:string[] = localStorage.getItem('makers')!.split(',');
       for (let i = 0 ; i <= currArrColors.length; i++) {
         if (currArrColors[i] == 'mercedes') {
           typeMersedes.classList.add('active');
@@ -513,11 +513,11 @@ export class Filter {
     }
   }
 
-  handleFilterWhoMadeClick(event) {
-    const element = event.target;
+  handleFilterWhoMadeClick(event: Event) {
+    const element = <Element>event.target;
     let arrMakers: string[] = [];
-    if (element.tagName === 'BUTTON') {
-      const buttonText = element.innerText.toLowerCase();
+    if (element!.tagName === 'BUTTON') {
+      const buttonText = (element as HTMLElement).innerText.toLowerCase();
       if (element.classList.contains('active')) {
         const filterIndex = this.filterData.whoMade.indexOf(buttonText);
         this.filterData.whoMade.splice(filterIndex, 1);
@@ -538,11 +538,11 @@ export class Filter {
     }
   }
 
-  handleFilterByPowerClick(event) {
-    const element = event.target;
+  handleFilterByPowerClick(event: Event) {
+    const element = <Element>event.target;
     let arrKm: number[] = [];
     if (element.tagName === 'BUTTON') {
-      const buttonText = +element.innerText;
+      const buttonText = +(element as HTMLElement).innerText;
       if (element.classList.contains('active')) {
         const filterIndex = this.filterData.km.indexOf(buttonText);
         this.filterData.km.splice(filterIndex, 1);
@@ -563,11 +563,11 @@ export class Filter {
     }
   }
 
-  handleFilterByColorClick(event) {
-    const element = event.target;
+  handleFilterByColorClick(event: Event) {
+    const element = <Element>event.target;
     let arrColors : string[] = [];
     if (element.tagName === 'BUTTON') {
-      const buttonText = element.innerText.toLowerCase();
+      const buttonText = (element as HTMLElement).innerText.toLowerCase();
       if (element.classList.contains('FilterByColor_active')) {
         const filterIndex = this.filterData.color.indexOf(buttonText);
         this.filterData.color.splice(filterIndex, 1);
@@ -588,8 +588,8 @@ export class Filter {
     }
   }
 
-  handleFilterByPopularClick(event) {
-    const element = event.target;
+  handleFilterByPopularClick(event: Event) {
+    const element = <Element>event.target;
     if (element.tagName === 'BUTTON') {
       if (element.classList.contains('FilterByPopular_active')) {
         this.filterData.popular = false;
@@ -608,8 +608,8 @@ export class Filter {
     }
   }
 
-  handleSearch(event) {
-    this.filterData.search = event.target.value;
+  handleSearch(event: Event) {
+    this.filterData.search = (event.target as HTMLButtonElement)!.value;
     this.applyFilter();
     const text = document.querySelector('.GoodsListing') as HTMLElement;
     if (!text.innerHTML) {
@@ -626,8 +626,8 @@ export class Filter {
     this.checkClass();
   }
 
-  sort(event) {
-    const value = event.target.value;
+  sort(event: Event) {
+    const value = (event.target as HTMLButtonElement)!.value;
     switch (value) {
       case 'value1':
         this.sortByNameUp();
@@ -713,43 +713,43 @@ export class Filter {
     this.applyFilter();
   }
 
-  addOrRemoveBasket(event) {
+  addOrRemoveBasket(event: Event) {
     const currPrice = document.querySelector('.currentTotalCart') as HTMLElement;
     const element = event.target;
-    if (element.classList.contains('addBasket')) {
+    if ((element as HTMLElement)!.classList.contains('addBasket')) {
       const basket = document.querySelector('.basket') as HTMLElement;
       let quantityInBasket:number = +basket.innerHTML;
 
-      if ((this.cardsInBasket.includes(event.target.closest('.GoodsItem').getAttribute('data-card')))) {
-        this.cardsInBasket = this.cardsInBasket.filter(function (f) {return f !== event.target.closest('.GoodsItem').getAttribute('data-card');});
-      } else if (!(this.cardsInBasket.includes(event.target.closest('.GoodsItem').getAttribute('data-card')))) {
-        this.cardsInBasket.push(event.target.closest('.GoodsItem').getAttribute('data-card'));
+      if ((this.cardsInBasket.includes(event.target!.closest('.GoodsItem').getAttribute('data-card')))) {
+        this.cardsInBasket = this.cardsInBasket.filter(function (f) {return f !== (event.target!.closest('.GoodsItem').getAttribute('data-card');});
+      } else if (!(this.cardsInBasket.includes(event.target!.closest('.GoodsItem').getAttribute('data-card')))) {
+        this.cardsInBasket.push(event.target!.closest('.GoodsItem').getAttribute('data-card'));
       }
 
       localStorage.setItem('idCardInBasket', String(this.cardsInBasket));
 
-      if (quantityInBasket < 27 || (quantityInBasket === 27 && element.classList.contains('GoodsItemInBasket'))) {
-        event.target
+      if (quantityInBasket < 27 || (quantityInBasket === 27 && element!.classList.contains('GoodsItemInBasket'))) {
+        event.target!
           .closest('.GoodsItem')
           .classList.toggle('GoodsItemInBasket');
         localStorage.setItem('inBasket', 'true');
-        const isInBasket = element.closest('.GoodsItem').querySelector('.InBasket') as HTMLElement;
+        const isInBasket = element!.closest('.GoodsItem').querySelector('.InBasket') as HTMLElement;
         isInBasket.innerText === 'да' ? isInBasket.innerText = 'нет' : isInBasket.innerText = 'да';
 
         if ( isInBasket.innerText === 'нет' ) {
-          this.currentTotalCart -= Number(event.target.closest('.GoodsItem').getAttribute('data-price'));
+          this.currentTotalCart -= Number(event.target!.closest('.GoodsItem').getAttribute('data-price'));
           currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`;
           localStorage.setItem('totalPrice', String(this.currentTotalCart));
-          element.closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзину';
+          element!.closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзину';
         } else {
-          this.currentTotalCart += Number(event.target.closest('.GoodsItem').getAttribute('data-price'));
+          this.currentTotalCart += Number(event.target!.closest('.GoodsItem').getAttribute('data-price'));
           currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`;
           localStorage.setItem('totalPrice', String(this.currentTotalCart));
-          element.closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзине';
+          element!.closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзине';
         }
 
-        const itemFields = element.closest('.GoodsItem').querySelector('.GoodsItemTitle').innerText +
-        ' ' + element.closest('.GoodsItem').querySelector('.Color').innerText;
+        const itemFields = element!.closest('.GoodsItem').querySelector('.GoodsItemTitle').innerText +
+        ' ' + element!.closest('.GoodsItem').querySelector('.Color').innerText;
         carData.forEach(item => {
           if (item.whoMade + ' ' + item.modelName + ' ' + item.color === itemFields) {
             item.inBasket ? item.inBasket = false : item.inBasket = true;
@@ -767,7 +767,7 @@ export class Filter {
         }
 
         if (localStorage.getItem('idCardInBasket')) {
-          const tmpArr:string[] = localStorage.getItem('idCardInBasket').split(',');
+          const tmpArr:string[] = localStorage.getItem('idCardInBasket')!.split(',');
           basket.innerHTML = String(tmpArr.length);
         } else {
           basket.innerHTML = '0';

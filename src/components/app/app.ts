@@ -28,15 +28,15 @@ class App {
       sourceClone.querySelector('.GoodsItem')?.setAttribute('data-card', `${item.id}`);
       sourceClone.querySelector('.GoodsItem')?.setAttribute('data-price', `${item.price}`);
       sourceClone.querySelector('.GoodsItemImg')?.setAttribute('src', item.img);
-      sourceClone.querySelector('.GoodsItemTitle').textContent = item.whoMade + ' ' + item.modelName;
-      sourceClone.querySelector('.Quantity').textContent = item.availableQuantity;
-      sourceClone.querySelector('.Year').textContent = item.year;
-      sourceClone.querySelector('.WhoMade').textContent = item.whoMade;
-      sourceClone.querySelector('.Color').textContent = color;
-      sourceClone.querySelector('.Km').textContent = item.km;
-      sourceClone.querySelector('.Popular').textContent = isPopular;
-      sourceClone.querySelector('.InBasket').textContent = inBasket;
-      sourceClone.querySelector('.Price').textContent = `€ ${item.price}`;
+      sourceClone.querySelector('.GoodsItemTitle')!.textContent = item.whoMade + ' ' + item.modelName;
+      sourceClone.querySelector('.Quantity')!.textContent = item.availableQuantity.toString();
+      sourceClone.querySelector('.Year')!.textContent = item.year.toString();
+      sourceClone.querySelector('.WhoMade')!.textContent = item.whoMade;
+      sourceClone.querySelector('.Color')!.textContent = color;
+      sourceClone.querySelector('.Km')!.textContent = item.km.toString();
+      sourceClone.querySelector('.Popular')!.textContent = isPopular;
+      sourceClone.querySelector('.InBasket')!.textContent = inBasket;
+      sourceClone.querySelector('.Price')!.textContent = `€ ${item.price}`;
 
       fragment.append(sourceClone);
 

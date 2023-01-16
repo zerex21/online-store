@@ -201,9 +201,9 @@ export function routerForBasket(event: MouseEvent, container: HTMLElement) {
   history.pushState({}, 'basket', '/basket');
   let allGoodsInBasket:number[] = [];
   if (localStorage.getItem('idCardInBasket')) {
-    allGoodsInBasket = localStorage.getItem('idCardInBasket').split(',').map(item => Number(item));
+    allGoodsInBasket = localStorage.getItem('idCardInBasket')!.split(',').map(item => Number(item));
   }
-  const goodsInBasket:number = (localStorage.getItem('idCardInBasket')) ? localStorage.getItem('idCardInBasket').split(',').length : 0;
+  const goodsInBasket:number = (localStorage.getItem('idCardInBasket')) ? localStorage.getItem('idCardInBasket')!.split(',').length : 0;
   const totalPrice:number = (localStorage.getItem('totalPrice')) ? Number(localStorage.getItem('totalPrice')) : 0;
   const render = renderContainerForCards(goodsInBasket, totalPrice, allGoodsInBasket);
   container.innerHTML = render;
