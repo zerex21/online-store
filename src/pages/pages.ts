@@ -1,14 +1,9 @@
-import App from "../components/app/app";
-import { renderContainerForCards, cycleForCards } from "./basket";
-
-
-
+import { renderContainerForCards } from './basket';
 
 export const routes = [
-    {
-      path: '/',
-      data: `
-            <div class="Goods">
+  {
+    path: '/',
+    data: `<div class="Goods">
                 <div class="GoodsFiltersContainer">
                     <div class="GoodsFilterGroup">
                         <h4 class="title">Фильтры по значению</h4>
@@ -123,12 +118,11 @@ export const routes = [
                 <div class="GoodsListing"></div>
                 <!-- <div class="message invisible">Извините, совпадений не обнаружено</div> -->
             </div>
-      `
-    },
-    {
-        path: '/basket',
-        data: /* renderContainerForCards(goodsInBasket,totalPrice) */  `
-        <div class="goodsInBasket">
+    `,
+  },
+  {
+    path: '/basket',
+    data: `<div class="goodsInBasket">
         <div class="listGoods">
             <div class="titleGoods">
                 <div class="nameTitle">Товары в корзине</div>
@@ -182,49 +176,37 @@ export const routes = [
                 </div>
             </div>
         </div>
-        `
-      }
-  ];
+    `,
+  },
+];
 
-export function router (event, container) {
-    event.preventDefault();
-    history.pushState({}, 'newUrl', event.target.href);
-    let route = routes.find(route => route.path == window.location.pathname);
+export function router(event, container) {
+  event.preventDefault();
+  history.pushState({}, 'newUrl', event.target.href);
+  let route = routes.find(item => item.path == window.location.pathname);
+  if (route !== undefined) {
     container.innerHTML = route.data;
-    //console.log(route);
+  }
 }
 
-export function routerForMain (event) {
-    event.preventDefault();
-    /******************************** */
-    history.pushState({}, 'main', '/');
-    /************************************** */
-    const container = document.getElementById('container');
-
-    //let route = routes.find(route => route.path == window.location.pathname);
-    container.innerHTML = routes[0].data;
-
-    /* const app = new App();
-    app.start(); */
+export function routerForMain(event) {
+  event.preventDefault();
+  history.pushState({}, 'main', '/');
+  const container = document.getElementById('container') as HTMLElement;
+  container.innerHTML = routes[0].data;
 }
 
-export function routerForBasket (event, container) {
-    event.preventDefault();
-    history.pushState({}, 'basket', '/basket');
-    let allGoodsInBasket:number[] = []
-        if(localStorage.getItem('idCardInBasket')){
-             allGoodsInBasket = localStorage.getItem('idCardInBasket').split(',').map(item => Number(item));
-        }
-        /* console.log(allGoodsInBasket) */
-    let goodsInBasket:number =(localStorage.getItem("idCardInBasket"))? localStorage.getItem("idCardInBasket").split(',').length : 0;
-    let totalPrice:number =(localStorage.getItem("totalPrice"))? Number(localStorage.getItem("totalPrice")) : 0;
-    let render = renderContainerForCards(goodsInBasket,totalPrice,allGoodsInBasket)
-    /* let getIdInBasket = cycleForCards(allGoodsInBasket) */
-    //let route = routes.find(route => route.path == window.location.pathname);
-    container.innerHTML = render;
-/*     const app = new App();
-app.start(); */
+export function routerForBasket(event, container) {
+  event.preventDefault();
+  history.pushState({}, 'basket', '/basket');
+  let allGoodsInBasket:number[] = [];
+  if (localStorage.getItem('idCardInBasket')) {
+    allGoodsInBasket = localStorage.getItem('idCardInBasket').split(',').map(item => Number(item));
+  }
+  let goodsInBasket:number = (localStorage.getItem('idCardInBasket')) ? localStorage.getItem('idCardInBasket').split(',').length : 0;
+  let totalPrice:number = (localStorage.getItem('totalPrice')) ? Number(localStorage.getItem('totalPrice')) : 0;
+  let render = renderContainerForCards(goodsInBasket, totalPrice, allGoodsInBasket);
+  container.innerHTML = render;
 }
-/* const app = new App();
-app.start(); */
+
 
