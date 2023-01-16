@@ -32,7 +32,7 @@ const renderCard = (count: number, name: string, img: string, description: strin
 
 export const cycleForCards = (allGoodsInBasket) => {
   allGoodsInBasket = allGoodsInBasket.sort((a, b)=> a - b);
-  let div: HTMLElement = document.createElement('div');
+  const div: HTMLElement = document.createElement('div');
   div.className = 'blockCards';
   for (let i = 0 ; i < allGoodsInBasket.length; i++) {
     for ( let y = 0; y < carData.length; y++) {

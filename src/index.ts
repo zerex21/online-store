@@ -5,14 +5,14 @@ import './global.css';
 const container = document.getElementById('container') as HTMLElement;
 
 window.addEventListener('popstate', function () {
-  let route = routes.find(item => item.path == window.location.pathname);
+  const route = routes.find(item => item.path == window.location.pathname);
   if (route !== undefined) {
     container.innerHTML = route.data;
   }
 });
 
 window.addEventListener('DOMContentLoaded', function () {
-  let route = routes.find(item => item.path == window.location.pathname);
+  const route = routes.find(item => item.path == window.location.pathname);
   if (route !== undefined) {
     container.innerHTML = route.data;
   }

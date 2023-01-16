@@ -183,7 +183,7 @@ export const routes = [
 export function router(event, container) {
   event.preventDefault();
   history.pushState({}, 'newUrl', event.target.href);
-  let route = routes.find(item => item.path == window.location.pathname);
+  const route = routes.find(item => item.path == window.location.pathname);
   if (route !== undefined) {
     container.innerHTML = route.data;
   }
@@ -203,9 +203,9 @@ export function routerForBasket(event, container) {
   if (localStorage.getItem('idCardInBasket')) {
     allGoodsInBasket = localStorage.getItem('idCardInBasket').split(',').map(item => Number(item));
   }
-  let goodsInBasket:number = (localStorage.getItem('idCardInBasket')) ? localStorage.getItem('idCardInBasket').split(',').length : 0;
-  let totalPrice:number = (localStorage.getItem('totalPrice')) ? Number(localStorage.getItem('totalPrice')) : 0;
-  let render = renderContainerForCards(goodsInBasket, totalPrice, allGoodsInBasket);
+  const goodsInBasket:number = (localStorage.getItem('idCardInBasket')) ? localStorage.getItem('idCardInBasket').split(',').length : 0;
+  const totalPrice:number = (localStorage.getItem('totalPrice')) ? Number(localStorage.getItem('totalPrice')) : 0;
+  const render = renderContainerForCards(goodsInBasket, totalPrice, allGoodsInBasket);
   container.innerHTML = render;
 }
 

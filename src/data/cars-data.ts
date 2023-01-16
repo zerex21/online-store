@@ -1,6 +1,6 @@
 import { ICarData } from '../types/car-data.interface';
 
-export let carData: ICarData[] = [
+export const carData: ICarData[] = [
   {
     id: 1,
     name: 'Mercedes EQA',
