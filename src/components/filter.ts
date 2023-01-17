@@ -2,7 +2,7 @@ import { carData } from '../data/cars-data';
 import { ICarData } from '../types/car-data.interface';
 import {  slideOne, slideTwo, slideTree, slideFour } from './slider';
 
-interface IFilterData {
+export interface IFilterData {
   search: string;
   whoMade: string[];
   km: number[];
