@@ -720,36 +720,36 @@ export class Filter {
       const basket = document.querySelector('.basket') as HTMLElement;
       let quantityInBasket:number = +basket.innerHTML;
 
-      if ((this.cardsInBasket.includes(event.target!.closest('.GoodsItem').getAttribute('data-card')))) {
-        this.cardsInBasket = this.cardsInBasket.filter(function (f) {return f !== (event.target!.closest('.GoodsItem').getAttribute('data-card');});
-      } else if (!(this.cardsInBasket.includes(event.target!.closest('.GoodsItem').getAttribute('data-card')))) {
-        this.cardsInBasket.push(event.target!.closest('.GoodsItem').getAttribute('data-card'));
+      if ((this.cardsInBasket.includes((event.target as HTMLElement)!.closest('.GoodsItem')!.getAttribute('data-card')!))) {
+        this.cardsInBasket = this.cardsInBasket.filter(function (f) {return f !== ((event.target as HTMLElement)!.closest('.GoodsItem')!.getAttribute('data-card'))});
+      } else if (!(this.cardsInBasket.includes((event.target as HTMLElement)!.closest('.GoodsItem')!.getAttribute('data-card')!))) {
+        this.cardsInBasket.push((event.target  as HTMLElement)!.closest('.GoodsItem')!.getAttribute('data-card')!);
       }
 
       localStorage.setItem('idCardInBasket', String(this.cardsInBasket));
 
-      if (quantityInBasket < 27 || (quantityInBasket === 27 && element!.classList.contains('GoodsItemInBasket'))) {
-        event.target!
-          .closest('.GoodsItem')
+      if (quantityInBasket < 27 || (quantityInBasket === 27 && (element as HTMLElement)!.classList.contains('GoodsItemInBasket'))) {
+        (event.target as HTMLElement)!
+          .closest('.GoodsItem')!
           .classList.toggle('GoodsItemInBasket');
         localStorage.setItem('inBasket', 'true');
-        const isInBasket = element!.closest('.GoodsItem').querySelector('.InBasket') as HTMLElement;
+        const isInBasket = (element as HTMLElement)!.closest('.GoodsItem')!.querySelector('.InBasket') as HTMLElement;
         isInBasket.innerText === 'да' ? isInBasket.innerText = 'нет' : isInBasket.innerText = 'да';
 
         if ( isInBasket.innerText === 'нет' ) {
-          this.currentTotalCart -= Number(event.target!.closest('.GoodsItem').getAttribute('data-price'));
+          this.currentTotalCart -= Number((event.target as HTMLElement)!.closest('.GoodsItem')!.getAttribute('data-price'));
           currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`;
           localStorage.setItem('totalPrice', String(this.currentTotalCart));
-          element!.closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзину';
+          (element as HTMLElement)!.closest('.GoodsItem')!.querySelector('.addBasket')!.innerHTML = 'В корзину';
         } else {
-          this.currentTotalCart += Number(event.target!.closest('.GoodsItem').getAttribute('data-price'));
+          this.currentTotalCart += Number(((event as Event).target as HTMLElement)!.closest('.GoodsItem')!.getAttribute('data-price'));
           currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`;
           localStorage.setItem('totalPrice', String(this.currentTotalCart));
-          element!.closest('.GoodsItem').querySelector('.addBasket').innerHTML = 'В корзине';
+          (element as HTMLElement)!.closest('.GoodsItem')!.querySelector('.addBasket')!.innerHTML = 'В корзине';
         }
 
-        const itemFields = element!.closest('.GoodsItem').querySelector('.GoodsItemTitle').innerText +
-        ' ' + element!.closest('.GoodsItem').querySelector('.Color').innerText;
+        const itemFields = ((element  as HTMLElement)!.closest('.GoodsItem')!.querySelector('.GoodsItemTitle') as HTMLElement)!.innerText +
+        ' ' + ((element as HTMLElement)!.closest('.GoodsItem')!.querySelector('.Color') as HTMLElement)!.innerText;
         carData.forEach(item => {
           if (item.whoMade + ' ' + item.modelName + ' ' + item.color === itemFields) {
             item.inBasket ? item.inBasket = false : item.inBasket = true;
