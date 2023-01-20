@@ -6,14 +6,14 @@ const container = document.getElementById('container') as HTMLElement;
 
 window.addEventListener('popstate', function () {
   const route = routes.find(item => item.path == window.location.pathname);
-  if (route !== undefined) {
+  if (route) {
     container.innerHTML = route.data;
   }
 });
 
 window.addEventListener('DOMContentLoaded', function () {
   const route = routes.find(item => item.path == window.location.pathname);
-  if (route !== undefined) {
+  if (route) {
     container.innerHTML = route.data;
   }
 
@@ -21,7 +21,8 @@ window.addEventListener('DOMContentLoaded', function () {
   const favourite = document.getElementById('favourite') as HTMLInputElement;
 
   logo.addEventListener('click', (event) => {
-    routerForMain(event); const app = new App();
+    routerForMain(event);
+    const app = new App();
     app.start();
   });
 

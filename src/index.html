@@ -6,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Online-store</title>
-        <!-- <link href="./nouislider.css" rel="stylesheet">
-        <script src="nouislider.js"></script> -->
+
     </head>
     <body>
         <div id="root">
@@ -20,131 +19,15 @@
                         </nav>
                         <div class="currentTotalCart">Текущая цена: € 0</div>
                         <a class="favourite" href="basket" id="favourite">
-                           <!--  Всего товаров в корзине: -->
                            <div class="imgBasket">
-
                            </div>
                             <div class="basket">0</div>
                         </a>
                     </div>
                 </header>
+
                 <main class="main">
                     <div class="container" id="container">
-                        <!-- <div class="Goods">
-                            <div class="GoodsFiltersContainer">
-                                <div class="GoodsFilterGroup">
-                                    <h4 class="title">Фильтры по значению</h4>
-                                    <div>
-                                        <div class="FilterWhoMade">
-                                            Производитель:
-                                            <ul class="list">
-                                                <button class=" button type-mersedes ">Mercedes</button>
-                                                <button class=" button type-tesla ">Tesla</button>
-                                                <button class=" button type-volkswagen ">Volkswagen</button>
-                                            </ul>
-                                        </div>
-                                        <div class="FilterByPower">
-                                            Запас хода (км):
-                                            <ul class="list">
-                                                <button class=" button type-large ">500</button>
-                                                <button class=" button type-medium ">400</button>
-                                                <button class=" button type-small ">300</button>
-                                            </ul>
-                                        </div>
-                                        <div class="FilterByColor">
-                                            Цвет:
-                                            <ul class="FilterByColor__list">
-                                                <button class=" FilterByColor__button FilterByColor__button_type-white">белый</button>
-                                                <button class=" FilterByColor__button FilterByColor__button_type-gray">серый</button>
-                                                <button class=" FilterByColor__button FilterByColor__button_type-red">красный</button>
-                                            </ul>
-                                        </div>
-                                        <div class="FilterByPopular">
-                                            Только популярные:
-                                            <div>
-                                                <button class="favorite-input">popular</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="GoodsFilterGroup">
-                                    <h4 class="title">Фильтры по диапазону</h4>
-                                        <div class="Range">
-                                                <h5>Цена: </h5>
-                                                <div class="range-slider">
-                                                    <div class="wrapper-slider">
-                                                        <div class="values">
-                                                            <span id="range1">
-                                                                37000
-                                                            </span>
-                                                            <span> &dash; </span>
-                                                            <span id="range2">
-                                                                100000
-                                                            </span>
-                                                        </div>
-                                                        <div class="containerSlider">
-                                                            <div class="slider-track"></div>
-                                                            <input type="range" min="37000" max="100000" value="37000" id="slider-1" >
-                                                            <input type="range" min="37000" max="100000" value="100000" id="slider-2" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                        <div class="Range">
-                                                <h5>Количество: </h5>
-                                                <div class="range-slider">
-                                                    <div class="range-slider">
-                                                        <div class="wrapper-slider">
-                                                            <div class="values">
-                                                                <span id="range3">
-                                                                    1
-                                                                </span>
-                                                                <span> &dash; </span>
-                                                                <span id="range4">
-                                                                    10
-                                                                </span>
-                                                            </div>
-                                                            <div class="containerSlider">
-                                                                <div class="slider-track"></div>
-                                                                <input type="range" min="1" max="10" value="1" id="slider-3" >
-                                                                <input type="range" min="1" max="10" value="10" id="slider-4" >
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="GoodsFilterGroup">
-                                    <h4 class="title"></h4>
-                                    <div>
-                                        <div class="FilterByName">
-                                            <h5 class="title">Поиск</h5>
-                                            <div class="searchWrapper">
-                                                <input id="search" placeholder="Введите текст" class="search falce" value autofocus autocomplete="off">
-                                                <div class="clear"></div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h5 class="title">Сортировка</h5>
-                                            <div class="selectContainer">
-                                                <select id="select" class="select">
-                                                    <option value="value1"selected>По названию, от А до Я</option>
-                                                    <option value="value2" >По названию, от Я до А</option>
-                                                    <option value="value3">По году, по возрастанию</option>
-                                                    <option value="value4">По году, по убыванию</option>
-                                                  </select>
-                                            </div>
-                                        </div>
-                                        <div class="Reset">
-                                            <button id="filtersReset" >Сброс фильтров</button> -->
-                                            <!-- <button >Сброс настроек</button> -->
-                                        <!-- </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="GoodsListing"></div> -->
-                            <!-- <div class="message invisible">Извините, совпадений не обнаружено</div> -->
-                        <!-- </div> -->
                     </div>
                 </main>
 
@@ -158,6 +41,7 @@
                         </div>
                     </div>
                 </footer>
+
                 <template id="sourceItemTemp">
                     <div class="GoodsItem">
                         <h4 class="GoodsItemTitle"></h4>
@@ -184,7 +68,7 @@
                         </div>
                     </div>
                 </template>
-                <!-- <script src="./index.ts"></script> -->
+
             </div>
         </div>
     </body>

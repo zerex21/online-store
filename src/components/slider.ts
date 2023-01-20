@@ -1,6 +1,5 @@
 const minGap = 0;
 
-
 function fillColor():number[] {
   const sliderOne = document.getElementById('slider-1') as HTMLInputElement;
   const sliderTwo = document.getElementById('slider-2') as HTMLInputElement;
@@ -27,7 +26,6 @@ function fillColor2():number[] {
   return ([Math.round(percent1 * 1000), Math.round(percent2 * 1000)]);
 }
 
-
 export function slideOne():number[] {
   const displayValOne = document.getElementById('range1') as HTMLElement;
   const sliderOne = document.getElementById('slider-1') as HTMLInputElement;
@@ -40,9 +38,7 @@ export function slideOne():number[] {
   displayValOne.textContent = sliderOne.value;
   const currNumbers:number[] = fillColor();
 
-  return (currNumbers.sort(function (a, b) {
-    return a - b;
-  }));
+  return (currNumbers.sort( (a, b) => a - b ));
 }
 
 export function slideTwo():number[] {
@@ -57,9 +53,7 @@ export function slideTwo():number[] {
   displayValTwo.textContent = sliderTwo.value;
   const currNumbers:number[] = fillColor();
 
-  return (currNumbers.sort(function (a, b) {
-    return a - b;
-  }));
+  return (currNumbers.sort( (a, b) => a - b ));
 }
 
 export function slideTree():number[] {
@@ -75,9 +69,7 @@ export function slideTree():number[] {
 
   const currNumbers:number[] = fillColor2();
 
-  return (currNumbers.sort(function (a, b) {
-    return a - b;
-  }));
+  return (currNumbers.sort( (a, b) => a - b ));
 }
 
 export function slideFour():number[] {
@@ -92,7 +84,5 @@ export function slideFour():number[] {
   displayValFour.textContent = sliderFour.value;
   const currNumbers:number[] = fillColor2();
 
-  return (currNumbers.sort(function (a, b) {
-    return a - b;
-  }));
+  return (currNumbers.sort( (a, b) => a - b ));
 }

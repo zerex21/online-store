@@ -2,6 +2,12 @@ import { carData } from '../data/cars-data';
 import { ICarData } from '../types/car-data.interface';
 import {  slideOne, slideTwo, slideTree, slideFour } from './slider';
 
+enum InBasket{
+  Yes = 'да',
+  No= 'нет',
+}
+
+
 export interface IFilterData {
   search: string;
   whoMade: string[];
@@ -164,9 +170,9 @@ export class Filter {
     currentTotalCart.innerHTML = 'Текущая цена: € 0';
     carData.forEach(element => element.inBasket = false );
     const isInBasket:NodeListOf<Element> = document.querySelectorAll('.InBasket') ;
-    for (let i = 0 ; i <= isInBasket.length; i++) {
-      if (isInBasket[i].innerHTML == 'да') {
-        isInBasket[i].innerHTML = 'нет';
+    for (let i = 0 ; i < isInBasket.length; i++) {
+      if (isInBasket[i].innerHTML == InBasket.Yes) {
+        isInBasket[i].innerHTML = InBasket.No;
       } else {false;}
     }
     select.value = 'value1';
@@ -193,7 +199,7 @@ export class Filter {
         const goodsItem = document.querySelectorAll('.GoodsItem');
         for (let g = 0 ; g < goodsItem.length; g++) {
           if (goodsItem[g].closest('.GoodsItem')?.getAttribute('data-card') == arr[y]) {
-            goodsItem[g].closest('.GoodsItem')!.querySelector('.InBasket')!.innerHTML = 'да';
+            goodsItem[g].closest('.GoodsItem')!.querySelector('.InBasket')!.innerHTML = InBasket.Yes;
             goodsItem[g].closest('.GoodsItem')!.querySelector('.addBasket')!.innerHTML = 'В корзине';
             goodsItem[g].classList.add('GoodsItemInBasket');
           }
@@ -734,9 +740,9 @@ export class Filter {
           .classList.toggle('GoodsItemInBasket');
         localStorage.setItem('inBasket', 'true');
         const isInBasket = (element as HTMLElement)!.closest('.GoodsItem')!.querySelector('.InBasket') as HTMLElement;
-        isInBasket.innerText === 'да' ? isInBasket.innerText = 'нет' : isInBasket.innerText = 'да';
+        isInBasket.innerText === InBasket.Yes ? isInBasket.innerText = InBasket.No : isInBasket.innerText =InBasket.Yes;
 
-        if ( isInBasket.innerText === 'нет' ) {
+        if ( isInBasket.innerText === InBasket.No ) {
           this.currentTotalCart -= Number((event.target as HTMLElement)!.closest('.GoodsItem')!.getAttribute('data-price'));
           currPrice.innerHTML = `Текущая цена: € ${this.currentTotalCart}`;
           localStorage.setItem('totalPrice', String(this.currentTotalCart));

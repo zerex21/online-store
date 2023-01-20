@@ -71,7 +71,7 @@ export const carData: ICarData[] = [
     color: 'серый',
     km: 400,
     popular: false,
-    img: 'https://www.mercedes-benz.co.uk/passengercars/mercedes-benz-cars/models/eqb/suv-x243/explore/specifications/_jcr_content/par/imagenumbercombinati/media/videoimageslide/image.MQ6.8.20211110082149.jpeg',
+    img: 'https://hips.hearstapps.com/hmg-prod/images/2022-mercedes-benz-eqb-350-296-1669670985.jpg?crop=0.636xw:0.475xh;0.319xw,0.460xh&resize=1200:*',
     inBasket: false,
     price: 37022,
     description:'Mercedes-Benz EQB — это компактный электрический хэтчбек. Концептуальный автомобиль имеет по одному электрическому двигателю на передней и задней оси, которые обеспечивает ему мощность более 400 кВт.',

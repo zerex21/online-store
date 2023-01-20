@@ -2,6 +2,16 @@ import { ICarData } from './../../types/car-data.interface';
 import { carData } from '../../data/cars-data';
 import { Filter } from '../filter';
 
+enum InBasket{
+    Yes = 'да',
+    No= 'нет',
+}
+
+enum Popular{
+  Yes = 'да',
+  No= 'нет',
+}
+
 class App {
 
   public start(): void {
@@ -22,9 +32,9 @@ class App {
     const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
     data.forEach((item) => {
       const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
-      const isPopular = item.popular ? 'да' : 'нет';
+      const isPopular = item.popular ? Popular.Yes : Popular.No;
       const color = item.color;
-      const inBasket = item.inBasket ? 'да' : 'нет';
+      const inBasket = item.inBasket ? InBasket.Yes : InBasket.No;
       sourceClone.querySelector('.GoodsItem')?.setAttribute('data-card', `${item.id}`);
       sourceClone.querySelector('.GoodsItem')?.setAttribute('data-price', `${item.price}`);
       sourceClone.querySelector('.GoodsItemImg')?.setAttribute('src', item.img);
@@ -43,7 +53,7 @@ class App {
     });
 
     const goodsContainer = document.querySelector('.GoodsListing');
-    if ( goodsContainer !== null ) {
+    if ( goodsContainer ) {
       goodsContainer.innerHTML = '';
       goodsContainer.append(fragment);
     }

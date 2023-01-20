@@ -2,10 +2,7 @@ import App from '../components/app/app';
 import { carData } from '../data/cars-data';
 
 const app = new App();
-//const { describe, it, expect } = require("jest-circus");
-//const { isExportDeclaration } = require("typescript");
 
- 
 document.body.innerHTML = `
 <div class="container" id="container">
     <div class="GoodsListing">
