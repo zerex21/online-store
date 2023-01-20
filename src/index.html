@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Online-store</title>
+
+    </head>
+    <body>
+        <div id="root">
+            <div class="App">
+                <header class="Header">
+                    <div class="container">
+                        <a class="logo" href="" id="logo">Home</a>
+                        <nav class="nav">
+                            <h1>Electric Car Store</h1>
+                        </nav>
+                        <div class="currentTotalCart">Текущая цена: € 0</div>
+                        <a class="favourite" href="basket" id="favourite">
+                           <div class="imgBasket">
+                           </div>
+                            <div class="basket">0</div>
+                        </a>
+                    </div>
+                </header>
+
+                <main class="main">
+                    <div class="container" id="container">
+                    </div>
+                </main>
+
+                <footer class="Footer">
+                    <div class="container">
+                        <div>
+                            <a href="https://github.com/pashkovichma" target="_blank" rel="noreferrer" class="copy-link">© GitHub, 2022</a>
+                        </div>
+                        <div>
+                            <a href="https://rs.school/" target="_blank" rel="noreferrer" class="rs-link">RS School</a>
+                        </div>
+                    </div>
+                </footer>
+
+                <template id="sourceItemTemp">
+                    <div class="GoodsItem">
+                        <h4 class="GoodsItemTitle"></h4>
+                        <div class="GoodsItemImgContainer">
+                            <img src="" alt="car" class="GoodsItemImg">
+                        </div>
+                        <ul class="GoodsItemProps">
+                            <li>Количество: <span class="Quantity"></span></li>
+                            <li>Год выхода: <span class="Year"></span></li>
+                            <li>Производитель: <span class="WhoMade"></li>
+                            <li>Цвет: <span class="Color"></li>
+                            <li>Запас хода (км): <span class="Km"></li>
+                            <li>Популярный: <span class="Popular"></li>
+                            <li>Товар вкорзине: <span class="InBasket"></li>
+                            <li>Цена: <span class="Price"></li>
+                        </ul>
+                        <div class="btn-container">
+                            <div class="btn-addBasket">
+                                <button class="addBasket">В корзину</button>
+                            </div>
+                            <div class="btn-details">
+                                <button>Детали</button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+        </div>
+    </body>
+</html>
